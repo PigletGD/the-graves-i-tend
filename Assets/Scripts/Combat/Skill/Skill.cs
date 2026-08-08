@@ -8,7 +8,6 @@ public class Skill : ScriptableObject, ISkill
 
     public void Execute(Battle battle)
     {
-        Debug.Log($"{name} was used!");
         foreach (IAttempt attempt in attempts)
             attempt.Execute(battle);
     }

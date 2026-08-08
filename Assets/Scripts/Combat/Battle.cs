@@ -6,14 +6,14 @@ using UnityEngine;
 
 // TO DO: 
 // Combatant.cs
-// Interface ITarget is in a weird spot right now. Needed to use a getter in Attempt.cs to execute basic attack.
+// Class Effect/DamageEffect is in a weird spot right now. Needed to use a getter in DamageEffect.cs to execute basic attack.
 public class Battle : MonoBehaviour
 {
-    // Combatant attacker;
-    [SerializeField] Combatant defender;
+    [SerializeField] private Combatant attacker;
+    [SerializeField] private Combatant defender;
     [SerializeField] private Skill basicAttack;
 
-    public Combatant Defender => defender;
+    public Combatant Attacker => attacker;
 
     private void Start()
     {

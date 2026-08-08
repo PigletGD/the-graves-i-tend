@@ -1,4 +1,4 @@
 public interface ITarget
 {
-    public Combatant Resolve(Battle battle);
+    public Combatant GetTarget(Battle battle);
 }

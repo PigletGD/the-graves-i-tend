@@ -4,6 +4,7 @@ using UnityEngine;
 public class Combatant : MonoBehaviour, ITarget
 {
     [SerializeField] private float maxHP;
+    [SerializeField] private Combatant target;
 
     private float currentHP;
 
@@ -15,11 +16,16 @@ public class Combatant : MonoBehaviour, ITarget
     public void UpdateHP(float hpValue)
     {
         currentHP = Mathf.Clamp(currentHP += hpValue, 0, maxHP);
-        Debug.Log($"{name} is at {currentHP}HP!");
+        Debug.Log($"{name} is at {currentHP}HP! ");
     }
 
-    public Combatant Resolve(Battle _)
+    public void SetTarget(Combatant target)
     {
-        return this;
+        this.target = target;
+    }
+
+    public Combatant GetTarget(Battle _)
+    {
+        return target;
     }
 }
