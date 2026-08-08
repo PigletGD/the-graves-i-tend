@@ -23,13 +23,14 @@ public class Battle : MonoBehaviour
 
     private void Start()
     {
-        Targets.Add(defender);
+        if (attacker != null && defender != null && !attacker.Equals(defender))
+            Targets.Add(defender);
         
         if (enableRepeatingExecuteAttempts)
             InvokeRepeating(nameof(ExecuteAttempts), 0, 1f);
     }
 
-    private void ExecuteAttempts()
+    public void ExecuteAttempts()
     {
         basicAttack.Execute(this);
     }
