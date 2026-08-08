@@ -4,14 +4,16 @@ using UnityEngine;
 [Serializable]
 public class Attempt : IAttempt
 {
-    // Animation animation;
     [SerializeField] private ProbabilityCondition<float> accuracy;
-    // On Hit
-    // On Miss
-    // After
+    [SerializeField] private DamageEffect damageEffect;
+    // [SerializeField] private Effect[] statusEffects;
 
-    public void Execute()
+    public void Execute(Battle battle)
     {
-        Debug.Log($"Tried hitting with a {accuracy.Probability * 100:F0}% chance: {accuracy.Check(0)}");
+        // TO DO: Don't use getters from battle. 
+        // The Effect class should already know who/what the target is (if it should be self/enemy/multiple targets).
+        // From there it should resolve what to target in the battle param.
+        damageEffect.target = battle.Defender; 
+        damageEffect.Apply(battle);
     }
 }

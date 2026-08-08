@@ -1,4 +1,4 @@
 public interface IAttempt
 {
-    public void Execute();
+    public void Execute(Battle battle);
 }
