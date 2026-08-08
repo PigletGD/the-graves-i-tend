@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Attempt
+public class Attempt : IAttempt
 {
     // Animation animation;
     [SerializeField] private ProbabilityCondition<float> accuracy;
@@ -12,6 +12,6 @@ public class Attempt
 
     public void Execute()
     {
-        throw new NotImplementedException();
+        Debug.Log($"Tried hitting with a {accuracy.Probability * 100:F0}% chance: {accuracy.Check(0)}");
     }
 }

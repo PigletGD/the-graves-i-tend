@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: TestSkill
   m_EditorClassIdentifier: Assembly-CSharp::Skill
-  name: TestSkill
-  attempt:
+  attempts:
   - accuracy:
-      probability: 0
+      probability: 0.85
+  - accuracy:
+      probability: 0.65

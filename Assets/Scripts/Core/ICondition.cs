@@ -40,7 +40,9 @@ public sealed class NotCondition<T> : ICondition<T>
 [Serializable]
 public sealed class ProbabilityCondition<T> : ICondition<T>
 {
-    [SerializeField] private float probability;
+    [SerializeField, Range(0f, 1f)] private float probability;
+
+    public float Probability => probability;
 
     public ProbabilityCondition(float probability)
     {
@@ -50,7 +52,7 @@ public sealed class ProbabilityCondition<T> : ICondition<T>
         this.probability = probability;
     }
 
-    public bool Check(T value) => UnityEngine.Random.value < probability;
+    public bool Check(T _) => UnityEngine.Random.value < probability;
 }
 
 [Serializable]
