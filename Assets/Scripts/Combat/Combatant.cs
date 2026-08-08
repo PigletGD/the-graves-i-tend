@@ -6,8 +6,16 @@ public class Combatant : MonoBehaviour, ITarget
 {
     [SerializeField] private float maxHP;
     [SerializeField] private Combatant target;
+    
+    // TODO: Temporary visualizer just to make selection more visible in terms of what is the attacker and what is the targets
+    public CombatantSelectionVisualizer Visualizer;
 
     private float currentHP;
+
+    private void Awake()
+    {
+        Visualizer?.SetToUnselectedColor();
+    }
 
     private void Start()
     {

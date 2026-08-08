@@ -23,8 +23,14 @@ public class Battle : MonoBehaviour
 
     private void Start()
     {
+        // TODO: Temporarily handle setting colors here
+        attacker?.Visualizer?.SetToAttackerColor();
+        
         if (attacker != null && defender != null && !attacker.Equals(defender))
+        {
+            defender?.Visualizer?.SetToDefenderColor();
             Targets.Add(defender);
+        }
         
         if (enableRepeatingExecuteAttempts)
             InvokeRepeating(nameof(ExecuteAttempts), 0, 1f);
@@ -42,6 +48,9 @@ public class Battle : MonoBehaviour
         
         if (!selected.Equals(attacker))
         {
+            selected.Visualizer?.SetToAttackerColor();
+            attacker?.Visualizer?.SetToUnselectedColor();
+            
             attacker = selected;
             
             if (Targets.Contains(selected))
@@ -51,6 +60,8 @@ public class Battle : MonoBehaviour
         }
         else
         {
+            selected.Visualizer?.SetToUnselectedColor();
+            
             attacker = null;
             
             Debug.Log($"Removed {selected.name} as the attacker", selected.gameObject);
@@ -64,6 +75,8 @@ public class Battle : MonoBehaviour
         
         if (!Targets.Contains(selected))
         {
+            selected.Visualizer?.SetToDefenderColor();
+            
             Targets.Add(selected);
             
             if (selected.Equals(attacker))
@@ -73,6 +86,8 @@ public class Battle : MonoBehaviour
         }
         else
         {
+            selected.Visualizer?.SetToUnselectedColor();
+            
             Targets.Remove(selected);
             
             Debug.Log($"Removed {selected.name} as a target", selected.gameObject);
