@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
