@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CombatantSelectionVisualizer : MonoBehaviour
+public class TargetSelectionVisualizer : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     

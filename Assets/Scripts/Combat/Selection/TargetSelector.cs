@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CombatantSelector : MonoBehaviour
+public class TargetSelector : MonoBehaviour
 {
     [SerializeField] private Battle battle;
     
@@ -9,7 +9,7 @@ public class CombatantSelector : MonoBehaviour
     private InputAction leftClickAction;
     private InputAction rightClickAction;
     
-    private Combatant hoveredCombatant;
+    private ITarget hoveredCombatant;
 
     private void Awake()
     {
@@ -41,16 +41,16 @@ public class CombatantSelector : MonoBehaviour
         if (hoveredCombatant != null && hoveredCombatant.Equals(newHoveredCombatant))
             return;
 
-        if (hoveredCombatant?.Visualizer != null && !hoveredCombatant.Visualizer.IsSelected)
+        if (hoveredCombatant?.GetSelectionVisualizer() != null && !hoveredCombatant.GetSelectionVisualizer().IsSelected)
         {
-            hoveredCombatant.Visualizer.IsHovered = true;
-            hoveredCombatant.Visualizer.SetToUnselectedColor();
+            hoveredCombatant.GetSelectionVisualizer().IsHovered = true;
+            hoveredCombatant.GetSelectionVisualizer().SetToUnselectedColor();
         }
         
-        if (newHoveredCombatant?.Visualizer != null && !newHoveredCombatant.Visualizer.IsSelected)
+        if (newHoveredCombatant?.GetSelectionVisualizer() != null && !newHoveredCombatant.GetSelectionVisualizer().IsSelected)
         {
-            newHoveredCombatant.Visualizer.IsHovered = true;
-            newHoveredCombatant.Visualizer.SetToHoveredColor();
+            newHoveredCombatant.GetSelectionVisualizer().IsHovered = true;
+            newHoveredCombatant.GetSelectionVisualizer().SetToHoveredColor();
         }
         
         hoveredCombatant = newHoveredCombatant;
@@ -72,7 +72,7 @@ public class CombatantSelector : MonoBehaviour
         battle.HandleDefenderSetupForSelected(hoveredCombatant);
     }
 
-    private Combatant GetHoveredCombatant()
+    private ITarget GetHoveredCombatant()
     {
         if (Camera.main == null)
             return null;
@@ -81,6 +81,6 @@ public class CombatantSelector : MonoBehaviour
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
         
-        return hit.collider?.GetComponent<Combatant>();
+        return hit.collider?.GetComponent<ITarget>();
     }
 }

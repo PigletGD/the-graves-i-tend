@@ -25,6 +25,6 @@ public class DamageEffect : Effect
             return;
 
         foreach (var target in battle.Targets)
-            target.UpdateHP(-damage);
+            target.GetRootObject()?.GetComponent<Combatant>()?.UpdateHP(-damage);
     }
 }
