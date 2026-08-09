@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Combatant
   maxHP: 100
-  target: {fileID: 1107835600}
+  targets: []
+  Visualizer: {fileID: 0}
 --- !u!4 &213297754
 Transform:
   m_ObjectHideFlags: 0
@@ -195,7 +196,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Combatant
   maxHP: 100
-  target: {fileID: 213297753}
+  targets:
+  - {fileID: 213297753}
+  Visualizer: {fileID: 0}
 --- !u!4 &1107835601
 Transform:
   m_ObjectHideFlags: 0
@@ -380,6 +383,7 @@ MonoBehaviour:
   attacker: {fileID: 1107835600}
   defender: {fileID: 213297753}
   basicAttack: {fileID: 11400000, guid: e6aeb0615022a3542a37e8a8717bdfd3, type: 2}
+  enableRepeatingExecuteAttempts: 1
 --- !u!4 &1926496780
 Transform:
   m_ObjectHideFlags: 0

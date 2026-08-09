@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[Serializable]
+[CreateAssetMenu(fileName = "Effect", menuName = "Effect/Damage Effect")]
 public class DamageEffect : Effect
 {
     [SerializeField] private float damage;

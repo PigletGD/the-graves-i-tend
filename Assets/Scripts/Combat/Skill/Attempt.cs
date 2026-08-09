@@ -5,11 +5,11 @@ using UnityEngine;
 public class Attempt : IAttempt
 {
     [SerializeField] private ProbabilityCondition<float> accuracy;
-    [SerializeField] private DamageEffect damageEffect;
-    // [SerializeField] private Effect[] statusEffects;
+    [SerializeField] private Effect[] effects;
 
     public void Execute(Battle battle)
     {
-        damageEffect.Apply(battle);
+        foreach (Effect effect in effects)
+            effect.Apply(battle);
     }
 }

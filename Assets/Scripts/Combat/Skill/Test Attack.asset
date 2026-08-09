@@ -15,5 +15,6 @@ MonoBehaviour:
   attempts:
   - accuracy:
       probability: 0.85
-    damageEffect:
-      damage: 10
+    effects:
+    - {fileID: 11400000, guid: 49c68f642cabb204aa12c05e53d4ece5, type: 2}
+    - {fileID: 11400000, guid: a9c3c12d4e07afd4c8674c3a5b5bf2d7, type: 2}
