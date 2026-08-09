@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Skill", menuName = "Skill")]
@@ -8,8 +9,7 @@ public class Skill : ScriptableObject, ISkill
 
     public void Execute(Battle battle)
     {
-        Debug.Log($"{name} was used by {battle.Attacker.name}!");
         foreach (IAttempt attempt in attempts)
-            attempt.Execute(battle);
+            attempt.Execute(battle.Targets.Cast<ITarget>().ToArray());
     }
 }

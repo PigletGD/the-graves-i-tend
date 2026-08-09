@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ using UnityEngine;
 
 // TO DO: 
 // Combatant.cs
-// Class Effect/DamageEffect is in a weird spot right now. Needed to use a getter in DamageEffect.cs to execute basic attack.
+// Class Attempt is in a weird spot right now.
 public class Battle : MonoBehaviour
 {
     [SerializeField] private Combatant attacker;
@@ -18,8 +17,6 @@ public class Battle : MonoBehaviour
     [SerializeField] private bool enableRepeatingExecuteAttempts = true;
     
     public List<Combatant> Targets { get; private set; } = new();
-
-    public Combatant Attacker => attacker;
 
     private void Start()
     {
