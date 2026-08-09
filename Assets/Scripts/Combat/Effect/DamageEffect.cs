@@ -14,11 +14,5 @@ public class DamageEffect : Effect
         }
 
         combatant.UpdateHP(-damage);
-
-        if (battle.Targets == null || battle.Targets.Count == 0)
-            return;
-
-        foreach (var target in battle.Targets)
-            target.GetRootObject()?.GetComponent<Combatant>()?.UpdateHP(-damage);
     }
 }
