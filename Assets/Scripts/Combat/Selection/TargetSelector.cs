@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CombatantSelector : MonoBehaviour
+public class TargetSelector : MonoBehaviour
 {
     [SerializeField] private Battle battle;
     
     // TODO: Temporary creation of input actions. We'll eventually need a centralized player controls reference to pass around.
     private InputAction leftClickAction;
     private InputAction rightClickAction;
+    
+    private ITarget hoveredCombatant;
 
     private void Awake()
     {
@@ -33,25 +35,44 @@ public class CombatantSelector : MonoBehaviour
         rightClickAction.Disable();
     }
 
+    private void Update()
+    {
+        var newHoveredCombatant = GetHoveredCombatant();
+        if (hoveredCombatant != null && hoveredCombatant.Equals(newHoveredCombatant))
+            return;
+
+        if (hoveredCombatant?.GetSelectionVisualizer() != null && !hoveredCombatant.GetSelectionVisualizer().IsSelected)
+        {
+            hoveredCombatant.GetSelectionVisualizer().IsHovered = true;
+            hoveredCombatant.GetSelectionVisualizer().SetToUnselectedColor();
+        }
+        
+        if (newHoveredCombatant?.GetSelectionVisualizer() != null && !newHoveredCombatant.GetSelectionVisualizer().IsSelected)
+        {
+            newHoveredCombatant.GetSelectionVisualizer().IsHovered = true;
+            newHoveredCombatant.GetSelectionVisualizer().SetToHoveredColor();
+        }
+        
+        hoveredCombatant = newHoveredCombatant;
+    }
+
     private void OnLeftClickPressed(InputAction.CallbackContext ctx)
     {
-        var selectedCombatant = GetHoveredCombatant();
-        if (selectedCombatant == null)
+        if (hoveredCombatant == null)
             return;
         
-        battle.HandleAttackerSetupForSelected(selectedCombatant);
+        battle.HandleAttackerSetupForSelected(hoveredCombatant);
     }
     
     private void OnRightClickPressed(InputAction.CallbackContext ctx)
     {
-        var selectedCombatant = GetHoveredCombatant();
-        if (selectedCombatant == null)
+        if (hoveredCombatant == null)
             return;
         
-        battle.HandleDefenderSetupForSelected(selectedCombatant);
+        battle.HandleDefenderSetupForSelected(hoveredCombatant);
     }
 
-    private Combatant GetHoveredCombatant()
+    private ITarget GetHoveredCombatant()
     {
         if (Camera.main == null)
             return null;
@@ -60,6 +81,6 @@ public class CombatantSelector : MonoBehaviour
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
         
-        return hit.collider?.GetComponent<Combatant>();
+        return hit.collider?.GetComponent<ITarget>();
     }
 }

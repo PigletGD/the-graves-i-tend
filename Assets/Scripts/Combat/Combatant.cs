@@ -8,7 +8,7 @@ public class Combatant : MonoBehaviour, ITarget
     [SerializeField] private Combatant[] targets;
     
     // TODO: Temporary visualizer just to make selection more visible in terms of what is the attacker and what is the targets
-    public CombatantSelectionVisualizer Visualizer;
+    public TargetSelectionVisualizer Visualizer;
 
     private float currentHP;
 
@@ -31,5 +31,15 @@ public class Combatant : MonoBehaviour, ITarget
     public ITarget[] GetTargets(Battle _)
     {
         return targets;
+    }
+
+    public TargetSelectionVisualizer GetSelectionVisualizer()
+    {
+        return Visualizer;
+    }
+
+    public GameObject GetRootObject()
+    {
+        return gameObject;
     }
 }

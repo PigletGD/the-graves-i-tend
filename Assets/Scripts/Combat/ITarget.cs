@@ -1,5 +1,11 @@
+using UnityEngine;
+
 public interface ITarget
 {
-    // Allow classes that use ITarget to target other targets (ex: Combatant [and Tiles if ever]).
     public ITarget[] GetTargets(Battle battle);
+    
+    public TargetSelectionVisualizer GetSelectionVisualizer();
+    
+    // TODO: Just getting an easy place to get the root object for now for better debugging. We probably won't need this later on.
+    public GameObject GetRootObject();
 }

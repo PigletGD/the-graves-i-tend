@@ -106,7 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatantSelectionVisualizer
   spriteRenderer: {fileID: 3965256510140212215}
   unselectedColor: {r: 0.63529414, g: 0.63529414, b: 0.63529414, a: 1}
-  attackerColor: {r: 1, g: 1, b: 1, a: 1}
+  hoveredColor: {r: 1, g: 1, b: 1, a: 1}
+  attackerColor: {r: 0.38325995, g: 0.7312776, b: 1, a: 1}
   defenderColor: {r: 1, g: 0.58431375, b: 0.58431375, a: 1}
 --- !u!1 &7153848428233125620
 GameObject:

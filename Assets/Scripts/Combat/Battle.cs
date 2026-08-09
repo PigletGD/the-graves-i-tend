@@ -16,7 +16,7 @@ public class Battle : MonoBehaviour
 
     [SerializeField] private bool enableRepeatingExecuteAttempts = true;
     
-    public List<Combatant> Targets { get; private set; } = new();
+    public List<ITarget> Targets { get; private set; } = new();
 
     private void Start()
     {
@@ -38,56 +38,56 @@ public class Battle : MonoBehaviour
         basicAttack.Execute(this);
     }
 
-    public void HandleAttackerSetupForSelected(Combatant selected)
+    public void HandleAttackerSetupForSelected(ITarget selected)
     {
         if (selected == null)
             return;
         
         if (!selected.Equals(attacker))
         {
-            selected.Visualizer?.SetToAttackerColor();
-            attacker?.Visualizer?.SetToUnselectedColor();
+            selected.GetSelectionVisualizer()?.SetToAttackerColor();
+            attacker?.GetSelectionVisualizer()?.SetToUnselectedColor();
             
-            attacker = selected;
+            attacker = selected.GetRootObject()?.GetComponent<Combatant>();
             
             if (Targets.Contains(selected))
                 Targets.Remove(selected);
             
-            Debug.Log($"Attacker is set to {selected.name}", selected.gameObject);
+            Debug.Log($"Attacker is set to {selected.GetRootObject().name}", selected.GetRootObject());
         }
         else
         {
-            selected.Visualizer?.SetToUnselectedColor();
+            selected.GetSelectionVisualizer()?.SetToHoveredColor(true);
             
             attacker = null;
             
-            Debug.Log($"Removed {selected.name} as the attacker", selected.gameObject);
+            Debug.Log($"Removed {selected.GetRootObject().name} as the attacker", selected.GetRootObject());
         }
     }
 
-    public void HandleDefenderSetupForSelected(Combatant selected)
+    public void HandleDefenderSetupForSelected(ITarget selected)
     {
         if (selected == null)
             return;
         
         if (!Targets.Contains(selected))
         {
-            selected.Visualizer?.SetToDefenderColor();
+            selected.GetSelectionVisualizer()?.SetToDefenderColor();
             
             Targets.Add(selected);
             
             if (selected.Equals(attacker))
                 attacker = null;
             
-            Debug.Log($"Added {selected.name} as a target", selected.gameObject);
+            Debug.Log($"Added {selected.GetRootObject()?.name} as a target", selected.GetRootObject());
         }
         else
         {
-            selected.Visualizer?.SetToUnselectedColor();
+            selected.GetSelectionVisualizer()?.SetToHoveredColor(true);
             
             Targets.Remove(selected);
             
-            Debug.Log($"Removed {selected.name} as a target", selected.gameObject);
+            Debug.Log($"Removed {selected.GetRootObject()?.name} as a target", selected.GetRootObject());
         }
     }
 }
