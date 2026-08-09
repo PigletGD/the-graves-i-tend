@@ -60,7 +60,7 @@ public class Battle : MonoBehaviour
         }
         else
         {
-            selected.Visualizer?.SetToUnselectedColor();
+            selected.Visualizer?.SetToHoveredColor(true);
             
             attacker = null;
             
@@ -86,7 +86,7 @@ public class Battle : MonoBehaviour
         }
         else
         {
-            selected.Visualizer?.SetToUnselectedColor();
+            selected.Visualizer?.SetToHoveredColor(true);
             
             Targets.Remove(selected);
             

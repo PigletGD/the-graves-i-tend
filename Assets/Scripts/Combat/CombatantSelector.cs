@@ -8,6 +8,8 @@ public class CombatantSelector : MonoBehaviour
     // TODO: Temporary creation of input actions. We'll eventually need a centralized player controls reference to pass around.
     private InputAction leftClickAction;
     private InputAction rightClickAction;
+    
+    private Combatant hoveredCombatant;
 
     private void Awake()
     {
@@ -33,22 +35,41 @@ public class CombatantSelector : MonoBehaviour
         rightClickAction.Disable();
     }
 
+    private void Update()
+    {
+        var newHoveredCombatant = GetHoveredCombatant();
+        if (hoveredCombatant != null && hoveredCombatant.Equals(newHoveredCombatant))
+            return;
+
+        if (hoveredCombatant?.Visualizer != null && !hoveredCombatant.Visualizer.IsSelected)
+        {
+            hoveredCombatant.Visualizer.IsHovered = true;
+            hoveredCombatant.Visualizer.SetToUnselectedColor();
+        }
+        
+        if (newHoveredCombatant?.Visualizer != null && !newHoveredCombatant.Visualizer.IsSelected)
+        {
+            newHoveredCombatant.Visualizer.IsHovered = true;
+            newHoveredCombatant.Visualizer.SetToHoveredColor();
+        }
+        
+        hoveredCombatant = newHoveredCombatant;
+    }
+
     private void OnLeftClickPressed(InputAction.CallbackContext ctx)
     {
-        var selectedCombatant = GetHoveredCombatant();
-        if (selectedCombatant == null)
+        if (hoveredCombatant == null)
             return;
         
-        battle.HandleAttackerSetupForSelected(selectedCombatant);
+        battle.HandleAttackerSetupForSelected(hoveredCombatant);
     }
     
     private void OnRightClickPressed(InputAction.CallbackContext ctx)
     {
-        var selectedCombatant = GetHoveredCombatant();
-        if (selectedCombatant == null)
+        if (hoveredCombatant == null)
             return;
         
-        battle.HandleDefenderSetupForSelected(selectedCombatant);
+        battle.HandleDefenderSetupForSelected(hoveredCombatant);
     }
 
     private Combatant GetHoveredCombatant()
