@@ -5,7 +5,7 @@ using UnityEngine;
 public class Combatant : MonoBehaviour, ITarget
 {
     [SerializeField] private float maxHP;
-    [SerializeField] private Combatant target;
+    [SerializeField] private Combatant[] targets;
     
     // TODO: Temporary visualizer just to make selection more visible in terms of what is the attacker and what is the targets
     public CombatantSelectionVisualizer Visualizer;
@@ -28,13 +28,8 @@ public class Combatant : MonoBehaviour, ITarget
         Debug.Log($"{name} is at {currentHP}HP! ");
     }
 
-    public void SetTarget(Combatant target)
+    public ITarget[] GetTargets(Battle _)
     {
-        this.target = target;
-    }
-
-    public Combatant GetTarget(Battle _)
-    {
-        return target;
+        return targets;
     }
 }
