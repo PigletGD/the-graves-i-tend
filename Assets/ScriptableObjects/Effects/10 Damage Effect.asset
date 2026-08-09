@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: 10 Damage Effect
   m_EditorClassIdentifier: Assembly-CSharp::DamageEffect
   damage: 10
+  amplifyCondition:
+    hasEffect: 1
+    condition: {fileID: 11400000, guid: a9c3c12d4e07afd4c8674c3a5b5bf2d7, type: 2}

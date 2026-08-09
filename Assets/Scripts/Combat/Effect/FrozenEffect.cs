@@ -4,15 +4,31 @@ using UnityEngine;
 public class FrozenEffect : Effect
 {
     [SerializeField] private ProbabilityCondition<float> applyChance;
+    [SerializeField] private CombatantEffectCondition[] effectConditions;
 
     public override void Apply(ITarget target)
     {
         if (target is not Combatant combatant)
         {
-            Debug.Log("Target is not a combatant!");
+            Log("failed because Target is not a combatant");
             return;
         }
 
-        Debug.Log($"[Frozen Effect] Applied: {applyChance.Check(0)}");
+        if (!applyChance.Check(0))
+        {
+            Log("missed");
+            return;
+        }
+
+        foreach (CombatantEffectCondition effectCondition in effectConditions)
+        {
+            if (!effectCondition.Check(combatant))
+            {
+                Log($"failed because of {effectCondition.Effect}");
+                return;
+            }
+        }
+
+        combatant.AddEffect(this);
     }
 }

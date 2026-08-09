@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FrozenEffect
   applyChance:
     probability: 0.5
+  effectConditions:
+  - hasEffect: 0
+    condition: {fileID: 11400000}

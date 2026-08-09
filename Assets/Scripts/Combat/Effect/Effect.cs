@@ -8,4 +8,10 @@ using UnityEngine;
 public abstract class Effect : ScriptableObject
 {
     public abstract void Apply(ITarget target);
+
+    // Just to standardize logging.
+    public virtual void Log(object message)
+    {
+        Debug.Log($"{name} {message}!");
+    }
 }
