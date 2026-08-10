@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class Attempt : IAttempt
 {
     [SerializeField] private ProbabilityCondition<float> accuracy;
-    [SerializeField] private Effect[] effects;
+    [SerializeReference, SerializeReferenceDropdown] public List<Effect> effects;
 
     // TODO: We'll need to figure out at what level of the skill the target gets chosen.
     // I believe that it should probably maybe at the skill level (or maybe the attempt level),

@@ -13,7 +13,7 @@ public class Combatant : MonoBehaviour, ITarget
     public TargetSelectionVisualizer Visualizer;
 
     private float currentHP;
-    [SerializeField] private List<Effect> effects = new();
+    [SerializeField] private List<EffectType> effects = new();
 
     private void Awake()
     {
@@ -47,24 +47,24 @@ public class Combatant : MonoBehaviour, ITarget
     }
 
     // TODO: Effect stacking.
-    public void AddEffect(Effect effect)
+    public void AddEffect(EffectType effectType)
     {
-        if (!HasEffect(effect))
+        if (!HasEffect(effectType))
         {
-            Debug.Log($"{effect.name} was added.");
-            effects.Add(effect);
+            Debug.Log($"{effectType} was added.");
+            effects.Add(effectType);
         }
     }
 
-    public void RemoveEffect(Effect effect)
+    public void RemoveEffect(EffectType effectType)
     {
-        if (HasEffect(effect))
+        if (HasEffect(effectType))
         {
-            Debug.Log($"{effect.name} was removed.");
-            effects.Remove(effect);
+            Debug.Log($"{effectType} was removed.");
+            effects.Remove(effectType);
         }
     }
 
-    public bool HasEffect(Effect effect) => effects.Contains(effect);
+    public bool HasEffect(EffectType effectType) => effects.Contains(effectType);
     
 }

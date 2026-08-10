@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Effect", menuName = "Effect/Frozen Effect")]
+[Serializable]
 public class FrozenEffect : Effect
 {
+    public override EffectType EffectType => EffectType.Frozen;
+
     [SerializeField] private ProbabilityCondition<float> applyChance;
-    [SerializeField] private CombatantEffectCondition[] effectConditions;
+    [SerializeField] private CombatantEffectTypeCondition[] effectConditions;
 
     public override void Apply(ITarget target)
     {
@@ -20,15 +23,15 @@ public class FrozenEffect : Effect
             return;
         }
 
-        foreach (CombatantEffectCondition effectCondition in effectConditions)
+        foreach (CombatantEffectTypeCondition effectCondition in effectConditions)
         {
             if (!effectCondition.Check(combatant))
             {
-                Log($"failed because of {effectCondition.Effect}");
+                Log($"failed because of {effectCondition.EffectType}");
                 return;
             }
         }
 
-        combatant.AddEffect(this);
+        combatant.AddEffect(EffectType);
     }
 }

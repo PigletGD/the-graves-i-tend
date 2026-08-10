@@ -2,15 +2,15 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public sealed class CombatantEffectCondition : ICondition<Combatant>
+public sealed class CombatantEffectTypeCondition : ICondition<Combatant>
 {
     [SerializeField] private bool hasEffect = true;
-    [SerializeField] private Effect effect;
+    [SerializeField] private EffectType effectType;
 
-    public Effect Effect => effect;
+    public EffectType EffectType => effectType;
 
     public bool Check(Combatant combatant)
     {
-        return hasEffect ? combatant.HasEffect(effect) : !combatant.HasEffect(effect);
+        return hasEffect ? combatant.HasEffect(effectType) : !combatant.HasEffect(effectType);
     }
 }

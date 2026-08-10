@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
+  m_Name: Test Attack
+  m_EditorClassIdentifier: Assembly-CSharp::Skill
+  attempts:
+  - accuracy:
+      probability: 0.9
+    effects:
+    - rid: 1594091984470409217
+    - rid: 1594091984470409219
+  references:
+    version: 2
+    RefIds:
+    - rid: 1594091984470409217
+      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 10
+        amplifyCondition:
+          rid: 1594091984470409218
+    - rid: 1594091984470409218
+      type: {class: CombatantEffectTypeCondition, ns: , asm: Assembly-CSharp}
+      data:
+        hasEffect: 1
+        effectType: 1
+    - rid: 1594091984470409219
+      type: {class: FrozenEffect, ns: , asm: Assembly-CSharp}
+      data:
+        applyChance:
+          probability: 0.8
+        effectConditions:
+        - hasEffect: 0
+          effectType: 1

@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Effect", menuName = "Effect/Damage Effect")]
+[Serializable]
 public class DamageEffect : Effect
 {
+    public override EffectType EffectType => EffectType.None;
+
     [SerializeField] private float damage;
-    [SerializeField] private CombatantEffectCondition amplifyCondition;
+    [SerializeReference, SerializeReferenceDropdown] private CombatantEffectTypeCondition amplifyCondition;
 
     public override void Apply(ITarget target)
     {
@@ -16,14 +19,14 @@ public class DamageEffect : Effect
 
         if (amplifyCondition.Check(combatant))
         {
-            Log($"was amplified by {amplifyCondition.Effect} and dealt {damage * 2f} damage");
+            Log($"was amplified by {amplifyCondition.EffectType} and dealt {damage * 2f} damage");
             combatant.UpdateHP(-damage * 2f);
-            combatant.RemoveEffect(amplifyCondition.Effect);
+            combatant.RemoveEffect(amplifyCondition.EffectType);
         }
         else
         {
             Log($"dealt {damage} damage");
             combatant.UpdateHP(-damage);
-        }        
+        }
     }
 }
