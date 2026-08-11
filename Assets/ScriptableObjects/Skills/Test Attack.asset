@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Skill
   attempts:
   - accuracy:
-      probability: 0.9
+      probability: 1
     effects:
     - rid: 1594091984470409217
-    - rid: 1594091984470409219
+    - rid: 1594092005042159685
   references:
     version: 2
     RefIds:
@@ -26,17 +26,12 @@ MonoBehaviour:
       data:
         damage: 10
         amplifyCondition:
-          rid: 1594091984470409218
-    - rid: 1594091984470409218
-      type: {class: CombatantEffectTypeCondition, ns: , asm: Assembly-CSharp}
-      data:
-        hasEffect: 1
-        effectType: 1
-    - rid: 1594091984470409219
+          hasEffect: 1
+          effectType: 1
+    - rid: 1594092005042159685
       type: {class: FrozenEffect, ns: , asm: Assembly-CSharp}
       data:
+        frozenStatusEffect: {fileID: 11400000, guid: af90d0266b0e46242be400661c471a4e, type: 2}
         applyChance:
-          probability: 0.8
-        effectConditions:
-        - hasEffect: 0
-          effectType: 1
+          probability: 1
+        effectConditions: []

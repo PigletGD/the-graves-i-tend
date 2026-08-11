@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 3932645160479833842}
   - component: {fileID: 2732537615138397948}
   - component: {fileID: 2724737080336842819}
+  - component: {fileID: 7498172908293040474}
   m_Layer: 0
   m_Name: BaseCombatant_Test
   m_TagString: Untagged
@@ -156,7 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Combatant
   maxHP: 100
-  target: {fileID: 0}
+  effectController: {fileID: 7498172908293040474}
+  targets: []
   Visualizer: {fileID: 7868829996477448352}
 --- !u!61 &2724737080336842819
 BoxCollider2D:
@@ -204,3 +206,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.05, y: 3.8108184}
   m_EdgeRadius: 0
+--- !u!114 &7498172908293040474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153848428233125620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255601bc97187e84b9d609764eb2d9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectController
+  effects: 

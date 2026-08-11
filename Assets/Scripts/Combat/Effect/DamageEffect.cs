@@ -4,10 +4,8 @@ using UnityEngine;
 [Serializable]
 public class DamageEffect : Effect
 {
-    public override EffectType EffectType => EffectType.None;
-
     [SerializeField] private float damage;
-    [SerializeReference, SerializeReferenceDropdown] private CombatantEffectTypeCondition amplifyCondition;
+    [SerializeField] private CombatantEffectTypeCondition amplifyCondition;
 
     public override void Apply(ITarget target)
     {
@@ -21,7 +19,7 @@ public class DamageEffect : Effect
         {
             Log($"was amplified by {amplifyCondition.EffectType} and dealt {damage * 2f} damage");
             combatant.UpdateHP(-damage * 2f);
-            combatant.RemoveEffect(amplifyCondition.EffectType);
+            combatant.EffectController.RemoveEffect(amplifyCondition.EffectType);
         }
         else
         {

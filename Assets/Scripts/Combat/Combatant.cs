@@ -1,19 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
+[RequireComponent(typeof(StatusEffectController))]
 public class Combatant : MonoBehaviour, ITarget
 {
     [SerializeField] private float maxHP;
+    [SerializeField] private StatusEffectController effectController;
     [SerializeField] private Combatant[] targets;
-    
+
     // TODO: Temporary visualizer just to make selection more visible in terms of what is the attacker and what is the targets
     public TargetSelectionVisualizer Visualizer;
 
     private float currentHP;
-    [SerializeField] private List<EffectType> effects = new();
+
+    public StatusEffectController EffectController => effectController;
 
     private void Awake()
     {
@@ -45,26 +45,4 @@ public class Combatant : MonoBehaviour, ITarget
     {
         return gameObject;
     }
-
-    // TODO: Effect stacking.
-    public void AddEffect(EffectType effectType)
-    {
-        if (!HasEffect(effectType))
-        {
-            Debug.Log($"{effectType} was added.");
-            effects.Add(effectType);
-        }
-    }
-
-    public void RemoveEffect(EffectType effectType)
-    {
-        if (HasEffect(effectType))
-        {
-            Debug.Log($"{effectType} was removed.");
-            effects.Remove(effectType);
-        }
-    }
-
-    public bool HasEffect(EffectType effectType) => effects.Contains(effectType);
-    
 }
