@@ -32,50 +32,48 @@ public class FrozenEffect : Effect
             }
         }
 
-        combatant.EffectController.AddEffect(frozenStatusEffect);
+        FrozenStatusEffect runtimeEffect = ScriptableObject.CreateInstance<FrozenStatusEffect>();
+        combatant.EffectController.AddEffect(runtimeEffect);
     }
 }
 
 [Serializable, CreateAssetMenu(fileName = "Status Effect", menuName = "Status Effect")]
 public class FrozenStatusEffect : StatusEffect, IStackable
 {
-    [SerializeField] private int maxStacks = 3;
-    [SerializeField, ReadOnly] private int stacks;
-
     public override StatusEffectType StatusEffectType => StatusEffectType.Frozen;
 
-    public FrozenStatusEffect()
-    {
-        stacks = 1;
+    [SerializeField] private int maxStacks = 3;
+    [SerializeField, ReadOnly] private int currentStacks = 1;
 
-        Debug.Log($"{this} was added.");
+    public override void Apply(ITarget target)
+    {
+        if (target is Combatant combatant)
+        {
+            Debug.Log($"{combatant.name} is affected by {StatusEffectType} ({currentStacks}/{maxStacks} stacks).");
+        }
     }
 
     public void AddStacks(int count)
     {
-        stacks += count;
-        if (stacks >= maxStacks)
-        {
-            stacks = maxStacks;
-            Debug.Log($"{this} is at max stacks: {maxStacks}.");
-        }
-        else
-            Debug.Log($"{this} added a stack.");
+        currentStacks += count;
+        if (currentStacks >= maxStacks)
+            currentStacks = maxStacks;
     }
 
     public void RemoveStacks(int count)
     {
-        stacks -= count;
-        Debug.Log($"{this} removed a stack.");
+        currentStacks -= count;
+        if (currentStacks < 0)
+            currentStacks = 0;
     }
 
     public int GetCurrentStacks()
     {
-        throw new NotImplementedException();
+        return currentStacks;
     }
 
     public int GetMaxStacks()
     {
-        throw new NotImplementedException();
+        return maxStacks;
     }
 }

@@ -13,7 +13,25 @@ public class StatusEffectController : MonoBehaviour
 
     public void AddEffect(StatusEffect statusEffect)
     {
-        // Add more code...
+        StatusEffect existingEffect = statusEffects.FirstOrDefault(x => x.StatusEffectType == statusEffect.StatusEffectType);
+
+        if (existingEffect == null)
+        {
+            statusEffects.Add(statusEffect);
+            Debug.Log($"{statusEffect.StatusEffectType} was added.");
+        }
+        else
+        {
+            if (existingEffect is IStackable stackableEffect)
+            {
+                stackableEffect.AddStacks(1);
+                Debug.Log($"{statusEffect.StatusEffectType} stacks updated to {stackableEffect.GetCurrentStacks()}/{stackableEffect.GetMaxStacks()}.");
+            }
+            else
+            {
+                Debug.Log($"{statusEffect.StatusEffectType} already exists and cannot stack.");
+            }
+        }
     }
 
     public void RemoveEffect(StatusEffectType statusEffectType)

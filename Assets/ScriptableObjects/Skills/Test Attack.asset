@@ -27,7 +27,7 @@ MonoBehaviour:
         damage: 10
         amplifyCondition:
           hasEffect: 1
-          effectType: 1
+          effectType: 0
     - rid: 1594092005042159685
       type: {class: FrozenEffect, ns: , asm: Assembly-CSharp}
       data:

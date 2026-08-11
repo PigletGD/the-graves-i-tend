@@ -5,9 +5,10 @@ using UnityEngine;
 /// StatusEffect are effects that stays with the combatant.
 /// </summary>
 [Serializable]
-public abstract class StatusEffect : ScriptableObject
+public abstract class StatusEffect : ScriptableObject, IEffect
 {
     public abstract StatusEffectType StatusEffectType { get; }
+    public abstract void Apply(ITarget target);
 }
 
 public enum StatusEffectType
