@@ -29,7 +29,14 @@ public class Battle : MonoBehaviour
 
     public void ExecuteAttempts()
     {
-        basicAttack.Execute(this, attacker, Targets.ToArray());
+        TargetSelectionArgs targetSelectionArgs = new()
+        {
+            Battle = this,
+            Invoker = attacker,
+            Target = defender
+        };
+
+        basicAttack.Execute(targetSelectionArgs);
     }
 
     public void HandleAttackerSetupForSelected(ITarget selected)

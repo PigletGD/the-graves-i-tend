@@ -6,7 +6,7 @@ public class FrozenEffect : Effect
 {
     [SerializeField] private FrozenStatusEffectSO frozenStatusEffectSO;
     [SerializeField] private ProbabilityCondition<float> applyChance;
-    [SerializeField] private CombatantEffectTypeCondition[] effectConditions;
+    [SerializeField] private CombatantCondition_StatusEffect[] effectConditions;
 
     public override void Apply(ITarget target)
     {
@@ -22,7 +22,7 @@ public class FrozenEffect : Effect
             return;
         }
 
-        foreach (CombatantEffectTypeCondition effectCondition in effectConditions)
+        foreach (CombatantCondition_StatusEffect effectCondition in effectConditions)
         {
             if (!effectCondition.Check(combatant))
             {

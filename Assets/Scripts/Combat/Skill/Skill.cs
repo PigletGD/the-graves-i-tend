@@ -7,9 +7,9 @@ public class Skill : ScriptableObject, ISkill
     // private Element element
     [SerializeField] private Attempt[] attempts;
 
-    public void Execute(Battle battle, ITarget source, ITarget[] targets)
+    public void Execute(TargetSelectionArgs targetSelectionArgs)
     {
         foreach (IAttempt attempt in attempts)
-            attempt.Execute(battle, source, targets);
+            attempt.Execute(targetSelectionArgs);
     }
 }

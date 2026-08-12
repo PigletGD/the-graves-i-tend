@@ -1,4 +1,4 @@
 public interface ISkill
 {
-    public void Execute(Battle battle, ITarget source, ITarget[] targets);
+    public void Execute(TargetSelectionArgs targetSelectionArgs);
 }

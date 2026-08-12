@@ -14,38 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Skill
   attempts:
   - accuracy:
-      probability: 1
+      probability: 0
     userConditions: []
-    effects:
-    - rid: 1594092027861532744
-  - accuracy:
-      probability: 1
-    userConditions: []
-    effects:
-    - rid: 1594092027861532745
-  - accuracy:
-      probability: 1
-    userConditions:
-    - rid: 1594092027861532747
-    effects:
-    - rid: 1594092027861532748
+    effects: []
   references:
     version: 2
-    RefIds:
-    - rid: 1594092027861532744
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 5
-    - rid: 1594092027861532745
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 5
-    - rid: 1594092027861532747
-      type: {class: CombatantEffectTypeCondition, ns: , asm: Assembly-CSharp}
-      data:
-        hasEffect: 0
-        effectType: 2
-    - rid: 1594092027861532748
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 5
+    RefIds: []
