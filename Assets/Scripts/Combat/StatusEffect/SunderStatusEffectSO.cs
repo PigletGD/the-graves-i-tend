@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-[Serializable, CreateAssetMenu(fileName = "Frozen", menuName = "Status Effect/Frozen")]
-public class FrozenStatusEffectSO : StatusEffectSO
+[Serializable, CreateAssetMenu(fileName = "Sunder", menuName = "Status Effect/Sunder")]
+public class SunderStatusEffectSO : StatusEffectSO
 {
-    [SerializeField] private int maxStacks = 6;
+    [SerializeField] private int maxStacks = 50;
     [SerializeField] private int stacksPerApplication = 1;
 
     public override StatusEffectType StatusEffectType => StatusEffectType.Frozen;
@@ -13,6 +13,6 @@ public class FrozenStatusEffectSO : StatusEffectSO
 
     public override StatusEffect CreateInstance()
     {
-        return new FrozenStatusEffect(this);
+        return new SunderStatusEffect(this);
     }
 }

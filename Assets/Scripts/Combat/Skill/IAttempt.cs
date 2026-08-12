@@ -1,4 +1,4 @@
 public interface IAttempt
 {
-    public void Execute(ITarget[] targets);
+    public void Execute(Battle battle, ITarget source, ITarget[] targets);
 }

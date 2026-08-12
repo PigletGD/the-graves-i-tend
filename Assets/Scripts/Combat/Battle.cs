@@ -2,12 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Refer to this dood youtube video on how I'm basing the combat on: https://www.youtube.com/watch?v=CyRtTwKeulE.
-// TL;DR: Each Skill has N attempts where each attempt has N effects.
-// Refactor as necessary. Only doing this so that there's something actionable.
-
-// TO DO: 
-// Combatant.cs
-// Class Attempt is in a weird spot right now.
 public class Battle : MonoBehaviour
 {
     [SerializeField] private Combatant attacker;
@@ -22,20 +16,20 @@ public class Battle : MonoBehaviour
     {
         // TODO: Temporarily handle setting colors here
         attacker?.Visualizer?.SetToAttackerColor();
-        
+
         if (attacker != null && defender != null && !attacker.Equals(defender))
         {
             defender?.Visualizer?.SetToDefenderColor();
             Targets.Add(defender);
         }
-        
+
         if (enableRepeatingExecuteAttempts)
             InvokeRepeating(nameof(ExecuteAttempts), 0, 1f);
     }
 
     public void ExecuteAttempts()
     {
-        basicAttack.Execute(this);
+        basicAttack.Execute(this, attacker, Targets.ToArray());
     }
 
     public void HandleAttackerSetupForSelected(ITarget selected)

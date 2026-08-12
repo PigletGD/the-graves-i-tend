@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class StatusEffectController : MonoBehaviour
 {
-    private Combatant combatant;
+    private Combatant target; // Temporary
     private List<StatusEffect> statusEffects = new();
 
     public void AddEffect(StatusEffect statusEffect)
@@ -21,7 +21,7 @@ public class StatusEffectController : MonoBehaviour
         }
         else
         {
-            if (existingEffect is IStackable stackableEffect)
+            if (existingEffect is StackableStatusEffect stackableEffect)
             {
                 stackableEffect.AddStacks(stackableEffect.StacksOnAdd);
                 Debug.Log($"{statusEffect.StatusEffectType} stacks updated to {stackableEffect.StackCount}/{stackableEffect.MaxStacks}.");
@@ -47,7 +47,7 @@ public class StatusEffectController : MonoBehaviour
     public void ApplyAllStatusEffects()
     {
         foreach(StatusEffect statusEffect in statusEffects)
-            statusEffect.Apply(combatant);
+            statusEffect.Apply(target);
     }
 
     public bool HasStatusEffect(StatusEffectType effectType) => statusEffects.Any(x => x.StatusEffectType == effectType);

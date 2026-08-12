@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class FrozenStatusEffect : StackableStatusEffect
+public class SunderStatusEffect : StackableStatusEffect
 {
     public override StatusEffectType StatusEffectType => statusEffectType;
 
-    public FrozenStatusEffect(FrozenStatusEffectSO source)
+    public SunderStatusEffect(SunderStatusEffectSO source)
     {
         currentStacks = 1;
         statusEffectType = source.StatusEffectType;

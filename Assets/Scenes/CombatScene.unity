@@ -370,7 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Battle
   attacker: {fileID: 21400081}
   defender: {fileID: 180496524}
-  basicAttack: {fileID: 11400000, guid: e6aeb0615022a3542a37e8a8717bdfd3, type: 2}
+  basicAttack: {fileID: 11400000, guid: 3437b848a1ad95f4492058e7e776d5c4, type: 2}
   enableRepeatingExecuteAttempts: 1
 --- !u!4 &1926496780
 Transform:
