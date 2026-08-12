@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 44690e9d901461448a277c7e1a76b55f, type: 3}
   m_Name: Frozen
-  m_EditorClassIdentifier: Assembly-CSharp::FrozenStatusEffect
+  m_EditorClassIdentifier: Assembly-CSharp::FrozenStatusEffectSO
   maxStacks: 3
-  stacks: 0

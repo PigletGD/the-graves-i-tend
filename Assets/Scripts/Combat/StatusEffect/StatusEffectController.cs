@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
 using UnityEngine;
 
 /// <summary>
-/// Effect container for characters.
+/// Status Effect container for characters.
 /// </summary>
 public class StatusEffectController : MonoBehaviour
 {
-    // Serialize just so that we have visual of what effects are added.
-    [SerializeField, ReadOnly] private List<StatusEffect> statusEffects = new();
+    private Combatant combatant;
+    private List<StatusEffect> statusEffects = new();
 
     public void AddEffect(StatusEffect statusEffect)
     {
@@ -24,8 +23,8 @@ public class StatusEffectController : MonoBehaviour
         {
             if (existingEffect is IStackable stackableEffect)
             {
-                stackableEffect.AddStacks(1);
-                Debug.Log($"{statusEffect.StatusEffectType} stacks updated to {stackableEffect.GetCurrentStacks()}/{stackableEffect.GetMaxStacks()}.");
+                stackableEffect.AddStacks(stackableEffect.StacksOnAdd);
+                Debug.Log($"{statusEffect.StatusEffectType} stacks updated to {stackableEffect.StackCount}/{stackableEffect.MaxStacks}.");
             }
             else
             {
@@ -43,6 +42,12 @@ public class StatusEffectController : MonoBehaviour
             statusEffects.Remove(statusEffect);
             Debug.Log($"{statusEffectType} was removed.");
         }
+    }
+
+    public void ApplyAllStatusEffects()
+    {
+        foreach(StatusEffect statusEffect in statusEffects)
+            statusEffect.Apply(combatant);
     }
 
     public bool HasStatusEffect(StatusEffectType effectType) => statusEffects.Any(x => x.StatusEffectType == effectType);

@@ -31,7 +31,7 @@ MonoBehaviour:
     - rid: 1594092005042159685
       type: {class: FrozenEffect, ns: , asm: Assembly-CSharp}
       data:
-        frozenStatusEffect: {fileID: 11400000, guid: af90d0266b0e46242be400661c471a4e, type: 2}
+        frozenStatusEffectSO: {fileID: 11400000, guid: af90d0266b0e46242be400661c471a4e, type: 2}
         applyChance:
           probability: 1
         effectConditions: []

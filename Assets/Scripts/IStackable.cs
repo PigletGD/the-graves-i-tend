@@ -1,7 +1,9 @@
 public interface IStackable
 {
-    public void AddStacks(int count);
-    public void RemoveStacks(int count);
-    public int GetCurrentStacks();
-    public int GetMaxStacks();
+    public int StackCount { get; }
+    public int MaxStacks { get; }
+    public int StacksOnAdd { get; }
+
+    public void AddStacks(int amount);
+    public void RemoveStacks(int amount);
 }

@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// Effect cares about applying an effect to the intended target.
+/// Base class for applying effects to the target.
 /// </summary>
 [Serializable]
-public abstract class Effect : IEffect
+public abstract class Effect
 {
     public abstract void Apply(ITarget target);
 
