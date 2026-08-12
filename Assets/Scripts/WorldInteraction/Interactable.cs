@@ -5,15 +5,24 @@ public class Interactable : AnimatedHover, IPointerDownHandler, IPointerUpHandle
 {
     [SerializeField] private GameObject store;
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        // behaviour testing
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Pointer down on " + gameObject.name);
+        }
     }
 
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Pointer up on " + gameObject.name);
+        }
+    }
+
+    
     
 }
