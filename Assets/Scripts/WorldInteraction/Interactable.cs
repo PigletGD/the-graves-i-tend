@@ -10,19 +10,16 @@ public class Interactable : AnimatedHover, IPointerDownHandler, IPointerUpHandle
         // behaviour testing
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("Pointer down on " + gameObject.name);
+            Debug.Log("Left click down on " + gameObject.name);
         }
     }
-
 
     public void OnPointerUp(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("Pointer up on " + gameObject.name);
+            Debug.Log("Left click up on " + gameObject.name);
         }
     }
 
-    
-    
 }

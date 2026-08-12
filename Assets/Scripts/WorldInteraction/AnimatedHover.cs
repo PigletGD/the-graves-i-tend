@@ -8,7 +8,7 @@ public class AnimatedHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] private Color normalColor;
     [SerializeField] private Color hoveredColor;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         // play animation
         // we can use this even if we don't have an animation if we just make if statements
@@ -16,9 +16,10 @@ public class AnimatedHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         spriteRenderer.color = hoveredColor;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         //stop animation
+        Debug.Log("Hover off " + gameObject.name);
         spriteRenderer.color = normalColor;
     }
 }
