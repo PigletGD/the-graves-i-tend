@@ -46,15 +46,18 @@ public class Battle : MonoBehaviour
         
         if (!selected.Equals(attacker))
         {
-            selected.GetSelectionVisualizer()?.SetToAttackerColor();
             attacker?.GetSelectionVisualizer()?.SetToUnselectedColor();
             
             attacker = selected.GetRootObject()?.GetComponent<Combatant>();
+            if (attacker != null)
+            {
+                attacker.GetSelectionVisualizer()?.SetToAttackerColor();
             
-            if (Targets.Contains(selected))
-                Targets.Remove(selected);
+                if (Targets.Contains(selected))
+                    Targets.Remove(selected);
             
-            Debug.Log($"Attacker is set to {selected.GetRootObject().name}", selected.GetRootObject());
+                Debug.Log($"Attacker is set to {selected.GetRootObject().name}", attacker.GetRootObject());
+            }
         }
         else
         {
