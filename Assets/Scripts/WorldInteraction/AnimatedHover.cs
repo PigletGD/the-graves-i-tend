@@ -12,14 +12,12 @@ public class AnimatedHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         // play animation
         // we can use this even if we don't have an animation if we just make if statements
-        Debug.Log("Hover on " + gameObject.name);
         spriteRenderer.color = hoveredColor;
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         //stop animation
-        Debug.Log("Hover off " + gameObject.name);
         spriteRenderer.color = normalColor;
     }
 }
