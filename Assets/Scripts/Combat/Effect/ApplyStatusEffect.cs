@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class FrozenEffect : Effect
+public class ApplyStatusEffect : Effect
 {
-    [SerializeField] private FrozenStatusEffectSO frozenStatusEffectSO;
+    [SerializeField] private StatusEffectSO statusEffectSO;
     [SerializeField] private ProbabilityCondition<float> applyChance;
     [SerializeField] private CombatantCondition_StatusEffect[] effectConditions;
 
@@ -31,6 +31,6 @@ public class FrozenEffect : Effect
             }
         }
 
-        combatant.EffectController.AddEffect(frozenStatusEffectSO.CreateInstance());
+        combatant.EffectController.AddEffect(statusEffectSO.CreateInstance());
     }
 }

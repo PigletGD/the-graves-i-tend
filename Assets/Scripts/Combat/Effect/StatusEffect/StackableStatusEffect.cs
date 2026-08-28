@@ -1,6 +1,9 @@
+using System;
+
 /// <summary>
 /// Base class for status effects that can stack, tracking the current count and enforcing minimum/maximum limits.
 /// </summary>
+[Serializable]
 public abstract class StackableStatusEffect : StatusEffect, IStackable
 {
     protected StatusEffectType statusEffectType;

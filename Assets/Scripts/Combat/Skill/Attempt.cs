@@ -6,28 +6,35 @@ using UnityEngine;
 public class Attempt : IAttempt
 {
     [SerializeField] private ProbabilityCondition<float> accuracy;
-    [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] userConditions;
+    [SerializeReference, SerializeReferenceDropdown] private BattleCondition[] battleConditions;
+    [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] invokerConditions;
+    [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] targetConditions;
     [SerializeReference, SerializeReferenceDropdown] public List<Effect> effects;
 
-    // TODO: We'll need to figure out at what level of the skill the target gets chosen.
-    // I believe that it should probably maybe at the skill level (or maybe the attempt level),
-    // depending on how we sequence the skills (like from an animation). Could also be in attempt.
-    public void Execute(TargetSelectionArgs targetSelectionArgs)
+    public void Execute(Battle battle, ITarget invoker, ITarget target)
     {
-        if (targetSelectionArgs.Invoker is Combatant sourceCombatant)
-        {
-            foreach (CombatantCondition damageCondition in userConditions)
+        if (invoker is Combatant sourceCombatant)
+        {   
+            foreach (BattleCondition battleCondition in battleConditions)
             {
-                if (!damageCondition.Check(sourceCombatant))
+                if (!battleCondition.Check(battle))
                 {
-                    Debug.Log($"Attempt failed!");
+                    Debug.Log($"Attempt failed due to a battle condition!");
+                    return;
+                }
+            }
+
+            foreach (CombatantCondition invokerCondition in invokerConditions)
+            {
+                if (!invokerCondition.Check(sourceCombatant))
+                {
+                    Debug.Log($"Attempt failed due to a invoke condition!");
                     return;
                 }
             }
         }
 
-        // We can probably leave it like this for now. Still needs to resolve good targets and bad targets in any case the Skill targets both ally/enemy.
         foreach (Effect effect in effects)
-            effect.Apply(targetSelectionArgs.Target);
+            effect.Apply(target);
     }
 }

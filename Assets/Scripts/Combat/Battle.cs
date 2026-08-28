@@ -33,7 +33,7 @@ public class Battle : MonoBehaviour
         {
             Battle = this,
             Invoker = attacker,
-            Target = defender
+            Targets = new []{ defender }
         };
 
         basicAttack.Execute(targetSelectionArgs);

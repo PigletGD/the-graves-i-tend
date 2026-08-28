@@ -2,5 +2,5 @@ public class TargetSelectionArgs
 {
     public Battle Battle;
     public ITarget Invoker;
-    public ITarget Target;
+    public ITarget[] Targets;
 }
