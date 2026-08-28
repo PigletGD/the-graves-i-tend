@@ -12,6 +12,6 @@ public abstract class Effect
     // Just to standardize logging.
     public virtual void Log(object message)
     {
-        Debug.Log($"{this} {message}!");
+        Debug.Log($"{GetType().Name} {message}!");
     }
 }

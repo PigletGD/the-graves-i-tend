@@ -5,8 +5,8 @@ using UnityEngine;
 public class ApplyStatusEffect : Effect
 {
     [SerializeField] private StatusEffectSO statusEffectSO;
-    [SerializeField] private ProbabilityCondition<float> applyChance;
-    [SerializeField] private CombatantCondition_StatusEffect[] effectConditions;
+    [SerializeField] private ProbabilityCondition<float> applyChance = new(1);
+    [SerializeField] private CombatantCondition_StatusEffect[] statusEffectCondition;
 
     public override void Apply(ITarget target)
     {
@@ -18,11 +18,11 @@ public class ApplyStatusEffect : Effect
 
         if (!applyChance.Check(0))
         {
-            Log("missed");
+            Log($"{statusEffectSO.StatusEffectType} failed apply chance");
             return;
         }
 
-        foreach (CombatantCondition_StatusEffect effectCondition in effectConditions)
+        foreach (CombatantCondition_StatusEffect effectCondition in statusEffectCondition)
         {
             if (!effectCondition.Check(combatant))
             {

@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 
-[Serializable]
 public class SunderStatusEffect : StackableStatusEffect
 {
     public override StatusEffectType StatusEffectType => statusEffectType;

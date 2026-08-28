@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 
-[Serializable]
 public class FrozenStatusEffect : StackableStatusEffect
 {
     public override StatusEffectType StatusEffectType => statusEffectType;

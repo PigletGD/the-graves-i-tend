@@ -12,45 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Fingerprick
   m_EditorClassIdentifier: Assembly-CSharp::Skill
-  attempts:
-  - accuracy:
-      probability: 1
-    battleConditions: []
-    invokerConditions: []
-    targetConditions: []
-    effects:
-    - rid: 1594092392112717894
-    - rid: 1594092394723147776
-  - accuracy:
-      probability: 1
-    battleConditions: []
-    invokerConditions: []
-    targetConditions: []
-    effects:
-    - rid: 1594092392112717895
-    - rid: 1594092394723147777
+  targetedAttempts:
+  - targetRelationship: 1
+    attempts:
+    - accuracy:
+        probability: 0.5
+      battleConditions: []
+      invokerConditions: []
+      targetConditions: []
+      effects:
+      - rid: 1594092394723147857
+    - accuracy:
+        probability: 1
+      battleConditions: []
+      invokerConditions: []
+      targetConditions: []
+      effects:
+      - rid: 1594092394723147858
+    - accuracy:
+        probability: 1
+      battleConditions: []
+      invokerConditions: []
+      targetConditions: []
+      effects:
+      - rid: 1594092394723147858
   references:
     version: 2
     RefIds:
-    - rid: 1594092392112717894
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 10
-    - rid: 1594092392112717895
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 10
-    - rid: 1594092394723147776
+    - rid: 1594092394723147857
       type: {class: ApplyStatusEffect, ns: , asm: Assembly-CSharp}
       data:
         statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
         applyChance:
-          probability: 1
-        effectConditions: []
-    - rid: 1594092394723147777
+          probability: 0.5
+        statusEffectCondition: []
+    - rid: 1594092394723147858
       type: {class: ApplyStatusEffect, ns: , asm: Assembly-CSharp}
       data:
         statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
         applyChance:
-          probability: 1
-        effectConditions: []
+          probability: 0.5
+        statusEffectCondition: []
