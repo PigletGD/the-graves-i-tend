@@ -14,6 +14,12 @@ public class CombatantStats
     private float currentMP;
     private float currentElation;
 
+    public float MaxHP => maxHP;
+    public float MaxMP => maxMP;
+
+    public float CurrentHP => currentHP;
+    public float CurrentMP => currentMP;
+
     public void Initialize()
     {
         currentHP = maxHP;

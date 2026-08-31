@@ -11,6 +11,8 @@ public class Combatant : MonoBehaviour, ITarget
 
     private StatusEffectController statusEffectController;
 
+    public CombatantStats Stats => stats;
+
     // TODO: Temporary visualizer just to make selection more visible in terms of what is the attacker and what is the targets
     public TargetSelectionVisualizer Visualizer;
 
@@ -18,13 +20,10 @@ public class Combatant : MonoBehaviour, ITarget
 
     private void Awake()
     {
-        Visualizer?.SetToUnselectedColor();
-    }
-
-    private void Start()
-    {
         stats.Initialize();
         statusEffectController = new();
+
+        Visualizer?.SetToUnselectedColor();
     }
 
     public void TakeDamage(float hp) => stats.UpdateHP(-hp);

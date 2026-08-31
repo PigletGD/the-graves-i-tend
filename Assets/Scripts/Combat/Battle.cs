@@ -10,6 +10,9 @@ public class Battle : MonoBehaviour
 
     public List<ITarget> Targets { get; private set; } = new();
 
+    public Combatant Attacker => attacker;
+    public Combatant Defender => defender;
+
     private void Start()
     {
         // TODO: Temporarily handle setting colors here
@@ -93,7 +96,11 @@ public class Battle : MonoBehaviour
             Invoker = defender,
             Targets = new[] { attacker }
         };
-        
+
         defender.TryUseSkill(0, targetSelectionArgsDefender);
+
+        // TEMPORARY
+        CombatUIManager.Instance.UpdateCharacterResourceBars(attacker);
+        CombatUIManager.Instance.UpdateCharacterResourceBars(defender);
     }
 }
