@@ -15,6 +15,6 @@ public class DamageEffect : Effect
         }
 
         Log($"dealt {damage} damage");
-        combatant.UpdateHP(-damage);
+        combatant.TakeDamage(damage);
     }
 }

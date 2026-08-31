@@ -8,8 +8,6 @@ public class Battle : MonoBehaviour
     [SerializeField] private Combatant defender;
     [SerializeField] private Skill basicAttack;
 
-    [SerializeField] private bool enableRepeatingExecuteAttempts = true;
-    
     public List<ITarget> Targets { get; private set; } = new();
 
     private void Start()
@@ -22,21 +20,6 @@ public class Battle : MonoBehaviour
             defender?.Visualizer?.SetToDefenderColor();
             Targets.Add(defender);
         }
-
-        if (enableRepeatingExecuteAttempts)
-            InvokeRepeating(nameof(ExecuteAttempts), 0, 1f);
-    }
-
-    public void ExecuteAttempts()
-    {
-        TargetSelectionArgs targetSelectionArgs = new()
-        {
-            Battle = this,
-            Invoker = attacker,
-            Targets = new []{ defender }
-        };
-
-        basicAttack.Execute(targetSelectionArgs);
     }
 
     public void HandleAttackerSetupForSelected(ITarget selected)
@@ -70,25 +53,47 @@ public class Battle : MonoBehaviour
     {
         if (selected == null)
             return;
-        
+
         if (!Targets.Contains(selected))
         {
             selected.GetSelectionVisualizer()?.SetToDefenderColor();
-            
+
             Targets.Add(selected);
-            
+
             if (selected.Equals(attacker))
                 attacker = null;
-            
+
             Debug.Log($"Added {selected.GetRootObject()?.name} as a target", selected.GetRootObject());
         }
         else
         {
             selected.GetSelectionVisualizer()?.SetToHoveredColor(true);
-            
+
             Targets.Remove(selected);
-            
+
             Debug.Log($"Removed {selected.GetRootObject()?.name} as a target", selected.GetRootObject());
         }
+    }
+
+    // TEMPORARY
+    public void Attack()
+    {
+        TargetSelectionArgs targetSelectionArgsAttacker = new()
+        {
+            Battle = this,
+            Invoker = attacker,
+            Targets = new []{ defender }
+        };
+
+        attacker.TryUseSkill(0, targetSelectionArgsAttacker);
+
+        TargetSelectionArgs targetSelectionArgsDefender = new()
+        {
+            Battle = this,
+            Invoker = defender,
+            Targets = new[] { attacker }
+        };
+        
+        defender.TryUseSkill(0, targetSelectionArgsDefender);
     }
 }

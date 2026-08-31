@@ -21,18 +21,3 @@ public class Skill_Basic : Skill
         }
     }
 }
-
-[Serializable]
-public class TargetedAttempts
-{
-    public TargetRelationship targetRelationship;
-    public Attempt[] attempts;
-}
-
-[Serializable]
-public enum TargetRelationship
-{
-    None,
-    Hostile,
-    Friendly,
-}

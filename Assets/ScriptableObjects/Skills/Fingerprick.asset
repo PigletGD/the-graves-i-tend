@@ -16,26 +16,13 @@ MonoBehaviour:
   - targetRelationship: 1
     attempts:
     - accuracy:
-        probability: 0.5
+        probability: 0.85
       battleConditions: []
       invokerConditions: []
       targetConditions: []
       effects:
+      - rid: 1594092394723147861
       - rid: 1594092394723147857
-    - accuracy:
-        probability: 1
-      battleConditions: []
-      invokerConditions: []
-      targetConditions: []
-      effects:
-      - rid: 1594092394723147858
-    - accuracy:
-        probability: 1
-      battleConditions: []
-      invokerConditions: []
-      targetConditions: []
-      effects:
-      - rid: 1594092394723147858
   references:
     version: 2
     RefIds:
@@ -46,10 +33,7 @@ MonoBehaviour:
         applyChance:
           probability: 0.5
         statusEffectCondition: []
-    - rid: 1594092394723147858
-      type: {class: ApplyStatusEffect, ns: , asm: Assembly-CSharp}
+    - rid: 1594092394723147861
+      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
-        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
-        applyChance:
-          probability: 0.5
-        statusEffectCondition: []
+        damage: 10

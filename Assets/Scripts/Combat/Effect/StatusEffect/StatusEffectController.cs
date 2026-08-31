@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Status Effect container for characters.
 /// </summary>
-public class StatusEffectController : MonoBehaviour
+public class StatusEffectController
 {
     private Combatant target; // Temporary
     private List<StatusEffect> statusEffects = new();
