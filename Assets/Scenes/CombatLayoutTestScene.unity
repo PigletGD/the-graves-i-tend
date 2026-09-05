@@ -2717,7 +2717,7 @@ GameObject:
   - component: {fileID: 1892699547}
   - component: {fileID: 1892699546}
   m_Layer: 0
-  m_Name: Battle
+  m_Name: Combat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3133,14 +3133,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5539005600027618819, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5539005600027618819, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6035641688558718569, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
       propertyPath: m_Name
       value: CombatUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741846306088857028, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741846306088857028, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695895355651189218, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695895355651189218, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8112693255405050887, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1892699546}
+    - target: {fileID: 9041569855059618099, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041569855059618099, guid: b00ed4440fbfe62458569d6a5b5a3082, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

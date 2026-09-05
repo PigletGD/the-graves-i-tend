@@ -16,7 +16,7 @@ public class Skill_Basic : Skill
                     continue;
 
                 foreach (Attempt attempt in targetedAttempt.attempts)
-                    attempt.Execute(value.Battle, value.Invoker, target);
+                    attempt.Execute(value.Combat, value.Invoker, target);
             }
         }
     }

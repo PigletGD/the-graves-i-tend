@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class TargetSelector : MonoBehaviour
 {
-    [SerializeField] private Battle battle;
+    [SerializeField] private Combat combat;
     
     // TODO: Temporary creation of input actions. We'll eventually need a centralized player controls reference to pass around.
     private InputAction leftClickAction;
@@ -61,7 +61,7 @@ public class TargetSelector : MonoBehaviour
         if (hoveredCombatant == null)
             return;
         
-        battle.HandleAttackerSetupForSelected(hoveredCombatant);
+        combat.HandleAttackerSetupForSelected(hoveredCombatant);
     }
     
     private void OnRightClickPressed(InputAction.CallbackContext ctx)
@@ -69,7 +69,7 @@ public class TargetSelector : MonoBehaviour
         if (hoveredCombatant == null)
             return;
         
-        battle.HandleDefenderSetupForSelected(hoveredCombatant);
+        combat.HandleDefenderSetupForSelected(hoveredCombatant);
     }
 
     private ITarget GetHoveredCombatant()

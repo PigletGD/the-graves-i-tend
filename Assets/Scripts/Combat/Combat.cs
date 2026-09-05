@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Refer to this dood youtube video on how I'm basing the combat on: https://www.youtube.com/watch?v=CyRtTwKeulE.
-public class Battle : MonoBehaviour
+public class Combat : MonoBehaviour
 {
     [SerializeField] private Combatant attacker;
     [SerializeField] private Combatant defender;
@@ -83,7 +83,7 @@ public class Battle : MonoBehaviour
     {
         TargetSelectionArgs targetSelectionArgsAttacker = new()
         {
-            Battle = this,
+            Combat = this,
             Invoker = attacker,
             Targets = new []{ defender }
         };
@@ -92,7 +92,7 @@ public class Battle : MonoBehaviour
 
         TargetSelectionArgs targetSelectionArgsDefender = new()
         {
-            Battle = this,
+            Combat = this,
             Invoker = defender,
             Targets = new[] { attacker }
         };

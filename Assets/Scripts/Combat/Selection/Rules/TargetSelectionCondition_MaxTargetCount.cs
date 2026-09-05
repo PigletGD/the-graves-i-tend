@@ -9,11 +9,11 @@ public class TargetSelectionCondition_MaxTargetCount : ITargetSelectionCondition
         if (value == null)
             return false;
         
-        var battle = value.Battle;
-        if (battle == null)
+        var combat = value.Combat;
+        if (combat == null)
             return false;
         
-        var targets = battle.Targets;
+        var targets = combat.Targets;
         if (targets == null)
             return false;
 

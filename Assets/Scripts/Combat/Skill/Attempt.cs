@@ -6,18 +6,18 @@ using UnityEngine;
 public class Attempt
 {
     [SerializeField] private ProbabilityCondition<float> accuracy = new(1);
-    [SerializeReference, SerializeReferenceDropdown] private BattleCondition[] battleConditions;
+    [SerializeReference, SerializeReferenceDropdown] private CombatCondition[] combatConditions;
     [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] invokerConditions;
     [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] targetConditions;
     [SerializeReference, SerializeReferenceDropdown] public List<Effect> effects;
 
-    public void Execute(Battle battle, ITarget invoker, ITarget target)
+    public void Execute(Combat combat, ITarget invoker, ITarget target)
     {
-        foreach (BattleCondition battleCondition in battleConditions)
+        foreach (CombatCondition combatCondition in combatConditions)
         {
-            if (!battleCondition.Check(battle))
+            if (!combatCondition.Check(combat))
             {
-                Debug.Log($"Attempt failed due to {battleCondition.GetType().Name}!");
+                Debug.Log($"Attempt failed due to {combatCondition.GetType().Name}!");
                 return;
             }
         }

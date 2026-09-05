@@ -37,7 +37,7 @@ public class Combatant : MonoBehaviour, ITarget
     }
 
     // TODO: Refactor this so that we get targets from the selection.
-    public ITarget[] GetTargets(Battle _)
+    public ITarget[] GetTargets(Combat _)
     {
         return targets;
     }

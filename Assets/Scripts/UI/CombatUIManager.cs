@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Temporary
 public class CombatUIManager : MonoBehaviour
 {
     public static CombatUIManager Instance { get; private set; }
 
-    [SerializeField] private Battle battle;
+    [SerializeField] private Combat combat;
     
     [SerializeField] private CharacterResourceBars attacker;
     [SerializeField] private CharacterResourceBars defender;
@@ -27,8 +26,8 @@ public class CombatUIManager : MonoBehaviour
 
     private void Start()
     {
-        Register(battle.Attacker, attacker);
-        Register(battle.Defender, defender);
+        Register(combat.Attacker, attacker);
+        Register(combat.Defender, defender);
     }
 
     public void Register(Combatant combatant, CharacterResourceBars characterResourceBars)
@@ -38,7 +37,7 @@ public class CombatUIManager : MonoBehaviour
         InitializeCharacterResourceBars(characterResourceBars, combatant);
     }
 
-    public void InitializeCharacterResourceBars(CharacterResourceBars characterResourceBars, Combatant combatant)
+    private void InitializeCharacterResourceBars(CharacterResourceBars characterResourceBars, Combatant combatant)
     {
         characterResourceBars.HPBar.SetMinMaxValues(0, combatant.Stats.MaxHP);
         characterResourceBars.MPBar.SetMinMaxValues(0, combatant.Stats.MaxMP);

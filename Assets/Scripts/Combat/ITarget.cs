@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface ITarget
 {
-    public ITarget[] GetTargets(Battle battle);
+    public ITarget[] GetTargets(Combat combat);
     
     public TargetRelationship GetTargetRelationship();
 
