@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class DamageEffect : Effect
 {
-    [SerializeField] private float damage;
+    [SerializeField] private float damage = 10f;
 
     public override void Apply(ITarget target)
     {
@@ -15,6 +15,6 @@ public class DamageEffect : Effect
         }
 
         Log($"dealt {damage} damage");
-        combatant.UpdateHP(-damage);
+        combatant.TakeDamage(damage);
     }
 }

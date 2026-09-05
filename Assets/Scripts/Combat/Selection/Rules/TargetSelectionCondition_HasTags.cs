@@ -9,7 +9,7 @@ public class TargetSelectionCondition_HasTags : ITargetSelectionCondition<Target
         if (value == null)
             return false;
 
-        var target = value.Target;
+        var target = value.Targets;
         if (target == null)
             return false;
 

@@ -8,6 +8,6 @@ public class TargetSelectionCondition_NotSelf : ITargetSelectionCondition<Target
         if (value.Invoker == null)
             return false;
         
-        return value.Invoker.Equals(value.Target);
+        return value.Invoker.Equals(value.Targets);
     }
 }
