@@ -44,6 +44,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2732537615138397948, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
+      propertyPath: skills.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732537615138397948, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
+      propertyPath: skills.Array.data[0].skill
+      value: 
+      objectReference: {fileID: 11400000, guid: 3437b848a1ad95f4492058e7e776d5c4, type: 2}
+    - target: {fileID: 2732537615138397948, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
+      propertyPath: skills.Array.data[0].isLearned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3932645160479833842, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

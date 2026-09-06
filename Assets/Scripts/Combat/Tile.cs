@@ -42,9 +42,14 @@ public class Tile : MonoBehaviour, ITarget
             collider2D.enabled = true;
     }
 
-    public ITarget[] GetTargets(Battle battle)
+    public ITarget[] GetTargets(Combat combat)
     {
         return new[] { occupant };
+    }
+
+    public TargetRelationship GetTargetRelationship()
+    {
+        throw new System.NotImplementedException();
     }
 
     public TargetSelectionVisualizer GetSelectionVisualizer()

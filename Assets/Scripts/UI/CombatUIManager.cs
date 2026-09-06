@@ -32,11 +32,14 @@ public class CombatUIManager : MonoBehaviour
 
     public void Register(Combatant combatant, CharacterResourceBars characterResourceBars)
     {
+        if (combatant == null)
+            return;
+        
         playerResourceBars[combatant] = characterResourceBars;
 
         InitializeCharacterResourceBars(characterResourceBars, combatant);
     }
-
+    
     private void InitializeCharacterResourceBars(CharacterResourceBars characterResourceBars, Combatant combatant)
     {
         characterResourceBars.HPBar.SetMinMaxValues(0, combatant.Stats.MaxHP);
@@ -45,12 +48,30 @@ public class CombatUIManager : MonoBehaviour
         characterResourceBars.HPBar.SetValue(combatant.Stats.CurrentHP);
         characterResourceBars.MPBar.SetValue(combatant.Stats.CurrentMP);
     }
-
+    
     public void UpdateCharacterResourceBars(Combatant combatant)
     {
         if (!playerResourceBars.TryGetValue(combatant, out CharacterResourceBars characterResourceBars))
             return;
+        
+        UpdateCharacterResourceBars(combatant, characterResourceBars);
+    }
+    
+    public void UpdateDefenderResourceBars(Combatant combatant, bool registerIfNotInitialized = false)
+    {
+        if (!playerResourceBars.TryGetValue(combatant, out CharacterResourceBars characterResourceBars))
+        {
+            if (registerIfNotInitialized)
+                Register(combatant, defender);
+            
+            return;
+        }
+        
+        UpdateCharacterResourceBars(combatant, characterResourceBars);
+    }
 
+    public void UpdateCharacterResourceBars(Combatant combatant, CharacterResourceBars characterResourceBars)
+    {
         characterResourceBars.HPBar.SetValue(combatant.Stats.CurrentHP);
         characterResourceBars.MPBar.SetValue(combatant.Stats.CurrentMP);
     }

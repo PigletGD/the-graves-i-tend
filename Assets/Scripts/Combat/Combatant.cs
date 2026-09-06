@@ -32,7 +32,7 @@ public class Combatant : MonoBehaviour, ITarget
     {
         if (index < 0 || index >= skills.Length)
             return false;
-
+        
         return skills[index].TryUse(args);
     }
 

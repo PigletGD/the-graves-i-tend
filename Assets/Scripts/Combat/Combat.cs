@@ -11,7 +11,8 @@ public class Combat : MonoBehaviour
     public List<ITarget> Targets { get; private set; } = new();
 
     public Combatant Attacker => attacker;
-    public Combatant Defender => defender;
+    // TODO: Will be using the first target element as the defender to return
+    public Combatant Defender => Targets.Count > 0 ? Targets[0] as Combatant : null;
 
     private void Start()
     {
@@ -40,7 +41,13 @@ public class Combat : MonoBehaviour
                 attacker.GetSelectionVisualizer()?.SetToAttackerColor();
             
                 if (Targets.Contains(selected))
+                {
                     Targets.Remove(selected);
+
+                    var newPrimaryDefender = Defender;
+                    if (newPrimaryDefender != null)
+                        CombatUIManager.Instance.UpdateDefenderResourceBars(newPrimaryDefender, true);
+                }
             
                 Debug.Log($"Attacker is set to {selected.GetRootObject().name}", attacker.GetRootObject());
             }
@@ -65,6 +72,9 @@ public class Combat : MonoBehaviour
             selected.GetSelectionVisualizer()?.SetToDefenderColor();
 
             Targets.Add(selected);
+            
+            if (Targets.Count == 1)
+                CombatUIManager.Instance.UpdateDefenderResourceBars(selected as Combatant, true);
 
             if (selected.Equals(attacker))
                 attacker = null;
@@ -76,6 +86,10 @@ public class Combat : MonoBehaviour
             selected.GetSelectionVisualizer()?.SetToHoveredColor(true);
 
             Targets.Remove(selected);
+            
+            var newPrimaryDefender = Defender;
+            if (newPrimaryDefender != null)
+                CombatUIManager.Instance.UpdateDefenderResourceBars(newPrimaryDefender, true);
 
             Debug.Log($"Removed {selected.GetRootObject()?.name} as a target", selected.GetRootObject());
         }
@@ -84,11 +98,13 @@ public class Combat : MonoBehaviour
     // TEMPORARY
     public void Attack()
     {
+        var primaryDefender = Defender;
+        
         TargetSelectionArgs targetSelectionArgsAttacker = new()
         {
             Combat = this,
             Invoker = attacker,
-            Targets = new []{ defender }
+            Targets = new []{ primaryDefender }
         };
 
         attacker.TryUseSkill(0, targetSelectionArgsAttacker);
@@ -96,14 +112,14 @@ public class Combat : MonoBehaviour
         TargetSelectionArgs targetSelectionArgsDefender = new()
         {
             Combat = this,
-            Invoker = defender,
-            Targets = new[] { attacker }
+            Invoker = primaryDefender,
+            Targets = new[] { primaryDefender }
         };
 
         defender.TryUseSkill(0, targetSelectionArgsDefender);
 
         // TEMPORARY
         CombatUIManager.Instance.UpdateCharacterResourceBars(attacker);
-        CombatUIManager.Instance.UpdateCharacterResourceBars(defender);
+        CombatUIManager.Instance.UpdateDefenderResourceBars(primaryDefender, true);
     }
 }
