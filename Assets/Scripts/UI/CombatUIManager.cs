@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +5,12 @@ public class CombatUIManager : MonoBehaviour
 {
     public static CombatUIManager Instance { get; private set; }
 
-    [SerializeField] private Combat combat;
-    
-    [SerializeField] private CharacterResourceBars attacker;
-    [SerializeField] private CharacterResourceBars defender;
+    [SerializeField] private Combat combat; // Temporary. This should be passed in when creating the combat UI manager.
 
-    private Dictionary<Combatant, CharacterResourceBars> playerResourceBars = new();
+    [SerializeField] private PlayerCombatantPanel playerCombatantPanel;
+    [SerializeField] private EnemyCombatantPanel enemyCombatantPanel;
+
+    private Dictionary<Combatant, ICombatantPanel> combatantPanels = new();
 
     private void Awake()
     {
@@ -26,42 +25,42 @@ public class CombatUIManager : MonoBehaviour
 
     private void Start()
     {
-        Register(combat.Attacker, attacker);
-        Register(combat.Defender, defender);
+        Register(combat.Attacker, playerCombatantPanel);
+        Register(combat.Defender, enemyCombatantPanel);
     }
 
-    public void Register(Combatant combatant, CharacterResourceBars characterResourceBars)
+    public void Register(Combatant combatant, ICombatantPanel characterResourceBars)
     {
-        playerResourceBars[combatant] = characterResourceBars;
+        combatantPanels[combatant] = characterResourceBars;
 
-        InitializeCharacterResourceBars(characterResourceBars, combatant);
-    }
-
-    private void InitializeCharacterResourceBars(CharacterResourceBars characterResourceBars, Combatant combatant)
-    {
-        characterResourceBars.HPBar.SetMinMaxValues(0, combatant.Stats.MaxHP);
-        characterResourceBars.MPBar.SetMinMaxValues(0, combatant.Stats.MaxMP);
-
-        characterResourceBars.HPBar.SetValue(combatant.Stats.CurrentHP);
-        characterResourceBars.MPBar.SetValue(combatant.Stats.CurrentMP);
+        characterResourceBars.Initialize(combatant);
     }
 
     public void UpdateCharacterResourceBars(Combatant combatant)
     {
-        if (!playerResourceBars.TryGetValue(combatant, out CharacterResourceBars characterResourceBars))
+        if (!combatantPanels.TryGetValue(combatant, out ICombatantPanel combatantPanel))
             return;
 
-        characterResourceBars.HPBar.SetValue(combatant.Stats.CurrentHP);
-        characterResourceBars.MPBar.SetValue(combatant.Stats.CurrentMP);
+        combatantPanel.UpdateResourceBars(combatant);
     }
-}
 
-[Serializable]
-public class CharacterResourceBars
-{
-    [SerializeField] private CombatResourceBar hpBar;
-    [SerializeField] private CombatResourceBar mpBar;
+    public void OnAttackButton()
+    {
+        combat.Attack();
+    }
 
-    public CombatResourceBar HPBar => hpBar;
-    public CombatResourceBar MPBar => mpBar;
+    public void OnSkillsButton()
+    {
+
+    }
+
+    public void OnItemsButton()
+    {
+
+    }
+
+    public void OnSkipTurnButton()
+    {
+
+    }
 }

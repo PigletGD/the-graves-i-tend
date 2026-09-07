@@ -3,14 +3,16 @@ using UnityEngine;
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
 public class Combatant : MonoBehaviour, ITarget
 {
-    [SerializeField] private CombatantStats stats;
-    [SerializeField] private SkillSlot[] skills;
+    [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
+    [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
+    [SerializeField] private SkillSlot[] skills; // Temporary. This should be passed in when creating the combatant.
 
     [SerializeField] private Combatant[] targets;
     [SerializeField] private TargetRelationship targetRelationship; // Temporary
 
     private StatusEffectController statusEffectController;
 
+    public CharacterData CharacterData => characterData;
     public CombatantStats Stats => stats;
 
     // TODO: Temporary visualizer just to make selection more visible in terms of what is the attacker and what is the targets

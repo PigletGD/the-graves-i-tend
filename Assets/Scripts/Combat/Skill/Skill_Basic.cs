@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Skill_Basic", menuName = "Skills/Skill_Basic")]
+[CreateAssetMenu(fileName = "Basic Skill", menuName = "Skills/Basic Skill")]
 public class Skill_Basic : Skill
 {
     [SerializeField] private TargetedAttempts[] targetedAttempts;
