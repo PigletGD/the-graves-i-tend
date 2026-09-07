@@ -7,7 +7,16 @@ public class CharacterData : ScriptableObject
     [SerializeField] private string characterTitle;
     [SerializeField] private Sprite portrait;
 
+    [Header("Base Stats")]
+    [SerializeField] private float maxHP = 100f;
+    [SerializeField] private float maxMP = 100f;
+    [SerializeField] private float speed = 100f;
+
     public string CharacterName => characterName;
     public string CharacterTitle => characterTitle;
     public Sprite Portrait => portrait;
+
+    public float MaxHP => maxHP;
+    public float MaxMP => maxMP;
+    public float Speed => speed;
 }

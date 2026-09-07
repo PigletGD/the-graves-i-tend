@@ -29,8 +29,16 @@ public class CombatUIManager : MonoBehaviour
     {
         Register(combat.Attacker, playerCombatantPanel);
         Register(combat.Defender, enemyCombatantPanel);
+    }
 
-        actionTurnPanel.Initialize(new List<Combatant> { combat.Attacker, combat.Defender });
+    private void OnEnable()
+    {
+        Combatant.OnDamageTaken += UpdateCharacterResourceBars;
+    }
+
+    private void OnDisable()
+    {
+        Combatant.OnDamageTaken -= UpdateCharacterResourceBars;
     }
 
     public void Register(Combatant combatant, ICombatantPanel characterResourceBars)
@@ -40,7 +48,7 @@ public class CombatUIManager : MonoBehaviour
         characterResourceBars.Initialize(combatant);
     }
 
-    public void UpdateCharacterResourceBars(Combatant combatant)
+    public void UpdateCharacterResourceBars(Combatant combatant, float _)
     {
         if (!combatantPanels.TryGetValue(combatant, out ICombatantPanel combatantPanel))
             return;
@@ -51,7 +59,6 @@ public class CombatUIManager : MonoBehaviour
     public void OnAttackButton()
     {
         combat.Attack();
-        damagePopupManager.ShowDamagePopup(10, combat.Defender);
     }
 
     public void OnSkillsButton()

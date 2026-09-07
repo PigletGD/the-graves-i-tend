@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class Combat : MonoBehaviour
     public Combatant Attacker => attacker;
     public Combatant Defender => defender;
 
+    private Combatant activeCombatant;
+
     private void Start()
     {
         // TODO: Temporarily handle setting colors here
@@ -23,6 +26,9 @@ public class Combat : MonoBehaviour
             defender?.Visualizer?.SetToDefenderColor();
             Targets.Add(defender);
         }
+
+        CombatTurnManager.InitializeTurnOrder(new List<Combatant> { attacker, defender });
+        activeCombatant = CombatTurnManager.GetNextCombatant();
     }
 
     public void HandleAttackerSetupForSelected(ITarget selected)
@@ -81,14 +87,23 @@ public class Combat : MonoBehaviour
     // TEMPORARY
     public void Attack()
     {
+        if (activeCombatant == attacker)
+            StartCoroutine(Test());
+    }
+    
+    // THERE IS A BUG IF YOU SPAM IT.
+    public IEnumerator Test()
+    {
         TargetSelectionArgs targetSelectionArgsAttacker = new()
         {
             Combat = this,
             Invoker = attacker,
-            Targets = new []{ defender }
+            Targets = new[] { defender }
         };
 
         attacker.TryUseSkill(0, targetSelectionArgsAttacker);
+        activeCombatant = CombatTurnManager.GetNextCombatant();
+        yield return new WaitForSeconds(1f);
 
         TargetSelectionArgs targetSelectionArgsDefender = new()
         {
@@ -98,9 +113,9 @@ public class Combat : MonoBehaviour
         };
 
         defender.TryUseSkill(0, targetSelectionArgsDefender);
+        yield return new WaitForSeconds(1f);
 
-        // TEMPORARY
-        CombatUIManager.Instance.UpdateCharacterResourceBars(attacker);
-        CombatUIManager.Instance.UpdateCharacterResourceBars(defender);
+        activeCombatant = CombatTurnManager.GetNextCombatant();
     }
 }
+
