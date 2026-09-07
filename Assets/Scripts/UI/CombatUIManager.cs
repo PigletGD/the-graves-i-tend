@@ -9,6 +9,8 @@ public class CombatUIManager : MonoBehaviour
 
     [SerializeField] private PlayerCombatantPanel playerCombatantPanel;
     [SerializeField] private EnemyCombatantPanel enemyCombatantPanel;
+    [SerializeField] private ActionTurnPanel actionTurnPanel;
+    [SerializeField] private DamagePopupManager damagePopupManager;
 
     private Dictionary<Combatant, ICombatantPanel> combatantPanels = new();
 
@@ -27,6 +29,8 @@ public class CombatUIManager : MonoBehaviour
     {
         Register(combat.Attacker, playerCombatantPanel);
         Register(combat.Defender, enemyCombatantPanel);
+
+        actionTurnPanel.Initialize(new List<Combatant> { combat.Attacker, combat.Defender });
     }
 
     public void Register(Combatant combatant, ICombatantPanel characterResourceBars)
@@ -47,6 +51,7 @@ public class CombatUIManager : MonoBehaviour
     public void OnAttackButton()
     {
         combat.Attack();
+        damagePopupManager.ShowDamagePopup(10, combat.Defender);
     }
 
     public void OnSkillsButton()
