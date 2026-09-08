@@ -9,12 +9,12 @@ public static class CombatTurnManager
     
     private static Dictionary<Combatant, float> actionValues = new();
 
-    public static void InitializeTurnOrder(List<Combatant> combatants)
-    {
-        SortTurns(combatants);
-    }
+    private static IOrderedEnumerable<KeyValuePair<Combatant, float>> OrderedActionValues
+        => actionValues
+            .OrderBy(kv => kv.Value)
+            .ThenByDescending(kv => kv.Key.IsPlayerControlled);
 
-    private static void SortTurns(List<Combatant> combatants)
+    public static void InitializeTurnOrder(List<Combatant> combatants)
     {
         actionValues.Clear();
         foreach (Combatant combatant in combatants)
@@ -25,24 +25,44 @@ public static class CombatTurnManager
 
     public static Combatant GetNextCombatant()
     {
-        KeyValuePair<Combatant, float> nextCombatantEntry = actionValues.OrderBy(kv => kv.Value).FirstOrDefault();
-        if (nextCombatantEntry.Key != null)
-        {
-            foreach (var combatant in actionValues.Keys.ToList())
-            {
-                if (!combatant.Equals(nextCombatantEntry.Key))
-                    actionValues[combatant] -= nextCombatantEntry.Value;
-            }
+        KeyValuePair<Combatant, float> nextCombatantEntry = OrderedActionValues.FirstOrDefault();
 
-            actionValues[nextCombatantEntry.Key] = nextCombatantEntry.Key.Stats.ActionValue;
-            OnTurnOrderUpdated?.Invoke();
-        }
+        foreach (var combatant in actionValues.Keys.ToList())
+            actionValues[combatant] -= nextCombatantEntry.Value;
 
+        OnTurnOrderUpdated?.Invoke();
         return nextCombatantEntry.Key;
     }
     
-    public static List<Combatant> GetTurnOrder()
+    /// <summary>
+    /// Call after finishing a Combatant's turn to re-queue them back in actionValues.
+    /// </summary>
+    public static void ResetCombatantActionValue(Combatant combatant)
     {
-        return actionValues.OrderBy(kv => kv.Value).Select(kv => kv.Key).ToList();
+        if (actionValues.ContainsKey(combatant))
+        {
+            actionValues[combatant] = combatant.Stats.ActionValue;
+            OnTurnOrderUpdated?.Invoke();
+        }
     }
+
+    public static List<(Combatant combatant, float actionValue)> GetTurnOrderPrediction(int turnCount)
+    {
+        List<(Combatant combatant, float actionValue)> prediction = new();
+        Dictionary<Combatant, float> predictedActionValues = new(actionValues);
+
+        for (int i = 0; i < turnCount; i++)
+        {
+            KeyValuePair<Combatant, float> nextCombatant = predictedActionValues
+                .OrderBy(kv => kv.Value)
+                .ThenByDescending(kv => kv.Key.IsPlayerControlled)
+                .First();
+
+            prediction.Add((nextCombatant.Key, nextCombatant.Value));
+            predictedActionValues[nextCombatant.Key] += nextCombatant.Key.Stats.ActionValue;
+        }
+
+        return prediction;
+    }
+
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 [Serializable]
 public class Attempt
 {
+    public static Action<ITarget, ITarget> OnAttemptMissed;
+
     [SerializeField] private ProbabilityCondition<float> accuracy = new(1);
     [SerializeReference, SerializeReferenceDropdown] private CombatCondition[] combatConditions;
     [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] invokerConditions;
@@ -40,7 +42,7 @@ public class Attempt
             foreach (Effect effect in effects)
                 effectNames.Add(effect.GetType().Name);
             Debug.Log($"Attempt missed! Effects: {string.Join(", ", effectNames)}.");
-
+            OnAttemptMissed?.Invoke(invoker, target);
             return;
         }
 

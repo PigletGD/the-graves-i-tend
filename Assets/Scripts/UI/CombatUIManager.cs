@@ -10,7 +10,6 @@ public class CombatUIManager : MonoBehaviour
     [SerializeField] private PlayerCombatantPanel playerCombatantPanel;
     [SerializeField] private EnemyCombatantPanel enemyCombatantPanel;
     [SerializeField] private ActionTurnPanel actionTurnPanel;
-    [SerializeField] private DamagePopupManager damagePopupManager;
 
     private Dictionary<Combatant, ICombatantPanel> combatantPanels = new();
 
@@ -27,8 +26,8 @@ public class CombatUIManager : MonoBehaviour
 
     private void Start()
     {
-        Register(combat.Attacker, playerCombatantPanel);
-        Register(combat.Defender, enemyCombatantPanel);
+        Register(combat.PlayerCombatant, playerCombatantPanel);
+        Register(combat.EnemyCombatant, enemyCombatantPanel);
     }
 
     private void OnEnable()

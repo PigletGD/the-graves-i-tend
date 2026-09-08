@@ -1,16 +1,16 @@
 using TMPro;
 using UnityEngine;
 
-public class DamagePopupUI : MonoBehaviour
+public class EffectPopupUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text damageText;
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float fadeDuration = 1f;
 
-    public void Initialize(int damageAmount, Vector3 position)
+    public void Initialize(Vector3 position, string message)
     {
         damageText.rectTransform.anchoredPosition = position;
-        damageText.text = damageAmount.ToString();
+        damageText.text = message;
     }
 
     public void Update()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9212783760183089948}
   - component: {fileID: 6424921917535151475}
   m_Layer: 5
-  m_Name: Combat Popup Canvas
+  m_Name: Effect Popup Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 3899272376035940193}
   - component: {fileID: 822415317817344376}
   m_Layer: 5
-  m_Name: Damage Popups
+  m_Name: Effect Popups
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,5 +191,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamagePopupManager
   canvas: {fileID: 8400037350213306208}
-  damagePopupPrefab: {fileID: 504651527872036952, guid: de6b8c9607aca01418fdc8dbb5182fe2, type: 3}
+  effectPopupPrefab: {fileID: 504651527872036952, guid: de6b8c9607aca01418fdc8dbb5182fe2, type: 3}
   popupOffset: {x: 0, y: 380, z: 0}

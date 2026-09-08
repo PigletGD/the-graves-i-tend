@@ -143,6 +143,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1094693937707040569, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094693937707040569, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094693937707040569, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094693937707040569, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1328478641471813270, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
       propertyPath: m_Camera
       value: 
@@ -207,6 +223,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4124837783337651868, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124837783337651868, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124837783337651868, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124837783337651868, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4851636301793351146, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
       propertyPath: combat
       value: 
@@ -252,6 +284,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7815964386377088476, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948438831507003118, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948438831507003118, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948438831507003118, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948438831507003118, guid: 15d6d7fd0e9b9864d822c189e7e6bf1f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -378,6 +426,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
       propertyPath: skills.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
+      propertyPath: isPlayerControlled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
@@ -838,8 +890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee504f63e55d7d4cb4128fa62d456a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battle
-  attacker: {fileID: 1276477491}
-  defender: {fileID: 322468230}
+  playerCombatant: {fileID: 1276477491}
+  enemyCombatant: {fileID: 322468230}
   basicAttack: {fileID: 11400000, guid: 3437b848a1ad95f4492058e7e776d5c4, type: 2}
 --- !u!4 &1926496780
 Transform:

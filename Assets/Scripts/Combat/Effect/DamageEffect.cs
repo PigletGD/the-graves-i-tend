@@ -14,7 +14,7 @@ public class DamageEffect : Effect
             return;
         }
 
-        Log($"dealt {damage} damage");
+        // Log($"dealt {damage} damage");
         combatant.TakeDamage(damage);
     }
 }

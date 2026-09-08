@@ -6,6 +6,7 @@ public class Combatant : MonoBehaviour, ITarget
 {
     public static Action<Combatant, float> OnDamageTaken;
 
+    [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private SkillSlot[] skills; // Temporary. This should be passed in when creating the combatant.
@@ -15,6 +16,7 @@ public class Combatant : MonoBehaviour, ITarget
 
     private StatusEffectController statusEffectController;
 
+    public bool IsPlayerControlled => isPlayerControlled;
     public CharacterData CharacterData => characterData;
     public CombatantStats Stats => stats;
 

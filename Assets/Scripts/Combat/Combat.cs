@@ -1,34 +1,34 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 // Refer to this dood youtube video on how I'm basing the combat on: https://www.youtube.com/watch?v=CyRtTwKeulE.
 public class Combat : MonoBehaviour
 {
-    [SerializeField] private Combatant attacker;
-    [SerializeField] private Combatant defender;
+    [SerializeField] private Combatant playerCombatant;
+    [SerializeField] private Combatant enemyCombatant;
     [SerializeField] private Skill basicAttack;
+
+    private bool canPlayerAct;
+    private Combatant activeCombatant;
 
     public List<ITarget> Targets { get; private set; } = new();
 
-    public Combatant Attacker => attacker;
-    public Combatant Defender => defender;
-
-    private Combatant activeCombatant;
+    public Combatant PlayerCombatant => playerCombatant;
+    public Combatant EnemyCombatant => enemyCombatant;
 
     private void Start()
     {
         // TODO: Temporarily handle setting colors here
-        attacker?.Visualizer?.SetToAttackerColor();
+        playerCombatant?.Visualizer?.SetToAttackerColor();
 
-        if (attacker != null && defender != null && !attacker.Equals(defender))
+        if (playerCombatant != null && enemyCombatant != null && !playerCombatant.Equals(enemyCombatant))
         {
-            defender?.Visualizer?.SetToDefenderColor();
-            Targets.Add(defender);
+            enemyCombatant?.Visualizer?.SetToDefenderColor();
+            Targets.Add(enemyCombatant);
         }
 
-        CombatTurnManager.InitializeTurnOrder(new List<Combatant> { attacker, defender });
-        activeCombatant = CombatTurnManager.GetNextCombatant();
+        CombatTurnManager.InitializeTurnOrder(new List<Combatant> { playerCombatant, enemyCombatant });
+        StartNextTurn();
     }
 
     public void HandleAttackerSetupForSelected(ITarget selected)
@@ -36,12 +36,12 @@ public class Combat : MonoBehaviour
         if (selected == null)
             return;
         
-        if (!selected.Equals(attacker))
+        if (!selected.Equals(playerCombatant))
         {
             selected.GetSelectionVisualizer()?.SetToAttackerColor();
-            attacker?.GetSelectionVisualizer()?.SetToUnselectedColor();
+            playerCombatant?.GetSelectionVisualizer()?.SetToUnselectedColor();
             
-            attacker = selected.GetRootObject()?.GetComponent<Combatant>();
+            playerCombatant = selected.GetRootObject()?.GetComponent<Combatant>();
             
             if (Targets.Contains(selected))
                 Targets.Remove(selected);
@@ -52,7 +52,7 @@ public class Combat : MonoBehaviour
         {
             selected.GetSelectionVisualizer()?.SetToHoveredColor(true);
             
-            attacker = null;
+            playerCombatant = null;
             
             Debug.Log($"Removed {selected.GetRootObject().name} as the attacker", selected.GetRootObject());
         }
@@ -69,8 +69,8 @@ public class Combat : MonoBehaviour
 
             Targets.Add(selected);
 
-            if (selected.Equals(attacker))
-                attacker = null;
+            if (selected.Equals(playerCombatant))
+                playerCombatant = null;
 
             Debug.Log($"Added {selected.GetRootObject()?.name} as a target", selected.GetRootObject());
         }
@@ -84,38 +84,44 @@ public class Combat : MonoBehaviour
         }
     }
 
+    private void StartNextTurn()
+    {
+        activeCombatant = CombatTurnManager.GetNextCombatant();
+        canPlayerAct = activeCombatant.IsPlayerControlled;
+
+        if (!activeCombatant.IsPlayerControlled)
+        {
+            TargetSelectionArgs targetSelectionArgs = new()
+            {
+                Combat = this,
+                Invoker = enemyCombatant,
+                Targets = new[] { playerCombatant }
+            };
+
+            enemyCombatant.TryUseSkill(0, targetSelectionArgs);
+            CombatTurnManager.ResetCombatantActionValue(activeCombatant);
+            Invoke(nameof(StartNextTurn), 1f);
+        }
+    }
+
     // TEMPORARY
     public void Attack()
     {
-        if (activeCombatant == attacker)
-            StartCoroutine(Test());
-    }
-    
-    // THERE IS A BUG IF YOU SPAM IT.
-    public IEnumerator Test()
-    {
-        TargetSelectionArgs targetSelectionArgsAttacker = new()
+        if (canPlayerAct)
         {
-            Combat = this,
-            Invoker = attacker,
-            Targets = new[] { defender }
-        };
+            canPlayerAct = false;
 
-        attacker.TryUseSkill(0, targetSelectionArgsAttacker);
-        activeCombatant = CombatTurnManager.GetNextCombatant();
-        yield return new WaitForSeconds(1f);
+            TargetSelectionArgs targetSelectionArgsAttacker = new()
+            {
+                Combat = this,
+                Invoker = playerCombatant,
+                Targets = new[] { enemyCombatant }
+            };
 
-        TargetSelectionArgs targetSelectionArgsDefender = new()
-        {
-            Combat = this,
-            Invoker = defender,
-            Targets = new[] { attacker }
-        };
-
-        defender.TryUseSkill(0, targetSelectionArgsDefender);
-        yield return new WaitForSeconds(1f);
-
-        activeCombatant = CombatTurnManager.GetNextCombatant();
+            playerCombatant.TryUseSkill(0, targetSelectionArgsAttacker);
+            CombatTurnManager.ResetCombatantActionValue(activeCombatant);
+            Invoke(nameof(StartNextTurn), 1f);
+        }
     }
 }
 

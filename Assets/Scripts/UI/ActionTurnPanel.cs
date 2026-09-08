@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ActionTurnPanel : MonoBehaviour
 {
-    [SerializeField] private List<Image> combatantPortraits;
+    [SerializeField] private List<ActionTurnCombatantPanel> actionTurnCombatantPanels;
 
     private void OnEnable()
     {
@@ -18,19 +17,18 @@ public class ActionTurnPanel : MonoBehaviour
 
     public void UpdateTurnOrder()
     {
-        List<Combatant> combatants = CombatTurnManager.GetTurnOrder();
-        combatants.Reverse();
+        List<(Combatant combatant, float actionValue)> combatantPredictions = CombatTurnManager.GetTurnOrderPrediction(actionTurnCombatantPanels.Count);
 
-        for (int i = 0; i < combatantPortraits.Count; i++)
+        for (int i = 0; i < actionTurnCombatantPanels.Count; i++)
         {
-            if (i < combatants.Count)
+            if (i < combatantPredictions.Count)
             {
-                combatantPortraits[i].sprite = combatants[i].CharacterData.Portrait;
-                combatantPortraits[i].gameObject.SetActive(true);
+                actionTurnCombatantPanels[i].UpdateCombatantPanel(combatantPredictions[i].combatant, combatantPredictions[i].actionValue);
+                actionTurnCombatantPanels[i].gameObject.SetActive(true);
             }
             else
             {
-                combatantPortraits[i].gameObject.SetActive(false);
+                actionTurnCombatantPanels[i].gameObject.SetActive(false);
             }
         }
     }
