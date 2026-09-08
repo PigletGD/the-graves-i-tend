@@ -12,28 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Fingerprick
   m_EditorClassIdentifier: Assembly-CSharp::Skill
+  skillCosts:
+  - resourceType: 1
+    value: 2
   targetedAttempts:
   - targetRelationship: 1
     attempts:
     - accuracy:
         probability: 0.85
-      battleConditions: []
+      combatConditions: []
       invokerConditions: []
       targetConditions: []
-      effects:
-      - rid: 1594092394723147861
-      - rid: 1594092394723147857
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162915674095686
+      - rid: 8116162915674095687
   references:
     version: 2
     RefIds:
-    - rid: 1594092394723147857
+    - rid: 8116162915674095686
+      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 10
+    - rid: 8116162915674095687
       type: {class: ApplyStatusEffect, ns: , asm: Assembly-CSharp}
       data:
         statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
         applyChance:
-          probability: 0.5
+          probability: 1
         statusEffectCondition: []
-    - rid: 1594092394723147861
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 10

@@ -16,13 +16,13 @@ public class EffectPopupManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Combatant.OnDamageTaken += ShowDamagePopup;
+        Combatant.OnHPChanged += ShowDamagePopup;
         Attempt.OnAttemptMissed += ShowDamagePopup;
     }
     
     private void OnDisable()
     {
-        Combatant.OnDamageTaken -= ShowDamagePopup;
+        Combatant.OnHPChanged -= ShowDamagePopup;
         Attempt.OnAttemptMissed -= ShowDamagePopup;
     }
 

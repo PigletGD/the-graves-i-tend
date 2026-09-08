@@ -32,12 +32,14 @@ public class CombatUIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Combatant.OnDamageTaken += UpdateCharacterResourceBars;
+        Combatant.OnHPChanged += UpdateCharacterResourceBars;
+        Combatant.OnMPChanged += UpdateCharacterResourceBars;
     }
 
     private void OnDisable()
     {
-        Combatant.OnDamageTaken -= UpdateCharacterResourceBars;
+        Combatant.OnHPChanged -= UpdateCharacterResourceBars;
+        Combatant.OnMPChanged -= UpdateCharacterResourceBars;
     }
 
     public void Register(Combatant combatant, ICombatantPanel characterResourceBars)
@@ -47,6 +49,7 @@ public class CombatUIManager : MonoBehaviour
         characterResourceBars.Initialize(combatant);
     }
 
+    // Maybe move this into the class EnemyCombatantPanel and PlayerCombatantPanel
     public void UpdateCharacterResourceBars(Combatant combatant, float _)
     {
         if (!combatantPanels.TryGetValue(combatant, out ICombatantPanel combatantPanel))

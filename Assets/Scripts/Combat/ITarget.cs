@@ -4,7 +4,7 @@ public interface ITarget
 {
     public ITarget[] GetTargets(Combat combat);
     
-    public TargetRelationship GetTargetRelationship();
+    public TargetRelationshipType GetTargetRelationship();
 
     public TargetSelectionVisualizer GetSelectionVisualizer();
 

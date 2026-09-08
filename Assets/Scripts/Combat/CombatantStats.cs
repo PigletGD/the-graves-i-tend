@@ -20,7 +20,7 @@ public class CombatantStats
 
     public float CurrentHP => currentHP;
     public float CurrentMP => currentMP;
-    public float CurrentSpeed => currentSpeed;
+    public float CurrentElation => currentElation;
 
     /// <summary>
     /// Gets the action value of the combatant based on their current speed.
@@ -50,13 +50,13 @@ public class CombatantStats
         currentMP = Mathf.Clamp(currentMP + amount, 0, maxMP);
     }
 
-    public void UpdateSpeed(float amount)
-    {
-        currentSpeed = Mathf.Clamp(currentSpeed + amount, 1, maxSpeed);
-    }
-
     public void UpdateElation(float amount)
     {
         currentElation = Mathf.Clamp(currentElation + amount, MinElation, MaxElation);
+    }
+
+    public void UpdateSpeed(float amount)
+    {
+        currentSpeed = Mathf.Clamp(currentSpeed + amount, 1, maxSpeed);
     }
 }

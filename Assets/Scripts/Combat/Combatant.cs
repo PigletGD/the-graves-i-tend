@@ -4,15 +4,16 @@ using UnityEngine;
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
 public class Combatant : MonoBehaviour, ITarget
 {
-    public static Action<Combatant, float> OnDamageTaken;
+    public static Action<Combatant, float> OnHPChanged;
+    public static Action<Combatant, float> OnMPChanged;
 
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private SkillSlot[] skills; // Temporary. This should be passed in when creating the combatant.
+    [SerializeField] private TargetRelationshipType targetRelationship; // Temporary. This should be passed in when creating the combatant.
 
     [SerializeField] private Combatant[] targets;
-    [SerializeField] private TargetRelationship targetRelationship; // Temporary
 
     private StatusEffectController statusEffectController;
 
@@ -36,7 +37,13 @@ public class Combatant : MonoBehaviour, ITarget
     public void TakeDamage(float hp)
     {
         stats.UpdateHP(-hp);
-        OnDamageTaken?.Invoke(this, hp);
+        OnHPChanged?.Invoke(this, hp);
+    }
+
+    public void ConsumeMana(float mp)
+    {
+        stats.UpdateMP(-mp);
+        OnMPChanged?.Invoke(this, mp);
     }
 
     public bool TryUseSkill(int index, TargetSelectionArgs args)
@@ -63,7 +70,7 @@ public class Combatant : MonoBehaviour, ITarget
         return gameObject;
     }
 
-    public TargetRelationship GetTargetRelationship()
+    public TargetRelationshipType GetTargetRelationship()
     {
         return targetRelationship;
     }

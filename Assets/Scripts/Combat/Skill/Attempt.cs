@@ -11,7 +11,8 @@ public class Attempt
     [SerializeReference, SerializeReferenceDropdown] private CombatCondition[] combatConditions;
     [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] invokerConditions;
     [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] targetConditions;
-    [SerializeReference, SerializeReferenceDropdown] public List<Effect> effects;
+    [SerializeReference, SerializeReferenceDropdown] public List<Effect> invokerEffects;
+    [SerializeReference, SerializeReferenceDropdown] public List<Effect> targetEffects;
 
     public void Execute(Combat combat, ITarget invoker, ITarget target)
     {
@@ -36,11 +37,16 @@ public class Attempt
             }
         }
 
+        // Check if we actually hit the Attempt first before checking if the Effect works on the Target.
         if (!accuracy.Check(0))
         {
             List<string> effectNames = new();
-            foreach (Effect effect in effects)
+            foreach (Effect effect in invokerEffects)
                 effectNames.Add(effect.GetType().Name);
+
+            foreach (Effect effect in targetEffects)
+                effectNames.Add(effect.GetType().Name);
+
             Debug.Log($"Attempt missed! Effects: {string.Join(", ", effectNames)}.");
             OnAttemptMissed?.Invoke(invoker, target);
             return;
@@ -58,7 +64,10 @@ public class Attempt
             }
         }
 
-        foreach (Effect effect in effects)
+        foreach (Effect effect in invokerEffects)
+            effect.Apply(invoker);
+
+        foreach (Effect effect in targetEffects)
             effect.Apply(target);
     }
 }

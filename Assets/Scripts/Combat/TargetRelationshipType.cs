@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public enum TargetRelationship
+public enum TargetRelationshipType
 {
     None,
     Hostile,

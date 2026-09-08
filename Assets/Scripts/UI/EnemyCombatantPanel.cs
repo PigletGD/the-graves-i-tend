@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyCombatantPanel : MonoBehaviour, ICombatantPanel
 {
-    
     [SerializeField] private CombatResourceBar hpBar;
     [SerializeField] private CombatResourceBar mpBar;
 
