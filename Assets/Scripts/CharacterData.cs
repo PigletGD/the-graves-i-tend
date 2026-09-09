@@ -6,6 +6,8 @@ public class CharacterData : ScriptableObject
     [SerializeField] private string characterName;
     [SerializeField] private string characterTitle;
     [SerializeField] private Sprite portrait;
+    [SerializeField] private Skill basicAttack;
+    [SerializeField] private Skill[] skills;
 
     [Header("Base Stats")]
     [SerializeField] private float maxHP = 100f;
@@ -15,6 +17,8 @@ public class CharacterData : ScriptableObject
     public string CharacterName => characterName;
     public string CharacterTitle => characterTitle;
     public Sprite Portrait => portrait;
+    public Skill BasicAttack => basicAttack;
+    public Skill[] Skills => skills;
 
     public float MaxHP => maxHP;
     public float MaxMP => maxMP;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1380763436558531653}
   - component: {fileID: 504651527872036952}
   m_Layer: 5
-  m_Name: Effect Popup UI
+  m_Name: Popup Effect UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

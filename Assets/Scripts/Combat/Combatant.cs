@@ -4,14 +4,13 @@ using UnityEngine;
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
 public class Combatant : MonoBehaviour, ITarget
 {
-    public static Action<Combatant, float> OnHPChanged;
-    public static Action<Combatant, float> OnMPChanged;
-    public static Action<Combatant> OnSkillUsed;
+    public static event Action<Combatant, float> OnHPChanged;
+    public static event Action<Combatant, float> OnMPChanged;
+    public static event Action<Combatant> OnSkillUsed;
 
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
-    [SerializeField] private SkillSlot[] skills; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private TargetRelationshipType targetRelationship; // Temporary. This should be passed in when creating the combatant.
 
     [SerializeField] private Combatant[] targets;
@@ -53,19 +52,23 @@ public class Combatant : MonoBehaviour, ITarget
         stats.UpdateMP(mp);
         OnMPChanged?.Invoke(this, mp);
     }
-#endregion
+    #endregion
+
+    public void DoBasicAttack(TargetSelectionArgs args)
+    {
+        characterData.BasicAttack.Execute(args);
+        OnSkillUsed?.Invoke(this);
+    }
 
     public bool TryUseSkill(int index, TargetSelectionArgs args)
     {
-        if (index < 0 || index >= skills.Length)
+        if (index < 0 || index >= characterData.Skills.Length)
             return false;
 
-        bool wasSkillUsed = skills[index].TryUse(args);
+        characterData.Skills[index].Execute(args);
+        OnSkillUsed?.Invoke(this);
 
-        if (wasSkillUsed)
-            OnSkillUsed?.Invoke(this);
-
-        return wasSkillUsed;
+        return true;
     }
 
     // TODO: Refactor this so that we get targets from the selection.

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2014963448104232759}
   - component: {fileID: 7575290615681259331}
   m_Layer: 5
-  m_Name: Action Turn HUDs
+  m_Name: Turn Order HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,12 +32,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8069492920948292868}
-  - {fileID: 3399265327067336768}
-  - {fileID: 4966578780244579889}
-  - {fileID: 2307009767107382683}
-  - {fileID: 6338734555879031917}
-  - {fileID: 2150867137683416755}
+  - {fileID: 2182367186934879895}
+  - {fileID: 6292822354307266791}
+  - {fileID: 2865755674489961216}
+  - {fileID: 8672111985407568692}
+  - {fileID: 1053443480879858708}
+  - {fileID: 6089656103705487521}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -121,14 +121,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d695b0108b61e4791b93caea5cf5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnPanel
-  actionTurnCombatantPanels:
-  - {fileID: 5812899048420804454}
-  - {fileID: 1187705801630050850}
-  - {fileID: 8915962855347088467}
-  - {fileID: 2257197061574768633}
-  - {fileID: 7539233115065761295}
-  - {fileID: 2490037218704137425}
---- !u!1001 &1556140601435746512
+  turnOrderCombatantPanels:
+  - {fileID: 2386444395337100533}
+  - {fileID: 7494994164118831749}
+  - {fileID: 1770544082926059874}
+  - {fileID: 5120186004939133270}
+  - {fileID: 3587570857808592502}
+  - {fileID: 7770332348303102659}
+--- !u!1001 &495249339451839095
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -138,39 +138,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 429468891031278202, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_Name
-      value: Action Turn Combatant HUD (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 70
+      value: Turn Order Combatant Panel (4)
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -178,26 +146,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
@@ -225,15 +173,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
---- !u!224 &2150867137683416755 stripped
+--- !u!224 &1053443480879858708 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 1556140601435746512}
+  m_PrefabInstance: {fileID: 495249339451839095}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2490037218704137425 stripped
+--- !u!114 &3587570857808592502 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3969613050108931073, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 1556140601435746512}
+  m_PrefabInstance: {fileID: 495249339451839095}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -241,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cfc0145e3dc0f4ea566c8cff528139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnCombatantPanel
---- !u!1001 &2841052472182244899
+--- !u!1001 &1587726131408486644
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -251,26 +199,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 429468891031278202, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_Name
-      value: Action Turn Combatant HUD (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
+      value: Turn Order Combatant Panel
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
@@ -278,39 +210,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
@@ -338,10 +242,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
---- !u!114 &1187705801630050850 stripped
+--- !u!224 &2182367186934879895 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
+  m_PrefabInstance: {fileID: 1587726131408486644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2386444395337100533 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3969613050108931073, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 2841052472182244899}
+  m_PrefabInstance: {fileID: 1587726131408486644}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -349,12 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cfc0145e3dc0f4ea566c8cff528139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnCombatantPanel
---- !u!224 &3399265327067336768 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 2841052472182244899}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2901948517537242104
+--- !u!1001 &3424101859772935523
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -364,39 +268,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 429468891031278202, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_Name
-      value: Action Turn Combatant HUD (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 70
+      value: Turn Order Combatant Panel (2)
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -404,26 +276,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
@@ -451,10 +303,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
---- !u!114 &2257197061574768633 stripped
+--- !u!114 &1770544082926059874 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3969613050108931073, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 2901948517537242104}
+  m_PrefabInstance: {fileID: 3424101859772935523}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -462,12 +314,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cfc0145e3dc0f4ea566c8cff528139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnCombatantPanel
---- !u!224 &2307009767107382683 stripped
+--- !u!224 &2865755674489961216 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 2901948517537242104}
+  m_PrefabInstance: {fileID: 3424101859772935523}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5525137137046192210
+--- !u!1001 &6684223739299249858
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -477,39 +329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 429468891031278202, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_Name
-      value: Action Turn Combatant HUD (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 70
+      value: Turn Order Combatant Panel (5)
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -517,26 +337,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
@@ -564,15 +364,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
---- !u!224 &4966578780244579889 stripped
+--- !u!224 &6089656103705487521 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 5525137137046192210}
+  m_PrefabInstance: {fileID: 6684223739299249858}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8915962855347088467 stripped
+--- !u!114 &7770332348303102659 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3969613050108931073, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 5525137137046192210}
+  m_PrefabInstance: {fileID: 6684223739299249858}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -580,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cfc0145e3dc0f4ea566c8cff528139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnCombatantPanel
---- !u!1001 &6896799502559367694
+--- !u!1001 &6851513743559536260
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -590,39 +390,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 429468891031278202, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_Name
-      value: Action Turn Combatant HUD (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 70
+      value: Turn Order Combatant Panel (1)
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -630,26 +398,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
@@ -677,15 +425,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
---- !u!224 &6338734555879031917 stripped
+--- !u!224 &6292822354307266791 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 6896799502559367694}
+  m_PrefabInstance: {fileID: 6851513743559536260}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7539233115065761295 stripped
+--- !u!114 &7494994164118831749 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3969613050108931073, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 6896799502559367694}
+  m_PrefabInstance: {fileID: 6851513743559536260}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -693,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cfc0145e3dc0f4ea566c8cff528139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnCombatantPanel
---- !u!1001 &7475261710126508903
+--- !u!1001 &8077320292360109399
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -703,39 +451,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 429468891031278202, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_Name
-      value: Action Turn Combatant HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 70
+      value: Turn Order Combatant Panel (3)
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -743,26 +459,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
@@ -790,10 +486,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
---- !u!114 &5812899048420804454 stripped
+--- !u!114 &5120186004939133270 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3969613050108931073, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 7475261710126508903}
+  m_PrefabInstance: {fileID: 8077320292360109399}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -801,8 +497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cfc0145e3dc0f4ea566c8cff528139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnCombatantPanel
---- !u!224 &8069492920948292868 stripped
+--- !u!224 &8672111985407568692 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 595020396064773731, guid: e2138ca7d2d804e48af7e39dca8fcbcb, type: 3}
-  m_PrefabInstance: {fileID: 7475261710126508903}
+  m_PrefabInstance: {fileID: 8077320292360109399}
   m_PrefabAsset: {fileID: 0}

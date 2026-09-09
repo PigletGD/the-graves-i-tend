@@ -15,3 +15,8 @@ MonoBehaviour:
   characterName: Douki
   characterTitle: 
   portrait: {fileID: 7751706147673198722, guid: 0d82c10474e0515428b1fc138015d9c9, type: 3}
+  basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
+  skills: []
+  maxHP: 100
+  maxMP: 100
+  speed: 100

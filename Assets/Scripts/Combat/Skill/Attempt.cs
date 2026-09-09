@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Attempt
 {
-    public static Action<ITarget, ITarget> OnAttemptMissed;
+    public static event Action<ITarget, ITarget> OnAttemptMissed;
 
     [SerializeField] private ProbabilityCondition<float> accuracy = new(1);
     [SerializeReference, SerializeReferenceDropdown] private CombatCondition[] combatConditions;

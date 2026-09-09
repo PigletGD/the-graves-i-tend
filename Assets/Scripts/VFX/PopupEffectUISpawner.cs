@@ -1,13 +1,16 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 // TODO: Object Pooling
-public class EffectPopupUISpawner : MonoBehaviour
+public class PopupEffectUISpawner : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
-    [SerializeField] private EffectPopupUI effectPopupPrefab;
-    [SerializeField] private Vector3 popupOffset = new(0, 380f, 0); // Move this elswhere?
+    [SerializeField] private PopupEffectUI effectPopupPrefab;
+    [SerializeField] private Vector3 popupOffset = new(0, 380f, 0);
+    [SerializeField] private float popupStackSpacing = 40f;
 
     private RectTransform parentRect;
+    private Dictionary<PopupEffectUI, Combatant> activePopups = new();
 
     private void Awake()
     {
@@ -33,9 +36,26 @@ public class EffectPopupUISpawner : MonoBehaviour
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(combatant.transform.position) + popupOffset;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect, screenPosition, canvas.worldCamera, out Vector2 localPosition);
 
-            EffectPopupUI effectPopup = Instantiate(effectPopupPrefab, parentRect);
+            int popupCount = 0;
+            foreach (Combatant popupTarget in activePopups.Values)
+            {
+                if (popupTarget == combatant)
+                    popupCount++;
+            }
+
+            localPosition += Vector2.up * (popupCount * popupStackSpacing);
+
+            PopupEffectUI effectPopup = Instantiate(effectPopupPrefab, parentRect);
             effectPopup.Initialize(localPosition, message);
+            effectPopup.OnDestroyed += OnPopupDestroyed;
+            activePopups[effectPopup] = combatant;
         }
+    }
+
+    private void OnPopupDestroyed(PopupEffectUI effectPopup)
+    {
+        effectPopup.OnDestroyed -= OnPopupDestroyed;
+        activePopups.Remove(effectPopup);
     }
 
     private void ShowDamagePopup(Combatant combatant, float damageAmount)

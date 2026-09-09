@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ActionTurnCombatantPanel : MonoBehaviour
+public class TurnOrderCombatantPanel : MonoBehaviour
 {
     [SerializeField] private Image combatantIcon;
     [SerializeField] private TextMeshProUGUI actionValueText;
@@ -10,6 +10,6 @@ public class ActionTurnCombatantPanel : MonoBehaviour
     public void UpdateCombatantPanel(Combatant combatant, float actionValue)
     {
         combatantIcon.sprite = combatant.CharacterData.Portrait;
-        actionValueText.text = actionValue.ToString("F0");
+        actionValueText.SetText(actionValue.ToString("F0"));
     }
 }

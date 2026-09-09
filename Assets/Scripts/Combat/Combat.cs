@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 // Refer to this dood youtube video on how I'm basing the combat on: https://www.youtube.com/watch?v=CyRtTwKeulE.
 public class Combat : MonoBehaviour
 {
+    public static event Action<Combatant> OnTurnUpdated;
+
     [SerializeField] private Combatant playerCombatant;
     [SerializeField] private Combatant enemyCombatant;
 
@@ -14,6 +17,7 @@ public class Combat : MonoBehaviour
 
     public Combatant PlayerCombatant => playerCombatant;
     public Combatant EnemyCombatant => enemyCombatant;
+    public Combatant ActiveCombatant => activeCombatant;
 
     private void Start()
     {
@@ -87,7 +91,19 @@ public class Combat : MonoBehaviour
     {
         activeCombatant = CombatTurnOrder.GetNextCombatant();
         canPlayerAct = activeCombatant.IsPlayerControlled;
+        OnTurnUpdated?.Invoke(activeCombatant);
 
+        Invoke(nameof(TryEnemyAct), 2f); // Not recommended to Invoke. This is only done so that we see the enemy "thinking".
+    }
+
+    private void FinishCurrentTurn()
+    {
+        CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
+        StartNextTurn();
+    }
+
+    private void TryEnemyAct()
+    {
         if (!activeCombatant.IsPlayerControlled)
         {
             TargetSelectionArgs targetSelectionArgs = new()
@@ -97,29 +113,44 @@ public class Combat : MonoBehaviour
                 Targets = new[] { playerCombatant }
             };
 
-            enemyCombatant.TryUseSkill(0, targetSelectionArgs);
-            CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
-            Invoke(nameof(StartNextTurn), 1f);
+            int index = -1;
+
+            if (index == -1)
+                enemyCombatant.DoBasicAttack(targetSelectionArgs);
+            else
+                enemyCombatant.TryUseSkill(0, targetSelectionArgs);
+            FinishCurrentTurn();
         }
     }
 
     // TEMPORARY
-    public void Attack()
+    public void TryPlayerSkill(int index)
     {
         if (canPlayerAct)
         {
             canPlayerAct = false;
 
-            TargetSelectionArgs targetSelectionArgsAttacker = new()
+            TargetSelectionArgs targetSelectionArgs = new()
             {
                 Combat = this,
                 Invoker = playerCombatant,
                 Targets = new[] { enemyCombatant }
             };
 
-            playerCombatant.TryUseSkill(0, targetSelectionArgsAttacker);
-            CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
-            Invoke(nameof(StartNextTurn), 1f);
+            if (index == -1)
+                playerCombatant.DoBasicAttack(targetSelectionArgs);
+            else
+                playerCombatant.TryUseSkill(index, targetSelectionArgs);
+            FinishCurrentTurn();
+        }
+    }
+
+    public void SkipTurn()
+    {
+        if (canPlayerAct)
+        {
+            canPlayerAct = false;
+            FinishCurrentTurn();
         }
     }
 }

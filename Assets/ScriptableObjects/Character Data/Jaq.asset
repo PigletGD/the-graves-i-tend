@@ -15,6 +15,8 @@ MonoBehaviour:
   characterName: Jaq
   characterTitle: 
   portrait: {fileID: 8664512373011244459, guid: 1f4199be133afec4cab2f52054c1d7c3, type: 3}
+  basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
+  skills: []
   maxHP: 100
   maxMP: 100
   speed: 80

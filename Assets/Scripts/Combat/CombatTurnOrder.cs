@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 
 // https://hsr.keqingmains.com/misc/speed-guide/#How_Does_Speed_Really_Work
+/// <summary>
+/// Manages combatant turn order using action values.
+/// </summary>
 public static class CombatTurnOrder
 {
-    public static Action OnTurnOrderUpdated;
-    
+    public static event Action OnTurnOrderUpdated;
+
     private static Dictionary<Combatant, float> actionValues = new();
 
     private static IOrderedEnumerable<KeyValuePair<Combatant, float>> OrderedActionValues
@@ -33,7 +36,7 @@ public static class CombatTurnOrder
         OnTurnOrderUpdated?.Invoke();
         return nextCombatantEntry.Key;
     }
-    
+
     /// <summary>
     /// Call after finishing a Combatant's turn to re-queue them back in actionValues.
     /// </summary>

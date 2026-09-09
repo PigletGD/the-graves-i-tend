@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7665273643220910364}
   - component: {fileID: 3969613050108931073}
   m_Layer: 5
-  m_Name: Action Turn Combatant HUD
+  m_Name: Turn Order Combatant Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
