@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+// TODO: This should be separated into two layers. Combat and Overworld where Combat should only store the Skill and reqs(?) while Overworld is if it's learned and locked.
 [Serializable]
 public class SkillSlot
 {

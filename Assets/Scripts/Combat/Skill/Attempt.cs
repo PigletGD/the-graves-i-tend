@@ -41,10 +41,11 @@ public class Attempt
         if (!accuracy.Check(0))
         {
             List<string> effectNames = new();
-            foreach (Effect effect in invokerEffects)
-                effectNames.Add(effect.GetType().Name);
 
             foreach (Effect effect in targetEffects)
+                effectNames.Add(effect.GetType().Name);
+
+            foreach (Effect effect in invokerEffects)
                 effectNames.Add(effect.GetType().Name);
 
             Debug.Log($"Attempt missed! Effects: {string.Join(", ", effectNames)}.");

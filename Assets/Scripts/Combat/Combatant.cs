@@ -6,6 +6,7 @@ public class Combatant : MonoBehaviour, ITarget
 {
     public static Action<Combatant, float> OnHPChanged;
     public static Action<Combatant, float> OnMPChanged;
+    public static Action<Combatant> OnSkillUsed;
 
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
@@ -34,24 +35,37 @@ public class Combatant : MonoBehaviour, ITarget
         Visualizer?.SetToUnselectedColor();
     }
 
+#region Stat Updates
     public void TakeDamage(float hp)
     {
         stats.UpdateHP(-hp);
-        OnHPChanged?.Invoke(this, hp);
+        OnHPChanged?.Invoke(this, -hp);
     }
 
     public void ConsumeMana(float mp)
     {
         stats.UpdateMP(-mp);
+        OnMPChanged?.Invoke(this, -mp);
+    }
+
+    public void RecoverMana(float mp)
+    {
+        stats.UpdateMP(mp);
         OnMPChanged?.Invoke(this, mp);
     }
+#endregion
 
     public bool TryUseSkill(int index, TargetSelectionArgs args)
     {
         if (index < 0 || index >= skills.Length)
             return false;
 
-        return skills[index].TryUse(args);
+        bool wasSkillUsed = skills[index].TryUse(args);
+
+        if (wasSkillUsed)
+            OnSkillUsed?.Invoke(this);
+
+        return wasSkillUsed;
     }
 
     // TODO: Refactor this so that we get targets from the selection.

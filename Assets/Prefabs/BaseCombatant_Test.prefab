@@ -120,6 +120,8 @@ GameObject:
   - component: {fileID: 3932645160479833842}
   - component: {fileID: 2732537615138397948}
   - component: {fileID: 2724737080336842819}
+  - component: {fileID: 1389614179967389535}
+  - component: {fileID: 4181370392454594277}
   m_Layer: 0
   m_Name: BaseCombatant_Test
   m_TagString: Untagged
@@ -155,13 +157,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858aa95e3afbacd4fbc07eb5534ef741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Combatant
-  stats:
-    maxHP: 100
-    maxMP: 100
+  isPlayerControlled: 0
+  characterData: {fileID: 0}
   skills: []
-  statusEffectController: {fileID: 0}
-  targets: []
   targetRelationship: 0
+  targets: []
   Visualizer: {fileID: 7868829996477448352}
 --- !u!61 &2724737080336842819
 BoxCollider2D:
@@ -209,3 +209,36 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.05, y: 3.8108184}
   m_EdgeRadius: 0
+--- !u!114 &1389614179967389535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153848428233125620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c12f67ec66b484fb245bb885e61823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatantShakeVFX
+  combatant: {fileID: 2732537615138397948}
+  duration: 0.15
+  strength: 0.2
+  shakeFrequency: 50
+  flickerFrequency: 75
+--- !u!114 &4181370392454594277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153848428233125620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9531a8fa3b10f2840b59b11fb90bb5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatantSkillVFXTemporary
+  combatant: {fileID: 2732537615138397948}
+  rotationAxis: {x: 0, y: 1, z: 0}
+  angle: 180
+  duration: 0.33
