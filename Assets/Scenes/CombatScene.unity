@@ -972,7 +972,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Battle
   playerCombatant: {fileID: 1276477491}
   enemyCombatant: {fileID: 322468230}
-  basicAttack: {fileID: 11400000, guid: 3437b848a1ad95f4492058e7e776d5c4, type: 2}
 --- !u!4 &1926496780
 Transform:
   m_ObjectHideFlags: 0

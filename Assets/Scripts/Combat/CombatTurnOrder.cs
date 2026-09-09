@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 // https://hsr.keqingmains.com/misc/speed-guide/#How_Does_Speed_Really_Work
-public static class CombatTurnManager
+public static class CombatTurnOrder
 {
     public static Action OnTurnOrderUpdated;
     

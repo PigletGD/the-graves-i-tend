@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatUIManager : MonoBehaviour
+public class CombatUI : MonoBehaviour
 {
-    public static CombatUIManager Instance { get; private set; }
+    public static CombatUI Instance { get; private set; }
 
     [SerializeField] private Combat combat; // Temporary. This should be passed in when creating the combat UI manager.
 

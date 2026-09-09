@@ -6,7 +6,6 @@ public class Combat : MonoBehaviour
 {
     [SerializeField] private Combatant playerCombatant;
     [SerializeField] private Combatant enemyCombatant;
-    [SerializeField] private Skill basicAttack;
 
     private bool canPlayerAct;
     private Combatant activeCombatant;
@@ -27,7 +26,7 @@ public class Combat : MonoBehaviour
             Targets.Add(enemyCombatant);
         }
 
-        CombatTurnManager.InitializeTurnOrder(new List<Combatant> { playerCombatant, enemyCombatant });
+        CombatTurnOrder.InitializeTurnOrder(new List<Combatant> { playerCombatant, enemyCombatant });
         StartNextTurn();
     }
 
@@ -86,7 +85,7 @@ public class Combat : MonoBehaviour
 
     private void StartNextTurn()
     {
-        activeCombatant = CombatTurnManager.GetNextCombatant();
+        activeCombatant = CombatTurnOrder.GetNextCombatant();
         canPlayerAct = activeCombatant.IsPlayerControlled;
 
         if (!activeCombatant.IsPlayerControlled)
@@ -99,7 +98,7 @@ public class Combat : MonoBehaviour
             };
 
             enemyCombatant.TryUseSkill(0, targetSelectionArgs);
-            CombatTurnManager.ResetCombatantActionValue(activeCombatant);
+            CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
             Invoke(nameof(StartNextTurn), 1f);
         }
     }
@@ -119,7 +118,7 @@ public class Combat : MonoBehaviour
             };
 
             playerCombatant.TryUseSkill(0, targetSelectionArgsAttacker);
-            CombatTurnManager.ResetCombatantActionValue(activeCombatant);
+            CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
             Invoke(nameof(StartNextTurn), 1f);
         }
     }

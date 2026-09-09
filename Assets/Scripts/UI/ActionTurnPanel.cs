@@ -7,17 +7,17 @@ public class ActionTurnPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        CombatTurnManager.OnTurnOrderUpdated += UpdateTurnOrder;
+        CombatTurnOrder.OnTurnOrderUpdated += UpdateTurnOrder;
     }
 
     private void OnDisable()
     {
-        CombatTurnManager.OnTurnOrderUpdated -= UpdateTurnOrder;
+        CombatTurnOrder.OnTurnOrderUpdated -= UpdateTurnOrder;
     }
 
     public void UpdateTurnOrder()
     {
-        List<(Combatant combatant, float actionValue)> combatantPredictions = CombatTurnManager.GetTurnOrderPrediction(actionTurnCombatantPanels.Count);
+        List<(Combatant combatant, float actionValue)> combatantPredictions = CombatTurnOrder.GetTurnOrderPrediction(actionTurnCombatantPanels.Count);
 
         for (int i = 0; i < actionTurnCombatantPanels.Count; i++)
         {

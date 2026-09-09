@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // TODO: Object Pooling
-public class EffectPopupManager : MonoBehaviour
+public class EffectPopupUISpawner : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
     [SerializeField] private EffectPopupUI effectPopupPrefab;
