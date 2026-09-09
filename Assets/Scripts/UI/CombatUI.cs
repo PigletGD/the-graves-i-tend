@@ -24,7 +24,8 @@ public class CombatUI : MonoBehaviour
     {
         Combatant.OnHPChanged += UpdateCharacterResourceBars;
         Combatant.OnMPChanged += UpdateCharacterResourceBars;
-        Combat.OnTurnUpdated += OnTurnUpdated;
+        Combat.OnTurnStarted += OnTurnStarted;
+        Combat.OnTurnEnded += OnTurnEnded;
 
         playerCombatantActionPanel.OnActionSelected += OnActionButton;
     }
@@ -33,7 +34,8 @@ public class CombatUI : MonoBehaviour
     {
         Combatant.OnHPChanged -= UpdateCharacterResourceBars;
         Combatant.OnMPChanged -= UpdateCharacterResourceBars;
-        Combat.OnTurnUpdated += OnTurnUpdated;
+        Combat.OnTurnStarted -= OnTurnStarted;
+        Combat.OnTurnEnded -= OnTurnEnded;
 
         playerCombatantActionPanel.OnActionSelected -= OnActionButton;
     }
@@ -56,12 +58,12 @@ public class CombatUI : MonoBehaviour
 
     public void OnAttackButton()
     {
-        combat.TryPlayerSkill(-1);
+        combat.TryPlayerAct(-1);
     }
 
     private void OnActionButton(int index)
     {
-        combat.TryPlayerSkill(index);
+        combat.TryPlayerAct(index);
     }
 
     public void OnSkillsButton()
@@ -78,7 +80,7 @@ public class CombatUI : MonoBehaviour
 
     public void OnSkipTurnButton()
     {
-        combat.SkipTurn();
+        combat.TryPlayerAct(-2);
     }
 
     public void OnActionListBackButton()
@@ -97,8 +99,16 @@ public class CombatUI : MonoBehaviour
         playerCombatantActionPanel.gameObject.SetActive(!value);
     }
 
-    public void OnTurnUpdated(Combatant combatant)
+    public void OnTurnStarted(Combatant combatant)
     {
         ShowPlayerActionsPanel(combatant.IsPlayerControlled);
+
+        if (combatant.IsPlayerControlled)
+            TogglePlayerBasicActionsPanel(true);
+    }
+
+    public void OnTurnEnded(Combatant _)
+    {
+        ShowPlayerActionsPanel(false);
     }
 }

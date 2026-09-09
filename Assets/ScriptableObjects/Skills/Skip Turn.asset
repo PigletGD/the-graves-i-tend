@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d2eef0811f1c44dac0c1d34b971e86, type: 3}
+  m_Name: Skip Turn
+  m_EditorClassIdentifier: Assembly-CSharp::Skill_SkipTurn
+  skipAttempt:
+    accuracy:
+      probability: 1
+    combatConditions: []
+    invokerConditions: []
+    targetConditions: []
+    invokerEffects:
+    - rid: 8116162942610964551
+    targetEffects: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8116162942610964551
+      type: {class: ManaRecoverEffect, ns: , asm: Assembly-CSharp}
+      data:
+        mana: 2

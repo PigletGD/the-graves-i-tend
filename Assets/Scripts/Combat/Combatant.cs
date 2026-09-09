@@ -54,7 +54,12 @@ public class Combatant : MonoBehaviour, ITarget
     }
     #endregion
 
-    public void DoBasicAttack(TargetSelectionArgs args)
+    private void SkipTurn(TargetSelectionArgs args)
+    {
+        characterData.SkipTurn.Execute(args);
+    }
+
+    private void BasicAttack(TargetSelectionArgs args)
     {
         characterData.BasicAttack.Execute(args);
         OnSkillUsed?.Invoke(this);
@@ -62,12 +67,23 @@ public class Combatant : MonoBehaviour, ITarget
 
     public bool TryUseSkill(int index, TargetSelectionArgs args)
     {
+        if (index == -2)
+        {
+            SkipTurn(args);
+            return true;
+        }
+
+        if (index == -1)
+        {
+            BasicAttack(args);
+            return true;
+        }
+
         if (index < 0 || index >= characterData.Skills.Length)
             return false;
 
         characterData.Skills[index].Execute(args);
         OnSkillUsed?.Invoke(this);
-
         return true;
     }
 

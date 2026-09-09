@@ -193,3 +193,5 @@ MonoBehaviour:
   canvas: {fileID: 8400037350213306208}
   effectPopupPrefab: {fileID: 504651527872036952, guid: de6b8c9607aca01418fdc8dbb5182fe2, type: 3}
   popupOffset: {x: 0, y: 380, z: 0}
+  popupStackSpacing: 30
+  popupDelay: 0.01

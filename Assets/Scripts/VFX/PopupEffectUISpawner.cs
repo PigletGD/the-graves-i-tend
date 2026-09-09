@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ public class PopupEffectUISpawner : MonoBehaviour
     [SerializeField] private PopupEffectUI effectPopupPrefab;
     [SerializeField] private Vector3 popupOffset = new(0, 380f, 0);
     [SerializeField] private float popupStackSpacing = 40f;
+    [SerializeField] private float popupDelay = 0.05f;
 
     private RectTransform parentRect;
     private Dictionary<PopupEffectUI, Combatant> activePopups = new();
@@ -46,10 +48,30 @@ public class PopupEffectUISpawner : MonoBehaviour
             localPosition += Vector2.up * (popupCount * popupStackSpacing);
 
             PopupEffectUI effectPopup = Instantiate(effectPopupPrefab, parentRect);
-            effectPopup.Initialize(localPosition, message);
             effectPopup.OnDestroyed += OnPopupDestroyed;
             activePopups[effectPopup] = combatant;
+
+            if (popupCount == 0)
+            {
+                effectPopup.Initialize(localPosition, message);
+            }
+            else
+            {
+                effectPopup.gameObject.SetActive(false);
+                StartCoroutine(ShowPopupAfterDelay(effectPopup, localPosition, message, popupCount * popupDelay));
+            }
         }
+    }
+
+    private IEnumerator ShowPopupAfterDelay(PopupEffectUI effectPopup, Vector3 position, string message, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (effectPopup == null)
+            yield break;
+
+        effectPopup.Initialize(position, message);
+        effectPopup.gameObject.SetActive(true);
     }
 
     private void OnPopupDestroyed(PopupEffectUI effectPopup)

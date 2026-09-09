@@ -16,7 +16,9 @@ MonoBehaviour:
   characterTitle: 
   portrait: {fileID: 7751706147673198722, guid: 0d82c10474e0515428b1fc138015d9c9, type: 3}
   basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
-  skills: []
+  skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
+  skills:
+  - {fileID: 11400000, guid: 17b1d27f44b990244aa44e5c9da71a65, type: 2}
   maxHP: 100
   maxMP: 100
   speed: 100
