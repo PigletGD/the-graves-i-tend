@@ -11,13 +11,15 @@ public class Combatant : MonoBehaviour, ITarget
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
-    [SerializeField] private TargetRelationshipType targetRelationship; // Temporary. This should be passed in when creating the combatant.
+    [SerializeField] private TargetRelationshipType allegiance; // Temporary. This should be passed in when creating the combatant.
 
     [SerializeField] private Combatant[] targets;
 
     private StatusEffectController statusEffectController;
 
     public bool IsPlayerControlled => isPlayerControlled;
+    public bool IsAlive => stats.CurrentHP > 0;
+
     public CharacterData CharacterData => characterData;
     public CombatantStats Stats => stats;
 
@@ -103,8 +105,18 @@ public class Combatant : MonoBehaviour, ITarget
         return gameObject;
     }
 
-    public TargetRelationshipType GetTargetRelationship()
+    public TargetRelationshipType GetAllegiance() => allegiance;
+
+    public TargetRelationshipType GetTargetRelationshipTo(ITarget other)
     {
-        return targetRelationship;
+        if (allegiance == TargetRelationshipType.None)
+            return TargetRelationshipType.None;
+
+        TargetRelationshipType otherRelationship = other.GetAllegiance();
+
+        if (otherRelationship == TargetRelationshipType.None)
+            return TargetRelationshipType.None;
+
+        return allegiance == otherRelationship ? TargetRelationshipType.Friendly : TargetRelationshipType.Hostile;
     }
 }

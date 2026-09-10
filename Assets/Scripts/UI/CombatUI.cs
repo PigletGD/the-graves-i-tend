@@ -11,6 +11,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private GameObject playerActionsPanel;
     [SerializeField] private GameObject playerBasicActionsPanel;
     [SerializeField] private PlayerCombatantActionPanel playerCombatantActionPanel;
+    [SerializeField] private CombatResultsPanel combatResultsPanel;
 
     private Dictionary<Combatant, ICombatantPanel> combatantPanels = new();
 
@@ -26,6 +27,7 @@ public class CombatUI : MonoBehaviour
         Combatant.OnMPChanged += UpdateCharacterResourceBars;
         Combat.OnTurnStarted += OnTurnStarted;
         Combat.OnTurnEnded += OnTurnEnded;
+        Combat.OnCombatEnded += OnCombatEnded;
 
         playerCombatantActionPanel.OnActionSelected += OnActionButton;
     }
@@ -36,6 +38,7 @@ public class CombatUI : MonoBehaviour
         Combatant.OnMPChanged -= UpdateCharacterResourceBars;
         Combat.OnTurnStarted -= OnTurnStarted;
         Combat.OnTurnEnded -= OnTurnEnded;
+        Combat.OnCombatEnded -= OnCombatEnded;
 
         playerCombatantActionPanel.OnActionSelected -= OnActionButton;
     }
@@ -110,5 +113,11 @@ public class CombatUI : MonoBehaviour
     public void OnTurnEnded(Combatant _)
     {
         ShowPlayerActionsPanel(false);
+    }
+
+    public void OnCombatEnded(bool isVictory)
+    {
+        combatResultsPanel.gameObject.SetActive(true);
+        combatResultsPanel.Initialize(isVictory);
     }
 }

@@ -27,7 +27,7 @@ public class Skill_Basic : Skill
         {
             foreach (ITarget target in value.Targets)
             {
-                if (target.GetTargetRelationship() != targetedAttempt.targetRelationship)
+                if (target.GetTargetRelationshipTo(value.Invoker) != targetedAttempt.targetRelationship)
                     continue;
 
                 foreach (Attempt attempt in targetedAttempt.attempts)

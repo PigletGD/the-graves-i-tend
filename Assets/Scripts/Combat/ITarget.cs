@@ -3,8 +3,10 @@ using UnityEngine;
 public interface ITarget
 {
     public ITarget[] GetTargets(Combat combat);
+
+    public TargetRelationshipType GetAllegiance();
     
-    public TargetRelationshipType GetTargetRelationship();
+    public TargetRelationshipType GetTargetRelationshipTo(ITarget other);
 
     public TargetSelectionVisualizer GetSelectionVisualizer();
 

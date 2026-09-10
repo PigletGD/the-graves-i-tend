@@ -231,6 +231,7 @@ MonoBehaviour:
   playerActionsPanel: {fileID: 7414439756824667577}
   playerBasicActionsPanel: {fileID: 7455393874823195840}
   playerCombatantActionPanel: {fileID: 7318740948755908463}
+  combatResultsPanel: {fileID: 8966939945243617064}
 --- !u!1001 &6483391526586630700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -971,6 +972,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4507895439173676780, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
   m_PrefabInstance: {fileID: 6483391526586630700}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8966939945243617064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2704792424935908612, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+  m_PrefabInstance: {fileID: 6483391526586630700}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd6599dda0421a4f86d9d305f07129e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatResultsPanel
 --- !u!1001 &7760230055614220525
 PrefabInstance:
   m_ObjectHideFlags: 0

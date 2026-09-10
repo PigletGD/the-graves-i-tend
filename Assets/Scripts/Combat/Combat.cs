@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Refer to this dood youtube video on how I'm basing the combat on: https://www.youtube.com/watch?v=CyRtTwKeulE.
-// TODO: TargetRelationshipType.cs
 // TODO: SkillSlot.cs
 public class Combat : MonoBehaviour
 {
     public static event Action<Combatant> OnTurnStarted;
     public static event Action<Combatant> OnTurnEnded;
+    public static event Action<bool> OnCombatEnded;
 
     [SerializeField] private Combatant playerCombatant;
     [SerializeField] private Combatant enemyCombatant;
 
     private bool canPlayerAct;
-    private bool canEnemyAct;
 
     private Combatant activeCombatant;
 
@@ -95,10 +94,18 @@ public class Combat : MonoBehaviour
     private void StartNextTurn()
     {
         activeCombatant = CombatTurnOrder.GetNextCombatant();
-        canPlayerAct = activeCombatant.IsPlayerControlled;
-        OnTurnStarted?.Invoke(activeCombatant);
 
-        Invoke(nameof(TryEnemyAct), 1f); // Not recommended to Invoke. This is only done so that we see the enemy "thinking".
+        if (!activeCombatant.IsAlive)
+        {
+            OnCombatEnded?.Invoke(!activeCombatant.IsPlayerControlled);
+        }
+        else
+        {
+            canPlayerAct = activeCombatant.IsPlayerControlled;
+            OnTurnStarted?.Invoke(activeCombatant);
+
+            Invoke(nameof(TryEnemyAct), 1f); // Not recommended to Invoke. This is only done so that we see the enemy "thinking".
+        }
     }
 
     private void FinishCurrentTurn()

@@ -501,6 +501,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 41382043734959144, guid: 18025e3415881cc4da9a621ed5ff50ed, type: 3}
+      propertyPath: allegiance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 41382043734959144, guid: 18025e3415881cc4da9a621ed5ff50ed, type: 3}
       propertyPath: skills.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -600,6 +604,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
+      propertyPath: allegiance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
       propertyPath: skills.Array.size
       value: 1
