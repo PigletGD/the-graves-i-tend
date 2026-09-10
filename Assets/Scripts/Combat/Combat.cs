@@ -122,8 +122,11 @@ public class Combat : MonoBehaviour
         if (!canPlayerAct)
             return;
 
-        canPlayerAct = false;
-        ExecuteAction(playerCombatant, index, enemyCombatant);
+
+        if (!TryExecuteAction(playerCombatant, index, index == Combatant.SkipTurnIndex ? playerCombatant : enemyCombatant))
+            canPlayerAct = true;
+        else
+            canPlayerAct = false;
     }
 
     private void TryEnemyAct()
@@ -131,10 +134,12 @@ public class Combat : MonoBehaviour
         if (activeCombatant.IsPlayerControlled)
             return;
 
-        ExecuteAction(enemyCombatant, -1, playerCombatant);
+        // If the enemy failed to attack then they'll simply skip for now.
+        if (!TryExecuteAction(enemyCombatant, Combatant.BasicAttackIndex, playerCombatant))
+            TryExecuteAction(enemyCombatant, Combatant.SkipTurnIndex, playerCombatant);
     }
 
-    private void ExecuteAction(Combatant combatant, int index, Combatant target)
+    private bool TryExecuteAction(Combatant combatant, int index, Combatant target)
     {
         TargetSelectionArgs targetSelectionArgs = new()
         {
@@ -143,7 +148,13 @@ public class Combat : MonoBehaviour
             Targets = new[] { target }
         };
 
-        combatant.TryUseSkill(index, targetSelectionArgs);
-        FinishCurrentTurn();
+        if (combatant.TryUseSkill(index, targetSelectionArgs))
+        {
+            FinishCurrentTurn();
+            return true;
+        }
+
+        Debug.Log($"Skill failed!");
+        return false;
     }
 }

@@ -34,7 +34,7 @@ public class CombatantStats
         maxSpeed = characterData.Speed;
 
         currentHP = maxHP;
-        currentMP = maxMP;
+        currentMP = 9; // Reminder to move this literal out.
         currentSpeed = maxSpeed;
 
         currentElation = 0;

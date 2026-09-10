@@ -19,5 +19,5 @@ MonoBehaviour:
   skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
   skills: []
   maxHP: 100
-  maxMP: 100
-  speed: 75
+  maxMP: 20
+  speed: 80

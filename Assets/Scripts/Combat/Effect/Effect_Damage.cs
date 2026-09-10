@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class DamageEffect : Effect
+public class Effect_Damage : Effect
 {
     [SerializeField] private float damage = 10f;
 
@@ -14,7 +14,6 @@ public class DamageEffect : Effect
             return;
         }
 
-        // Log($"dealt {damage} damage");
         combatant.TakeDamage(damage);
     }
 }

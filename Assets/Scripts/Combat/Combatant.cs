@@ -1,12 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
 public class Combatant : MonoBehaviour, ITarget
 {
+    public const int SkipTurnIndex = -2;
+    public const int BasicAttackIndex = -1;
+
     public static event Action<Combatant, float> OnHPChanged;
     public static event Action<Combatant, float> OnMPChanged;
-    public static event Action<Combatant> OnSkillUsed;
+    public static event Action<Combatant, Skill> OnSkillUsed;
 
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
@@ -15,7 +19,7 @@ public class Combatant : MonoBehaviour, ITarget
 
     [SerializeField] private Combatant[] targets;
 
-    private StatusEffectController statusEffectController;
+    private CombatantStatusEffects statusEffectsController;
 
     public bool IsPlayerControlled => isPlayerControlled;
     public bool IsAlive => stats.CurrentHP > 0;
@@ -26,12 +30,12 @@ public class Combatant : MonoBehaviour, ITarget
     // TODO: Temporary visualizer just to make selection more visible in terms of what is the attacker and what is the targets
     public TargetSelectionVisualizer Visualizer;
 
-    public StatusEffectController EffectController => statusEffectController;
+    public CombatantStatusEffects StatusEffects => statusEffectsController;
 
     private void Awake()
     {
         stats.Initialize(characterData);
-        statusEffectController = new();
+        statusEffectsController = new();
 
         Visualizer?.SetToUnselectedColor();
     }
@@ -59,23 +63,24 @@ public class Combatant : MonoBehaviour, ITarget
     private void SkipTurn(TargetSelectionArgs args)
     {
         characterData.SkipTurn.Execute(args);
+        OnSkillUsed?.Invoke(this, characterData.SkipTurn);
     }
 
     private void BasicAttack(TargetSelectionArgs args)
     {
         characterData.BasicAttack.Execute(args);
-        OnSkillUsed?.Invoke(this);
+        OnSkillUsed?.Invoke(this, characterData.BasicAttack);
     }
 
     public bool TryUseSkill(int index, TargetSelectionArgs args)
     {
-        if (index == -2)
+        if (index == SkipTurnIndex)
         {
             SkipTurn(args);
             return true;
         }
 
-        if (index == -1)
+        if (index == BasicAttackIndex)
         {
             BasicAttack(args);
             return true;
@@ -84,8 +89,12 @@ public class Combatant : MonoBehaviour, ITarget
         if (index < 0 || index >= characterData.Skills.Length)
             return false;
 
-        characterData.Skills[index].Execute(args);
-        OnSkillUsed?.Invoke(this);
+        if (!characterData.Skills[index].CanExecute(args))
+            return false;
+
+        Skill skill = characterData.Skills[index];
+        skill.Execute(args);
+        OnSkillUsed?.Invoke(this, skill);
         return true;
     }
 

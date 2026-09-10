@@ -34,9 +34,9 @@ public class CombatantSkillVFXTemporary : MonoBehaviour
         combatant.transform.localRotation = originalLocalRotation;
     }
 
-    private void RotateOnSkillUsed(Combatant skillUser)
+    private void RotateOnSkillUsed(Combatant invoker, Skill _)
     {
-        if (skillUser != combatant)
+        if (invoker != combatant)
             return;
 
         if (rotationCoroutine != null)

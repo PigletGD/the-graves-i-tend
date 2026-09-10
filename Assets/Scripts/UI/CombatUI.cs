@@ -61,7 +61,7 @@ public class CombatUI : MonoBehaviour
 
     public void OnAttackButton()
     {
-        combat.TryPlayerAct(-1);
+        combat.TryPlayerAct(Combatant.BasicAttackIndex);
     }
 
     private void OnActionButton(int index)
@@ -83,7 +83,7 @@ public class CombatUI : MonoBehaviour
 
     public void OnSkipTurnButton()
     {
-        combat.TryPlayerAct(-2);
+        combat.TryPlayerAct(Combatant.SkipTurnIndex);
     }
 
     public void OnActionListBackButton()

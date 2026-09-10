@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ManaRecoverEffect : Effect
+public class Effect_RemoveStatus : Effect
 {
-    [SerializeField] private float mana = 2f;
+    [SerializeField] private StatusEffectType statusEffectType;
 
     public override void Apply(ITarget target)
     {
@@ -14,7 +14,6 @@ public class ManaRecoverEffect : Effect
             return;
         }
 
-        // Log($"dealt {damage} damage");
-        combatant.RecoverMana(mana);
+        combatant.StatusEffects.RemoveEffect(statusEffectType);
     }
 }

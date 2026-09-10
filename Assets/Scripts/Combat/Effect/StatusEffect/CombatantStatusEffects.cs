@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Status Effect container for characters.
 /// </summary>
-public class StatusEffectController
+public class CombatantStatusEffects
 {
     private Combatant target; // Temporary
     private List<StatusEffect> statusEffects = new();
@@ -48,6 +48,12 @@ public class StatusEffectController
     {
         foreach(StatusEffect statusEffect in statusEffects)
             statusEffect.Apply(target);
+    }
+
+    public int GetStackCount(StatusEffectType effectType)
+    {
+        StatusEffect statusEffect = statusEffects.FirstOrDefault(x => x.StatusEffectType == effectType);
+        return statusEffect is StackableStatusEffect stackableEffect ? stackableEffect.StackCount : 0;
     }
 
     public bool HasStatusEffect(StatusEffectType effectType) => statusEffects.Any(x => x.StatusEffectType == effectType);

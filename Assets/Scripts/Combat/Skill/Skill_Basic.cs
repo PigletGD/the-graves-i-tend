@@ -9,29 +9,34 @@ public class Skill_Basic : Skill
     [SerializeField] private SkillCost[] skillCosts;
     [SerializeField] private TargetedAttempts[] targetedAttempts;
 
-    public override void Execute(TargetSelectionArgs value)
+    public override bool CanExecute(TargetSelectionArgs args)
     {
         foreach (SkillCost skillCost in skillCosts)
         {
-            if (!skillCost.Check(value.Invoker))
+            if (!skillCost.Check(args.Invoker))
             {
-                Debug.Log($"{GetType().Name} failed due to {skillCost.ResourceType}!");
-                return;
+                Debug.Log($"{GetType().Name} cannot be executed due to {skillCost.ResourceType}!");
+                return false;
             }
         }
 
+        return true;
+    }
+
+    public override void Execute(TargetSelectionArgs args)
+    {
         foreach (SkillCost skillCost in skillCosts)
-            skillCost.Apply(value.Invoker);
+            skillCost.Apply(args.Invoker);
 
         foreach (TargetedAttempts targetedAttempt in targetedAttempts)
         {
-            foreach (ITarget target in value.Targets)
+            foreach (ITarget target in args.Targets)
             {
-                if (target.GetTargetRelationshipTo(value.Invoker) != targetedAttempt.targetRelationship)
+                if (target.GetTargetRelationshipTo(args.Invoker) != targetedAttempt.targetRelationship)
                     continue;
 
                 foreach (Attempt attempt in targetedAttempt.attempts)
-                    attempt.Execute(value.Combat, value.Invoker, target);
+                    attempt.Execute(args.Combat, args.Invoker, target);
             }
         }
     }

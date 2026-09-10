@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ApplyStatusEffect : Effect
+public class Effect_ApplyStatus : Effect
 {
     [SerializeField] private StatusEffectSO statusEffectSO;
     [SerializeField] private ProbabilityCondition<float> applyChance = new(1);
@@ -31,6 +31,6 @@ public class ApplyStatusEffect : Effect
             }
         }
 
-        combatant.EffectController.AddEffect(statusEffectSO.CreateInstance());
+        combatant.StatusEffects.AddEffect(statusEffectSO.CreateInstance());
     }
 }

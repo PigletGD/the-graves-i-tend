@@ -19,83 +19,34 @@ MonoBehaviour:
   - targetRelationship: 1
     attempts:
     - accuracy:
-        probability: 0.85
+        probability: 0.9
       combatConditions: []
       invokerConditions: []
       targetConditions: []
       invokerEffects: []
       targetEffects:
-      - rid: 8116162915674095686
-      - rid: 8116162915674095687
+      - rid: 8116162959790833738
+      - rid: 8116162959790833739
     - accuracy:
-        probability: 0.85
+        probability: 0.9
       combatConditions: []
       invokerConditions: []
       targetConditions: []
       invokerEffects: []
       targetEffects:
-      - rid: 8116162942610964550
-      - rid: 8116162942610964549
-    - accuracy:
-        probability: 0.85
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects: []
-      targetEffects:
-      - rid: 8116162915674095686
-      - rid: 8116162915674095687
-    - accuracy:
-        probability: 0.85
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects: []
-      targetEffects:
-      - rid: 8116162915674095686
-      - rid: 8116162915674095687
-    - accuracy:
-        probability: 0.85
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects: []
-      targetEffects:
-      - rid: 8116162933808955462
-      - rid: 8116162933808955463
+      - rid: 8116162959790833738
+      - rid: 8116162959790833739
   references:
     version: 2
     RefIds:
-    - rid: 8116162915674095686
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
+    - rid: 8116162959790833738
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
         damage: 10
-    - rid: 8116162915674095687
-      type: {class: ApplyStatusEffect, ns: , asm: Assembly-CSharp}
+    - rid: 8116162959790833739
+      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
       data:
         statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
         applyChance:
           probability: 1
         statusEffectCondition: []
-    - rid: 8116162933808955462
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 10
-    - rid: 8116162933808955463
-      type: {class: ApplyStatusEffect, ns: , asm: Assembly-CSharp}
-      data:
-        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
-        applyChance:
-          probability: 1
-        statusEffectCondition: []
-    - rid: 8116162942610964549
-      type: {class: ApplyStatusEffect, ns: , asm: Assembly-CSharp}
-      data:
-        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
-        applyChance:
-          probability: 1
-        statusEffectCondition: []
-    - rid: 8116162942610964550
-      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 10

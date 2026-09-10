@@ -11,6 +11,6 @@ public class CombatantCondition_StatusEffect : CombatantCondition
 
     public override bool Check(Combatant combatant)
     {
-        return hasEffect ? combatant.EffectController.HasStatusEffect(effectType) : !combatant.EffectController.HasStatusEffect(effectType);
+        return hasEffect ? combatant.StatusEffects.HasStatusEffect(effectType) : !combatant.StatusEffects.HasStatusEffect(effectType);
     }
 }

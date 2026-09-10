@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
-  m_Name: Basic Attack
-  m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
+  m_Name: Threaded Recall
+  m_EditorClassIdentifier: Assembly-CSharp::Skill
   skillCosts: []
   targetedAttempts:
   - targetRelationship: 1
@@ -23,11 +23,22 @@ MonoBehaviour:
       targetConditions: []
       invokerEffects: []
       targetEffects:
-      - rid: 8116162959790833737
+      - rid: 8116162959790833747
+      - rid: 8116162959790833745
+      - rid: 8116162959790833746
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833737
+    - rid: 8116162959790833745
+      type: {class: Effect_DamagePerStatusEffectStack, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectType: 9
+        damagePerStack: 1.2
+    - rid: 8116162959790833746
+      type: {class: Effect_RemoveStatus, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectType: 9
+    - rid: 8116162959790833747
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
-        damage: 10
+        damage: 4

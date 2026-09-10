@@ -2,5 +2,6 @@ using UnityEngine;
 
 public abstract class Skill : ScriptableObject
 {
-    public abstract void Execute(TargetSelectionArgs value);
+    public abstract bool CanExecute(TargetSelectionArgs args);
+    public abstract void Execute(TargetSelectionArgs args);
 }

@@ -21,17 +21,19 @@ public class PopupEffectUISpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        Combatant.OnHPChanged += ShowDamagePopup;
-        Attempt.OnAttemptMissed += ShowDamagePopup;
+        Combatant.OnHPChanged += OnHPChanged;
+        Combatant.OnSkillUsed += OnSkillUsed;
+        Attempt.OnAttemptMissed += OnAttemptMissed;
     }
     
     private void OnDisable()
     {
-        Combatant.OnHPChanged -= ShowDamagePopup;
-        Attempt.OnAttemptMissed -= ShowDamagePopup;
+        Combatant.OnHPChanged -= OnHPChanged;
+        Combatant.OnSkillUsed -= OnSkillUsed;
+        Attempt.OnAttemptMissed -= OnAttemptMissed;
     }
 
-    private void ShowDamagePopup(ITarget target, string message)
+    private void ShowPopup(ITarget target, string message)
     {
         if (target is Combatant combatant)
         {
@@ -80,14 +82,20 @@ public class PopupEffectUISpawner : MonoBehaviour
         activePopups.Remove(effectPopup);
     }
 
-    private void ShowDamagePopup(Combatant combatant, float damageAmount)
+    private void OnHPChanged(Combatant combatant, float damageAmount)
     {
-        ShowDamagePopup(combatant, damageAmount.ToString());
+        ShowPopup(combatant, damageAmount.ToString());
     }
 
-    private void ShowDamagePopup(ITarget invoker, ITarget target)
+    private void OnAttemptMissed(ITarget _, ITarget target)
     {
         if (target is Combatant combatant)
-            ShowDamagePopup(combatant, "Missed!");
+            ShowPopup(combatant, "Missed!");
+    }
+    
+    private void OnSkillUsed(Combatant combatant, Skill skill)
+    {
+        if (skill.name == "Skip Turn")
+            ShowPopup(combatant, "Skip Turn");
     }
 }
