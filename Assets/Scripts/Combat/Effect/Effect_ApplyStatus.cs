@@ -5,6 +5,7 @@ using UnityEngine;
 public class Effect_ApplyStatus : Effect
 {
     [SerializeField] private StatusEffectSO statusEffectSO;
+    [SerializeField] private int stacksOnApply = 1; // Only relevant to stacking status effects. Placed here because having a separate class is redundant.
     [SerializeField] private ProbabilityCondition<float> applyChance = new(1);
     [SerializeField] private CombatantCondition_StatusEffect[] statusEffectCondition;
 
@@ -31,6 +32,6 @@ public class Effect_ApplyStatus : Effect
             }
         }
 
-        combatant.StatusEffects.AddEffect(statusEffectSO.CreateInstance());
+        combatant.StatusEffects.AddEffect(statusEffectSO.CreateInstance(), stacksOnApply);
     }
 }

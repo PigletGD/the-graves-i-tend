@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 1596793292}
   - component: {fileID: 1596793291}
   m_Layer: 0
-  m_Name: Copyright Music (Remove Later)
+  m_Name: Combat Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -944,7 +944,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: d3582eb9b98c1ea4fa8e40a4f1b7205a, type: 3}
+  m_Resource: {fileID: 8300000, guid: de4efc0e1ab58ee4286e737423125a02, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.25
   m_Pitch: 1

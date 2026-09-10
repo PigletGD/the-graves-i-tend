@@ -10,35 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
-  m_Name: Threaded Recall
+  m_Name: Cirrus Bolt
   m_EditorClassIdentifier: Assembly-CSharp::Skill
-  skillCosts: []
+  skillCosts:
+  - resourceType: 1
+    value: 1
   targetedAttempts:
   - targetRelationship: 1
     attempts:
     - accuracy:
-        probability: 1
+        probability: 0.8
       combatConditions: []
       invokerConditions: []
       targetConditions: []
       invokerEffects: []
       targetEffects:
-      - rid: 8116162959790833747
-      - rid: 8116162959790833745
-      - rid: 8116162959790833746
+      - rid: 8116162959790833751
+    - accuracy:
+        probability: 0.8
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833751
+    - accuracy:
+        probability: 0.8
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833751
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833745
-      type: {class: Effect_DamagePerStatusEffectStack, ns: , asm: Assembly-CSharp}
-      data:
-        statusEffectType: 6
-        damagePerStack: 2
-    - rid: 8116162959790833746
-      type: {class: Effect_RemoveStatus, ns: , asm: Assembly-CSharp}
-      data:
-        statusEffectType: 6
-    - rid: 8116162959790833747
+    - rid: 8116162959790833751
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
-        damage: 4
+        damage: 3

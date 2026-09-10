@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
+  m_Name: Starshower
+  m_EditorClassIdentifier: Assembly-CSharp::Skill
+  skillCosts:
+  - resourceType: 1
+    value: 1
+  targetedAttempts:
+  - targetRelationship: 1
+    attempts:
+    - accuracy:
+        probability: 0.75
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833754
+      - rid: 8116162959790833755
+    - accuracy:
+        probability: 0.75
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833754
+      - rid: 8116162959790833755
+    - accuracy:
+        probability: 0.75
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833754
+      - rid: 8116162959790833755
+    - accuracy:
+        probability: 0.75
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833754
+      - rid: 8116162959790833755
+    - accuracy:
+        probability: 0.75
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833754
+      - rid: 8116162959790833755
+    - accuracy:
+        probability: 0.75
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833754
+      - rid: 8116162959790833755
+  references:
+    version: 2
+    RefIds:
+    - rid: 8116162959790833754
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 3
+    - rid: 8116162959790833755
+      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
+        stacksOnApply: 1
+        applyChance:
+          probability: 1
+        statusEffectCondition: []

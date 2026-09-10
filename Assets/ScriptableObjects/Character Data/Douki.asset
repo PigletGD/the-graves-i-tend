@@ -20,6 +20,7 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: 17b1d27f44b990244aa44e5c9da71a65, type: 2}
   - {fileID: 11400000, guid: bb99c881ab4c5d042b70ab2caecef035, type: 2}
+  - {fileID: 11400000, guid: a0485c55c21e3514e9a6ecf213de0fee, type: 2}
   maxHP: 100
   maxMP: 20
   speed: 100

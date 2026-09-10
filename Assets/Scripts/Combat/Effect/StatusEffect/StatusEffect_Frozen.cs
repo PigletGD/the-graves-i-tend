@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class SunderStatusEffect : StackableStatusEffect
+public class StatusEffect_Frozen : StackableStatusEffect
 {
     public override StatusEffectType StatusEffectType => statusEffectType;
 
-    public SunderStatusEffect(SunderStatusEffectSO source)
+    public StatusEffect_Frozen(StatusEffectSO_Frozen source)
     {
         currentStacks = 1;
         statusEffectType = source.StatusEffectType;
         maxStacks = source.MaxStacks;
-        stacksOnAdd = source.StacksPerApplication;
     }
 
     public override void Apply(ITarget target)

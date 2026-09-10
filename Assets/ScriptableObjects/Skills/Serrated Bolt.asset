@@ -10,52 +10,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
-  m_Name: Fingerprick
+  m_Name: Serrated Bolt
   m_EditorClassIdentifier: Assembly-CSharp::Skill
   skillCosts:
   - resourceType: 1
-    value: 2
+    value: 3
   targetedAttempts:
   - targetRelationship: 1
     attempts:
     - accuracy:
-        probability: 0.9
+        probability: 0.8
       combatConditions: []
       invokerConditions: []
       targetConditions: []
       invokerEffects: []
       targetEffects:
-      - rid: 8116162959790833749
-      - rid: 8116162959790833750
+      - rid: 8116162959790833747
+      - rid: 8116162959790833748
     - accuracy:
-        probability: 0.9
+        probability: 0.8
       combatConditions: []
       invokerConditions: []
       targetConditions: []
       invokerEffects: []
       targetEffects:
-      - rid: 8116162959790833738
-      - rid: 8116162959790833739
+      - rid: 8116162959790833747
+      - rid: 8116162959790833748
+    - accuracy:
+        probability: 0.8
+      combatConditions: []
+      invokerConditions: []
+      targetConditions: []
+      invokerEffects: []
+      targetEffects:
+      - rid: 8116162959790833747
+      - rid: 8116162959790833748
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833738
+    - rid: 8116162959790833747
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
-        damage: 4
-    - rid: 8116162959790833739
-      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
-      data:
-        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
-        stacksOnApply: 1
-        applyChance:
-          probability: 1
-        statusEffectCondition: []
-    - rid: 8116162959790833749
-      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 4
-    - rid: 8116162959790833750
+        damage: 3
+    - rid: 8116162959790833748
       type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
       data:
         statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}

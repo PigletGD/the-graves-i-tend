@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 // Refer to this dood youtube video on how I'm basing the combat on: https://www.youtube.com/watch?v=CyRtTwKeulE.
@@ -123,7 +124,7 @@ public class Combat : MonoBehaviour
             return;
 
 
-        if (!TryExecuteAction(playerCombatant, index, index == Combatant.SkipTurnIndex ? playerCombatant : enemyCombatant))
+        if (!TryExecuteAction(playerCombatant, index == Combatant.SkipTurnIndex ? playerCombatant : enemyCombatant, index))
             canPlayerAct = true;
         else
             canPlayerAct = false;
@@ -134,21 +135,27 @@ public class Combat : MonoBehaviour
         if (activeCombatant.IsPlayerControlled)
             return;
 
-        // If the enemy failed to attack then they'll simply skip for now.
-        if (!TryExecuteAction(enemyCombatant, Combatant.BasicAttackIndex, playerCombatant))
-            TryExecuteAction(enemyCombatant, Combatant.SkipTurnIndex, playerCombatant);
+        int randomSkillIndex = UnityEngine.Random.Range(0, enemyCombatant.CharacterData.Skills.Count());
+        if (!TryExecuteAction(enemyCombatant, playerCombatant, randomSkillIndex))
+        {
+            // Coinflip between skipping or attacking if we fail executing a random skill.
+            if (UnityEngine.Random.Range(0, 2) == 0)
+                TryExecuteAction(enemyCombatant, enemyCombatant, Combatant.SkipTurnIndex);
+            else
+                TryExecuteAction(enemyCombatant, playerCombatant, Combatant.BasicAttackIndex);
+        }
     }
 
-    private bool TryExecuteAction(Combatant combatant, int index, Combatant target)
+    private bool TryExecuteAction(Combatant invoker, Combatant target, int index)
     {
         TargetSelectionArgs targetSelectionArgs = new()
         {
             Combat = this,
-            Invoker = combatant,
+            Invoker = invoker,
             Targets = new[] { target }
         };
 
-        if (combatant.TryUseSkill(index, targetSelectionArgs))
+        if (invoker.TryUseSkill(index, targetSelectionArgs))
         {
             FinishCurrentTurn();
             return true;

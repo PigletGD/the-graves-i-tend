@@ -6,13 +6,9 @@ public abstract class StackableStatusEffect : StatusEffect, IStackable
     protected StatusEffectType statusEffectType;
     protected int currentStacks;
     protected int maxStacks;
-    protected int stacksOnAdd; 
 
     public int StackCount => currentStacks;
-
     public int MaxStacks => maxStacks;
-
-    public int StacksOnAdd => stacksOnAdd;
 
     public void AddStacks(int amount)
     {

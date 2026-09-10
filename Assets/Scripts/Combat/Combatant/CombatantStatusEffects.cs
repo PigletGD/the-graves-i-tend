@@ -7,29 +7,28 @@ using UnityEngine;
 /// </summary>
 public class CombatantStatusEffects
 {
-    private Combatant target; // Temporary
     private List<StatusEffect> statusEffects = new();
 
-    public void AddEffect(StatusEffect statusEffect)
+    public void AddEffect(StatusEffect statusEffect, int stacks)
     {
         StatusEffect existingEffect = statusEffects.FirstOrDefault(x => x.StatusEffectType == statusEffect.StatusEffectType);
 
         if (existingEffect == null)
         {
             statusEffects.Add(statusEffect);
+            if (statusEffect is StackableStatusEffect stackableEffect)
+                stackableEffect.AddStacks(stacks - 1);
+
             Debug.Log($"{statusEffect.StatusEffectType} was added.");
+        }
+        else if (existingEffect is StackableStatusEffect stackableEffect)
+        {
+            stackableEffect.AddStacks(stacks);
+            Debug.Log($"{statusEffect.StatusEffectType} stacks updated to {stackableEffect.StackCount}/{stackableEffect.MaxStacks}.");
         }
         else
         {
-            if (existingEffect is StackableStatusEffect stackableEffect)
-            {
-                stackableEffect.AddStacks(stackableEffect.StacksOnAdd);
-                Debug.Log($"{statusEffect.StatusEffectType} stacks updated to {stackableEffect.StackCount}/{stackableEffect.MaxStacks}.");
-            }
-            else
-            {
-                Debug.Log($"{statusEffect.StatusEffectType} already exists and cannot stack.");
-            }
+            Debug.Log($"{statusEffect.StatusEffectType} already exists.");
         }
     }
 
@@ -42,12 +41,6 @@ public class CombatantStatusEffects
             statusEffects.Remove(statusEffect);
             Debug.Log($"{statusEffectType} was removed.");
         }
-    }
-
-    public void ApplyAllStatusEffects()
-    {
-        foreach(StatusEffect statusEffect in statusEffects)
-            statusEffect.Apply(target);
     }
 
     public int GetStackCount(StatusEffectType effectType)

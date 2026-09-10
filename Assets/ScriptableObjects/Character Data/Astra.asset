@@ -17,7 +17,10 @@ MonoBehaviour:
   portrait: {fileID: -6485744407679699490, guid: ef4253ea9391e274188888d72c1718cc, type: 3}
   basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
   skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: dadbecdd4388c57469ac8d66befdf818, type: 2}
+  - {fileID: 11400000, guid: 801b9b01c3667094fa2c34f152f722f3, type: 2}
+  - {fileID: 11400000, guid: e6d387c2f18f40b4aa80ae454f0de278, type: 2}
   maxHP: 100
   maxMP: 20
   speed: 80
