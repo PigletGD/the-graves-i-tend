@@ -8,15 +8,15 @@ public class Attempt
     public static event Action<ITarget, ITarget> OnAttemptMissed;
 
     [SerializeField] private ProbabilityCondition<float> accuracy = new(1);
-    [SerializeReference, SerializeReferenceDropdown] private CombatCondition[] combatConditions;
-    [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] invokerConditions;
-    [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] targetConditions;
+    [SerializeReference, SerializeReferenceDropdown] private Condition_Combat[] combatConditions;
+    [SerializeReference, SerializeReferenceDropdown] private Condition_Combatant[] invokerConditions;
+    [SerializeReference, SerializeReferenceDropdown] private Condition_Combatant[] targetConditions;
     [SerializeReference, SerializeReferenceDropdown] public List<Effect> invokerEffects;
     [SerializeReference, SerializeReferenceDropdown] public List<Effect> targetEffects;
 
     public void Execute(Combat combat, ITarget invoker, ITarget target)
     {
-        foreach (CombatCondition combatCondition in combatConditions)
+        foreach (Condition_Combat combatCondition in combatConditions)
         {
             if (!combatCondition.Check(combat))
             {
@@ -27,7 +27,7 @@ public class Attempt
 
         if (invoker is Combatant invokerCombatant)
         {
-            foreach (CombatantCondition invokerCondition in invokerConditions)
+            foreach (Condition_Combatant invokerCondition in invokerConditions)
             {
                 if (!invokerCondition.Check(invokerCombatant))
                 {
@@ -55,7 +55,7 @@ public class Attempt
 
         if (target is Combatant targetCombatant)
         {
-            foreach (CombatantCondition targetCondition in targetConditions)
+            foreach (Condition_Combatant targetCondition in targetConditions)
             {
                 if (!targetCondition.Check(targetCombatant))
                 {

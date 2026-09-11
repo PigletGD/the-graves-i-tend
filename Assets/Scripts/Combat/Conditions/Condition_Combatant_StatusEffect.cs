@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class CombatantCondition_StatusEffect : CombatantCondition
+public class Condition_Combatant_StatusEffect : Condition_Combatant
 {
     [SerializeField] private bool hasEffect = true;
     [SerializeField] private StatusEffectType effectType;
