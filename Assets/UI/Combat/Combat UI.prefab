@@ -636,6 +636,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4433403218466453401, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433403218466453401, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4459218464672941924, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -679,6 +687,14 @@ PrefabInstance:
     - target: {fileID: 4632238966909835135, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211186122835031500, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211186122835031500, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5229730003301583695, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -810,6 +826,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973819772006436016, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119486339424099151, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119486339424099151, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8151477135233394392, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}

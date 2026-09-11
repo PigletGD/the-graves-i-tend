@@ -21,7 +21,8 @@ MonoBehaviour:
       combatConditions: []
       invokerConditions: []
       targetConditions: []
-      invokerEffects: []
+      invokerEffects:
+      - rid: 8116162981214814277
       targetEffects:
       - rid: 8116162959790833737
   references:
@@ -31,3 +32,7 @@ MonoBehaviour:
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
         damage: 10
+    - rid: 8116162981214814277
+      type: {class: Effect_ManaRecover, ns: , asm: Assembly-CSharp}
+      data:
+        mana: 1
