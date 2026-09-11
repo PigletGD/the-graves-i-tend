@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatUI : MonoBehaviour
@@ -8,98 +7,33 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private PlayerCombatantPanel playerCombatantPanel;
     [SerializeField] private EnemyCombatantPanel enemyCombatantPanel;
     [SerializeField] private TurnOrderPanel turnOrderPanel;
-    [SerializeField] private GameObject playerActionsPanel;
-    [SerializeField] private GameObject playerBasicActionsPanel;
-    [SerializeField] private PlayerCombatantActionPanel playerCombatantActionPanel;
+    [SerializeField] private GameObject playerActionsParentPanel;
+    [SerializeField] private GameObject playerBasicActionSelectionPanel; // Attack/Skills/Items/Skip Turn
+    [SerializeField] private PlayerCombatantActionsPanel playerCombatantActionsPanel; // All Skills/All Items
     [SerializeField] private CombatResultsPanel combatResultsPanel;
-
-    private Dictionary<Combatant, ICombatantPanel> combatantPanels = new();
 
     private void Start()
     {
-        Register(combat.PlayerCombatant, playerCombatantPanel);
-        Register(combat.EnemyCombatant, enemyCombatantPanel);
+        playerCombatantPanel.Initialize(combat.PlayerCombatant);
+        enemyCombatantPanel.Initialize(combat.EnemyCombatant);
     }
 
     private void OnEnable()
     {
-        Combatant.OnHPChanged += UpdateCharacterResourceBars;
-        Combatant.OnMPChanged += UpdateCharacterResourceBars;
         Combat.OnTurnStarted += OnTurnStarted;
         Combat.OnTurnEnded += OnTurnEnded;
         Combat.OnCombatEnded += OnCombatEnded;
 
-        playerCombatantActionPanel.OnActionSelected += OnActionButton;
+        playerCombatantActionsPanel.OnActionSelected += OnActionButton;
     }
 
     private void OnDisable()
     {
-        Combatant.OnHPChanged -= UpdateCharacterResourceBars;
-        Combatant.OnMPChanged -= UpdateCharacterResourceBars;
         Combat.OnTurnStarted -= OnTurnStarted;
         Combat.OnTurnEnded -= OnTurnEnded;
         Combat.OnCombatEnded -= OnCombatEnded;
 
-        playerCombatantActionPanel.OnActionSelected -= OnActionButton;
-    }
-
-    public void Register(Combatant combatant, ICombatantPanel characterResourceBars)
-    {
-        combatantPanels[combatant] = characterResourceBars;
-
-        characterResourceBars.Initialize(combatant);
-    }
-
-    // Maybe move this into the class EnemyCombatantPanel and PlayerCombatantPanel
-    public void UpdateCharacterResourceBars(Combatant combatant, float _)
-    {
-        if (!combatantPanels.TryGetValue(combatant, out ICombatantPanel combatantPanel))
-            return;
-
-        combatantPanel.UpdateResourceBars(combatant);
-    }
-
-    public void OnAttackButton()
-    {
-        combat.TryPlayerAct(Combatant.BasicAttackIndex);
-    }
-
-    private void OnActionButton(int index)
-    {
-        combat.TryPlayerAct(index);
-    }
-
-    public void OnSkillsButton()
-    {
-        playerCombatantActionPanel.UpdateActionsPanel(true, combat.ActiveCombatant);
-        TogglePlayerBasicActionsPanel(false);
-    }
-
-    public void OnItemsButton()
-    {
-        playerCombatantActionPanel.UpdateActionsPanel(false, combat.ActiveCombatant);
-        TogglePlayerBasicActionsPanel(false);
-    }
-
-    public void OnSkipTurnButton()
-    {
-        combat.TryPlayerAct(Combatant.SkipTurnIndex);
-    }
-
-    public void OnActionListBackButton()
-    {
-        TogglePlayerBasicActionsPanel(true);
-    }
-
-    public void ShowPlayerActionsPanel(bool value)
-    {
-        playerActionsPanel.SetActive(value);
-    }
-
-    public void TogglePlayerBasicActionsPanel(bool value)
-    {
-        playerBasicActionsPanel.SetActive(value);
-        playerCombatantActionPanel.gameObject.SetActive(!value);
+        playerCombatantActionsPanel.OnActionSelected -= OnActionButton;
     }
 
     public void OnTurnStarted(Combatant combatant)
@@ -119,5 +53,56 @@ public class CombatUI : MonoBehaviour
     {
         combatResultsPanel.gameObject.SetActive(true);
         combatResultsPanel.Initialize(isVictory);
+    }
+
+
+#region Button Events
+    public void OnAttackButton()
+    {
+        combat.TryPlayerAct(Combatant.BasicAttackIndex);
+    }
+
+    private void OnActionButton(int index)
+    {
+        combat.TryPlayerAct(index);
+    }
+
+    public void OnSkillsButton()
+    {
+        playerCombatantActionsPanel.UpdateActionsPanel(true, combat.ActiveCombatant);
+        TogglePlayerBasicActionsPanel(false);
+    }
+
+    public void OnItemsButton()
+    {
+        playerCombatantActionsPanel.UpdateActionsPanel(false, combat.ActiveCombatant);
+        TogglePlayerBasicActionsPanel(false);
+    }
+
+    public void OnSkipTurnButton()
+    {
+        combat.TryPlayerAct(Combatant.SkipTurnIndex);
+    }
+
+    public void OnActionListBackButton()
+    {
+        TogglePlayerBasicActionsPanel(true);
+    }
+
+    public void OnQuitButton()
+    {
+        Application.Quit();
+    }
+#endregion
+
+    public void ShowPlayerActionsPanel(bool value)
+    {
+        playerActionsParentPanel.SetActive(value);
+    }
+
+    public void TogglePlayerBasicActionsPanel(bool value)
+    {
+        playerBasicActionSelectionPanel.SetActive(value);
+        playerCombatantActionsPanel.gameObject.SetActive(!value);
     }
 }

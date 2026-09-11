@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombatantActionPanel : MonoBehaviour
+public class PlayerCombatantActionsPanel : MonoBehaviour
 {
     public event Action<int> OnActionSelected;
 

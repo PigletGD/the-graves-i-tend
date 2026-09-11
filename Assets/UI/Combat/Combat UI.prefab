@@ -228,9 +228,9 @@ MonoBehaviour:
   playerCombatantPanel: {fileID: 1775367470177173885}
   enemyCombatantPanel: {fileID: 4113859750343012314}
   turnOrderPanel: {fileID: 7350890874625575095}
-  playerActionsPanel: {fileID: 7414439756824667577}
-  playerBasicActionsPanel: {fileID: 7455393874823195840}
-  playerCombatantActionPanel: {fileID: 7318740948755908463}
+  playerActionsParentPanel: {fileID: 7414439756824667577}
+  playerBasicActionSelectionPanel: {fileID: 7455393874823195840}
+  playerCombatantActionsPanel: {fileID: 7318740948755908463}
   combatResultsPanel: {fileID: 8966939945243617064}
 --- !u!1001 &6483391526586630700
 PrefabInstance:
@@ -331,6 +331,34 @@ PrefabInstance:
     - target: {fileID: 313333182904245109, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 536385599669550794, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 536385599669550794, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 536385599669550794, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4851636301793351146}
+    - target: {fileID: 536385599669550794, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 536385599669550794, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnQuitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 536385599669550794, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombatUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 536385599669550794, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 635345621102286213, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_Pivot.x
