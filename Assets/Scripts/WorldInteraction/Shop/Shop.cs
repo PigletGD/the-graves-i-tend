@@ -9,7 +9,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject shopContent;
 
     [SerializeField] private TextMeshProUGUI quantityText;
-    private Item selectedItem;
+    public ItemEntry selectedItemEntry { get; private set; }
 
     private int purchaseQuantity = 1;
 
@@ -22,6 +22,7 @@ public class Shop : MonoBehaviour
         }
         
     }
+
 
     public void IncreasePurchaseQuantity()
     {
@@ -40,10 +41,26 @@ public class Shop : MonoBehaviour
         quantityText.text = purchaseQuantity.ToString();
     }
 
+    public void SetSelectedItem(ItemEntry itemEntry)
+    {
+        if (selectedItemEntry != null)
+            selectedItemEntry.ItemEntrySelection(false);    // clear the previous selection
+
+
+        selectedItemEntry = itemEntry;
+        if (selectedItemEntry != null)
+            selectedItemEntry.ItemEntrySelection(true);
+        
+    }
+
     public void BuyItem()
     {
-        Debug.Log(purchaseQuantity.ToString() + " units of " + /*item name + */ " has been purchased");
-        purchaseQuantity = 1;
-        UpdatePurchaseQuantityText();
+        if (selectedItemEntry != null)
+        {
+            Debug.Log(purchaseQuantity.ToString() + " units of " + selectedItemEntry.item.itemName + " has been purchased");
+            purchaseQuantity = 1;
+            UpdatePurchaseQuantityText();
+            SetSelectedItem(null);
+        }
     }
 }

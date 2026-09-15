@@ -471,16 +471,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shop
   shopItems:
-  - <name>k__BackingField: Item 1A
-    <description>k__BackingField: item 1
-    <icon>k__BackingField: {fileID: -3243233969951032530, guid: a3c8d3767340ac247b2436e39d734861, type: 3}
-    <value>k__BackingField: 15
-  - <name>k__BackingField: Item 13B
-    <description>k__BackingField: yuckky
-    <icon>k__BackingField: {fileID: -7630994892667106768, guid: b1eb261b3bb4a0443925368efdb752f1, type: 3}
-    <value>k__BackingField: 25
+  - {fileID: 0}
+  - {fileID: 0}
   itemEntryPrefab: {fileID: 6214547566760572024, guid: bafc264913c71e0469a1a5f96717e382, type: 3}
   shopContent: {fileID: 2073971498}
+  quantityText: {fileID: 718773358}
 --- !u!1 &373415580
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +796,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1265,6 +1260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   spriteRenderer: {fileID: 1398535648}
+  image: {fileID: 0}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoveredColor: {r: 0.21987364, g: 0.27536157, b: 0.5754717, a: 1}
   pressEvents:
@@ -1283,6 +1279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimatedButton
   spriteRenderer: {fileID: 1398535648}
+  image: {fileID: 0}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoveredColor: {r: 0.7372549, g: 0, b: 0, a: 1}
   pressEvents:
@@ -1526,7 +1523,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
