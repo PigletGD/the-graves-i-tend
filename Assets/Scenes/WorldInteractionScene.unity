@@ -510,6 +510,10 @@ MonoBehaviour:
   shopItems:
   - {fileID: 11400000, guid: e8ed55c4cfd21a844a4f6c892b275cdd, type: 2}
   - {fileID: 11400000, guid: 593ee953cda1cc241ab93992fef6de95, type: 2}
+  - {fileID: 11400000, guid: 5eae545018e70bc41bcf246584f07e3f, type: 2}
+  - {fileID: 11400000, guid: 2e3652e642b81b24da6be091899c32e0, type: 2}
+  - {fileID: 11400000, guid: 362b5e6f13f838147ba3d2eaa4d75afc, type: 2}
+  - {fileID: 11400000, guid: bff065d142f0bf74dab0fa5890bc930d, type: 2}
   itemEntryPrefab: {fileID: 6214547566760572024, guid: bafc264913c71e0469a1a5f96717e382, type: 3}
   shopContent: {fileID: 2073971498}
   quantityText: {fileID: 718773358}

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94b9898bc458b8946a73403e16829b99, type: 3}
-  m_Name: Test Item 2
+  m_Name: Overwriting Quill
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  <itemName>k__BackingField: Test Item 2
-  <description>k__BackingField: bla bla?
-  <icon>k__BackingField: {fileID: -3243233969951032530, guid: a3c8d3767340ac247b2436e39d734861, type: 3}
-  <value>k__BackingField: 13
+  <itemName>k__BackingField: Overwriting Quill
+  <itemType>k__BackingField: 4
+  <description>k__BackingField: Overwriting Quill
+  <icon>k__BackingField: {fileID: -6603702071708802003, guid: 63620f03a8c05ac4e91dab8c0e72503a, type: 3}
+  <value>k__BackingField: 12
