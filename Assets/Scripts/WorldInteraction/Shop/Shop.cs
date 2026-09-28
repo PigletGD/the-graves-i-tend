@@ -2,9 +2,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
+
 public class Shop : MonoBehaviour
 {
     [SerializeField] private List<Item> shopItems;
+
     [SerializeField] private GameObject itemEntryPrefab;
     [SerializeField] private GameObject shopContent;
 
@@ -13,16 +16,25 @@ public class Shop : MonoBehaviour
 
     private int purchaseQuantity = 1;
 
+    [SerializeField] private List<Subshop> subshops;
+
     public void Start()
     {
-        for (int i = 0; i < shopItems.Count; i++)
+        for (int i = 0; i < subshops.Count; i++)
         {
-            GameObject newItemEntry = Instantiate(itemEntryPrefab, shopContent.transform);
-            newItemEntry.GetComponent<ItemEntry>().SetItemEntry(shopItems[i], this);
+            subshops[i].SetSubShopItems(shopItems, this);
+            if (subshops[i].subshopType != SubshopType.All)
+                subshops[i].gameObject.SetActive(false);
         }
-        
     }
 
+    #region Purchase Quantity Functions
+
+    public void SetPurchaseQuantity(int quantity)
+    {
+        purchaseQuantity = quantity;
+        UpdatePurchaseQuantityText();
+    }
 
     public void IncreasePurchaseQuantity()
     {
@@ -35,6 +47,8 @@ public class Shop : MonoBehaviour
         purchaseQuantity--;
         UpdatePurchaseQuantityText();
     }
+
+    #endregion
 
     public void UpdatePurchaseQuantityText()
     { 
@@ -62,5 +76,26 @@ public class Shop : MonoBehaviour
             UpdatePurchaseQuantityText();
             SetSelectedItem(null);
         }
+    }
+
+    public void ResetSubshops()
+    {
+        for (int i = 0; i < subshops.Count; i++)
+        { 
+            
+        }
+    }
+
+    public void ChangeSubShop(SubshopType subshopType)
+    {
+        for (int i = 0; i < subshops.Count; i++)
+        {
+            if (subshopType == (SubshopType)i)
+                subshops[i].gameObject.SetActive(true);
+            else
+                subshops[i].gameObject.SetActive(false);
+        }
+        SetSelectedItem(null);
+        purchaseQuantity = 1;
     }
 }
