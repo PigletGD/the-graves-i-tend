@@ -2,22 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombatantActionsPanel : MonoBehaviour
+public class CombatantActionsPanel : MonoBehaviour
 {
     public event Action<int> OnActionSelected;
 
-    [SerializeField] private PlayerCombatantActionButton combatantActionButtonPrefab;
+    [SerializeField] private CombatantActionButton combatantActionButtonPrefab;
     
-    private List<PlayerCombatantActionButton> playerCombatantActionButtons = new();
+    private List<CombatantActionButton> combatantActionButtons = new();
 
     public void UpdateActionsPanel(bool isSkills, Combatant combatant)
     {
         int actionCount = isSkills ? combatant.CharacterData.Skills.Length : 0;
         InstantiateActionButtons(actionCount);
 
-        for (int i = 0; i < playerCombatantActionButtons.Count; i++)
+        for (int i = 0; i < combatantActionButtons.Count; i++)
         {
-            PlayerCombatantActionButton actionButton = playerCombatantActionButtons[i];
+            CombatantActionButton actionButton = combatantActionButtons[i];
 
             if (i < actionCount)
             {
@@ -33,12 +33,12 @@ public class PlayerCombatantActionsPanel : MonoBehaviour
 
     private void InstantiateActionButtons(int actionCount)
     {
-        while (playerCombatantActionButtons.Count < actionCount)
+        while (combatantActionButtons.Count < actionCount)
         {
-            PlayerCombatantActionButton combatantActionButton = Instantiate(combatantActionButtonPrefab, transform);
+            CombatantActionButton combatantActionButton = Instantiate(combatantActionButtonPrefab, transform);
 
             combatantActionButton.OnClick += index => OnActionSelected?.Invoke(index);
-            playerCombatantActionButtons.Add(combatantActionButton);
+            combatantActionButtons.Add(combatantActionButton);
         }
     }
 }

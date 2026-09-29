@@ -9,7 +9,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private TurnOrderPanel turnOrderPanel;
     [SerializeField] private GameObject playerActionsParentPanel;
     [SerializeField] private GameObject playerBasicActionSelectionPanel; // Attack/Skills/Items/Skip Turn
-    [SerializeField] private PlayerCombatantActionsPanel playerCombatantActionsPanel; // All Skills/All Items
+    [SerializeField] private CombatantActionsPanel playerCombatantActionsPanel; // All Skills/All Items
     [SerializeField] private CombatResultsPanel combatResultsPanel;
 
     private void Start()

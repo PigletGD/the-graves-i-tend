@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerCombatantActionButton : MonoBehaviour
+public class CombatantActionButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI actionText;
     [SerializeField] private Button button;
