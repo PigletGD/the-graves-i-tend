@@ -4,7 +4,7 @@ public class Tile : MonoBehaviour, ITarget
 {
     [field: SerializeField] public TargetSelectionVisualizer Visualizer { get; private set; }
     
-    [SerializeField] private Collider2D collider2D;
+    [SerializeField] private new Collider2D collider2D;
     private ITarget occupant;
 
     private void Awake()
@@ -47,11 +47,6 @@ public class Tile : MonoBehaviour, ITarget
         return new[] { occupant };
     }
 
-    public TargetRelationship GetTargetRelationship()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public TargetSelectionVisualizer GetSelectionVisualizer()
     {
         return Visualizer;
@@ -60,5 +55,15 @@ public class Tile : MonoBehaviour, ITarget
     public GameObject GetRootObject()
     {
         return gameObject;
+    }
+
+    public TargetRelationshipType GetAllegiance()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public TargetRelationshipType GetTargetRelationshipTo(ITarget other)
+    {
+        throw new System.NotImplementedException();
     }
 }

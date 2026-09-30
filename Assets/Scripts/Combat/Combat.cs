@@ -13,6 +13,7 @@ public class Combat : MonoBehaviour
 
     [SerializeField] private Combatant playerCombatant;
     [SerializeField] private Combatant enemyCombatant;
+    [SerializeField] private CombatArena arena;
 
     private bool canPlayerAct;
 
@@ -26,15 +27,17 @@ public class Combat : MonoBehaviour
 
     private void Start()
     {
-        // TODO: Temporarily handle setting colors here
-        playerCombatant?.Visualizer?.SetToAttackerColor();
-
         if (playerCombatant != null && enemyCombatant != null && !playerCombatant.Equals(enemyCombatant))
         {
-            enemyCombatant?.Visualizer?.SetToDefenderColor();
             Targets.Add(enemyCombatant);
         }
 
+        arena.PositionCombatants(new[] { playerCombatant }, new[] { enemyCombatant });
+        StartCombat();
+    }
+
+    private void StartCombat()
+    {
         CombatTurnOrder.InitializeTurnOrder(new List<Combatant> { playerCombatant, enemyCombatant });
         StartNextTurn();
     }
@@ -46,7 +49,6 @@ public class Combat : MonoBehaviour
 
         if (!selected.Equals(playerCombatant))
         {
-            selected.GetSelectionVisualizer()?.SetToAttackerColor();
             playerCombatant?.GetSelectionVisualizer()?.SetToUnselectedColor();
 
             playerCombatant = selected.GetRootObject()?.GetComponent<Combatant>();
@@ -73,8 +75,6 @@ public class Combat : MonoBehaviour
 
         if (!Targets.Contains(selected))
         {
-            selected.GetSelectionVisualizer()?.SetToDefenderColor();
-
             Targets.Add(selected);
 
             if (selected.Equals(playerCombatant))

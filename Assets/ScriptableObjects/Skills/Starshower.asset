@@ -86,4 +86,4 @@ MonoBehaviour:
         stacksOnApply: 1
         applyChance:
           probability: 1
-        statusEffectCondition: []
+        statusEffectConditions: []

@@ -15,7 +15,7 @@ public class Combatant : MonoBehaviour, ITarget
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private TargetRelationshipType allegiance; // Temporary. This should be passed in when creating the combatant.
-
+    [SerializeField] private TargetSelectionVisualizer Visualizer;
     [SerializeField] private Combatant[] targets;
 
     private CombatantStatusEffects statusEffectsController;
@@ -26,8 +26,6 @@ public class Combatant : MonoBehaviour, ITarget
     public CharacterData CharacterData => characterData;
     public CombatantStats Stats => stats;
 
-    // TODO: Temporary visualizer just to make selection more visible in terms of what is the attacker and what is the targets
-    public TargetSelectionVisualizer Visualizer;
 
     public CombatantStatusEffects StatusEffects => statusEffectsController;
 

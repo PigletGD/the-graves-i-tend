@@ -12,7 +12,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private CombatantActionsPanel playerCombatantActionsPanel; // All Skills/All Items
     [SerializeField] private CombatResultsPanel combatResultsPanel;
 
-    private void Start()
+    public void Initialize()
     {
         playerCombatantPanel.Initialize(combat.PlayerCombatant);
         enemyCombatantPanel.Initialize(combat.EnemyCombatant);

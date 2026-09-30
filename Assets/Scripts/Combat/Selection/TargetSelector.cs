@@ -3,76 +3,76 @@ using UnityEngine.InputSystem;
 
 public class TargetSelector : MonoBehaviour
 {
-    [SerializeField] private Combat combat;
-    
     // TODO: Temporary creation of input actions. We'll eventually need a centralized player controls reference to pass around.
     private InputAction leftClickAction;
-    private InputAction rightClickAction;
-    
-    private ITarget hoveredCombatant;
+    private InputAction pointAction;
+
+    private ITarget currentHoveredTarget;
+
+    private bool isTargetingSelectorEnabled = true; // Temporarily True
 
     private void Awake()
     {
         leftClickAction = new InputAction(binding: "<Mouse>/leftButton");
-        rightClickAction = new InputAction(binding: "<Mouse>/rightButton");
+        pointAction = new InputAction(binding: "<Mouse>/position");
     }
-
+    
     private void OnEnable()
     {
-        leftClickAction.performed += OnLeftClickPressed;
+        leftClickAction.performed += OnLeftClick;
         leftClickAction.Enable();
         
-        rightClickAction.performed += OnRightClickPressed;
-        rightClickAction.Enable();
+        pointAction.performed += OnPoint;
+        pointAction.Enable();
     }
 
     private void OnDisable()
     {
-        leftClickAction.performed -= OnLeftClickPressed;
+        leftClickAction.performed -= OnLeftClick;
         leftClickAction.Disable();
         
-        rightClickAction.performed -= OnRightClickPressed;
-        rightClickAction.Disable();
+        pointAction.performed -= OnPoint;
+        pointAction.Disable();
     }
 
-    private void Update()
+    public void SetTargetingSelectorEnabled(bool isEnabled)
     {
-        var newHoveredCombatant = GetHoveredCombatant();
-        if (hoveredCombatant != null && hoveredCombatant.Equals(newHoveredCombatant))
-            return;
-
-        if (hoveredCombatant?.GetSelectionVisualizer() != null && !hoveredCombatant.GetSelectionVisualizer().IsSelected)
-        {
-            hoveredCombatant.GetSelectionVisualizer().IsHovered = true;
-            hoveredCombatant.GetSelectionVisualizer().SetToUnselectedColor();
-        }
-        
-        if (newHoveredCombatant?.GetSelectionVisualizer() != null && !newHoveredCombatant.GetSelectionVisualizer().IsSelected)
-        {
-            newHoveredCombatant.GetSelectionVisualizer().IsHovered = true;
-            newHoveredCombatant.GetSelectionVisualizer().SetToHoveredColor();
-        }
-        
-        hoveredCombatant = newHoveredCombatant;
+        isTargetingSelectorEnabled = isEnabled;
     }
 
-    private void OnLeftClickPressed(InputAction.CallbackContext ctx)
+    public void OnLeftClick(InputAction.CallbackContext _)
     {
-        if (hoveredCombatant == null)
-            return;
         
-        combat.HandleAttackerSetupForSelected(hoveredCombatant);
+    }
+
+    public void OnPoint(InputAction.CallbackContext _)
+    {
+        if (!isTargetingSelectorEnabled)
+            return;
+
+        ITarget newHoveredTarget = GetHoveredTarget();
+        if (currentHoveredTarget == newHoveredTarget)
+            return;
+
+        if (currentHoveredTarget != null)
+            HideTargetVisualizer(currentHoveredTarget);
+
+        currentHoveredTarget = newHoveredTarget;
+        if (currentHoveredTarget != null)
+            ShowTargetVisualizer(currentHoveredTarget);
+    }
+
+    private void ShowTargetVisualizer(ITarget target)
+    {
+        target.GetSelectionVisualizer().SetToHoveredColor();
     }
     
-    private void OnRightClickPressed(InputAction.CallbackContext ctx)
+    private void HideTargetVisualizer(ITarget target)
     {
-        if (hoveredCombatant == null)
-            return;
-        
-        combat.HandleDefenderSetupForSelected(hoveredCombatant);
+        target.GetSelectionVisualizer().SetToUnselectedColor();
     }
 
-    private ITarget GetHoveredCombatant()
+    private ITarget GetHoveredTarget()
     {
         if (Camera.main == null)
             return null;
