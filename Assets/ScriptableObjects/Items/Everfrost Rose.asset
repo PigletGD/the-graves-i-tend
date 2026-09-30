@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   <itemName>k__BackingField: Everfrost Rose
   <itemType>k__BackingField: 4
-  <description>k__BackingField: Everfrost Rose
+  <description>k__BackingField: "Manufactured by frost wizards that took Ice Sculpture
+    as their college major. Who says form can\u2019t have any function?\r\n\r\nAfflicts
+    Frosted when thrown at an enemy."
   <icon>k__BackingField: {fileID: -318952018859382543, guid: 6bcf9f9c81fef5d4283cf61ff42530c8, type: 3}
   <value>k__BackingField: 12

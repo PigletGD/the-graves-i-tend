@@ -13,7 +13,7 @@ public class Item : ScriptableObject
 
     [field: SerializeField] public string itemName { get; private set; }
     [field: SerializeField] public ItemType itemType { get; private set; }
-    [field: SerializeField] public string description { get; private set; }
+    [field: SerializeField, TextArea(3, 12)] public string description { get; private set; }
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public int value { get; private set; }
 }

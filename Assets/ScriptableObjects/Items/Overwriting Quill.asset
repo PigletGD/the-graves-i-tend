@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   <itemName>k__BackingField: Overwriting Quill
   <itemType>k__BackingField: 4
-  <description>k__BackingField: Overwriting Quill
+  <description>k__BackingField: 'A quill dipped in weave ink of a specific variety.
+    A magic eraser, if you will. Used in cleaning the aftermath of most ritual magic.
+
+    
+
+    Neutralizes
+    an allied tile.'
   <icon>k__BackingField: {fileID: -6603702071708802003, guid: 63620f03a8c05ac4e91dab8c0e72503a, type: 3}
   <value>k__BackingField: 12

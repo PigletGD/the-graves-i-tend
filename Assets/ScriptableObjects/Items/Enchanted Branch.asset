@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   <itemName>k__BackingField: Enchanted Branch
   <itemType>k__BackingField: 1
-  <description>k__BackingField: Enchanted Branch
+  <description>k__BackingField: A branch with magic still pulsing through it, persisting
+    through death.
   <icon>k__BackingField: {fileID: 6219763997527975451, guid: 57e174fe21c76f242b90fbc75d7e4452, type: 3}
   <value>k__BackingField: 15

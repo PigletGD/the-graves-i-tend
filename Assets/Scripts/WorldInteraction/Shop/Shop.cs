@@ -12,6 +12,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject shopContent;
 
     [SerializeField] private TextMeshProUGUI quantityText;
+    [SerializeField] private TextMeshProUGUI itemDescriptionText;
     public ItemEntry selectedItemEntry { get; private set; }
 
     private int purchaseQuantity = 1;
@@ -62,8 +63,16 @@ public class Shop : MonoBehaviour
 
 
         selectedItemEntry = itemEntry;
-        if (selectedItemEntry != null)
+        if (selectedItemEntry != null)  // set new itemEntry
+        {
             selectedItemEntry.ItemEntrySelection(true);
+            itemDescriptionText.transform.parent.gameObject.SetActive(true);        // set whole description panel to be inactive. parent because the text is just the child
+            itemDescriptionText.text = selectedItemEntry.item.description;
+        }
+        else
+        {
+            itemDescriptionText.transform.parent.gameObject.SetActive(false);       // set whole description panel to be inactive. parent because the text is just the child
+        }
         
     }
 

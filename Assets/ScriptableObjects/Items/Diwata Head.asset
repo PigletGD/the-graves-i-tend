@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   <itemName>k__BackingField: Diwata Head
   <itemType>k__BackingField: 1
-  <description>k__BackingField: Diwata Head
+  <description>k__BackingField: The head of a Diwata. It still has residual healing
+    pollen within its stamen.
   <icon>k__BackingField: {fileID: 667735869545433736, guid: 2e61f60b365c0e0439d18b92ad066646, type: 3}
   <value>k__BackingField: 13
