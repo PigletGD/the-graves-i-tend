@@ -13,10 +13,10 @@ public class TargetSelectionCondition_MaxTargetCount : ITargetSelectionCondition
         if (combat == null)
             return false;
         
-        var targets = combat.Targets;
+        var targets = value.Targets;
         if (targets == null)
             return false;
 
-        return targets.Count <= max;
+        return targets.Length <= max;
     }
 }

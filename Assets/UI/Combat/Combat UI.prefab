@@ -224,13 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b55504830ac8548a2ca82ba658da7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatUIManager
-  combat: {fileID: 0}
   playerCombatantPanel: {fileID: 1775367470177173885}
   enemyCombatantPanel: {fileID: 4113859750343012314}
   turnOrderPanel: {fileID: 7350890874625575095}
-  playerActionsParentPanel: {fileID: 7414439756824667577}
-  playerBasicActionSelectionPanel: {fileID: 7455393874823195840}
-  playerCombatantActionsPanel: {fileID: 7318740948755908463}
+  combatantActionsMenu: {fileID: 7337442819869503312}
   combatResultsPanel: {fileID: 8966939945243617064}
 --- !u!1001 &6483391526586630700
 PrefabInstance:
@@ -240,34 +237,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3470436479280841975}
     m_Modifications:
-    - target: {fileID: 97921901886706032, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 97921901886706032, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 97921901886706032, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4851636301793351146}
-    - target: {fileID: 97921901886706032, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 97921901886706032, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnItemsButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 97921901886706032, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 97921901886706032, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 112150500511163711, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -488,34 +457,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1926084348047195491, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1926084348047195491, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1926084348047195491, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4851636301793351146}
-    - target: {fileID: 1926084348047195491, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1926084348047195491, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAttackButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 1926084348047195491, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1926084348047195491, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2023299060589852349, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -632,38 +573,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4322698891385960116, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322698891385960116, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322698891385960116, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4851636301793351146}
-    - target: {fileID: 4322698891385960116, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322698891385960116, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnActionListBackButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322698891385960116, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322698891385960116, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322698891385960116, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4433403218466453401, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -687,34 +596,6 @@ PrefabInstance:
     - target: {fileID: 4459218464672941924, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632238966909835135, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632238966909835135, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632238966909835135, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4851636301793351146}
-    - target: {fileID: 4632238966909835135, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632238966909835135, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnSkillsButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632238966909835135, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632238966909835135, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5211186122835031500, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -888,34 +769,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8512632430695130284, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512632430695130284, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512632430695130284, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4851636301793351146}
-    - target: {fileID: 8512632430695130284, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512632430695130284, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnSkipTurnButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512632430695130284, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8512632430695130284, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8602687603596909184, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -992,17 +845,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 635345621102286213, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
   m_PrefabInstance: {fileID: 6483391526586630700}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7318740948755908463 stripped
+--- !u!114 &7337442819869503312 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4352946897309844803, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4335408848584486268, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
   m_PrefabInstance: {fileID: 6483391526586630700}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556fcda9ed37b504d932d56a9d4eec19, type: 3}
+  m_Script: {fileID: 11500000, guid: d7875bcb8daaa404f859ac6b504dde38, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombatantActionPanel
+  m_EditorClassIdentifier: Assembly-CSharp::CombatantActionMenu
 --- !u!114 &7350890874625575095 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4610065836324850331, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
@@ -1014,16 +867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d695b0108b61e4791b93caea5cf5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnPanel
---- !u!1 &7414439756824667577 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4547724759259424661, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-  m_PrefabInstance: {fileID: 6483391526586630700}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7455393874823195840 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4507895439173676780, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-  m_PrefabInstance: {fileID: 6483391526586630700}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8966939945243617064 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2704792424935908612, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}

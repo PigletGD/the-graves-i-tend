@@ -4,9 +4,6 @@ using UnityEngine;
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
 public class Combatant : MonoBehaviour, ITarget
 {
-    public const int SkipTurnIndex = -2;
-    public const int BasicAttackIndex = -1;
-
     public static event Action<Combatant, float> OnHPChanged;
     public static event Action<Combatant, float> OnMPChanged;
     public static event Action<Combatant, Skill> OnSkillUsed;
@@ -57,42 +54,36 @@ public class Combatant : MonoBehaviour, ITarget
     }
     #endregion
 
-    private void SkipTurn(TargetSelectionArgs args)
+    public Skill GetSkillFromActionType(CombatActionType actionType, int actionIndex)
     {
-        characterData.SkipTurn.Execute(args);
-        OnSkillUsed?.Invoke(this, characterData.SkipTurn);
+        return actionType switch
+        {
+            CombatActionType.Attack => characterData.BasicAttack,
+            CombatActionType.Skill => characterData.Skills[actionIndex],
+            CombatActionType.Item => null, // TODO: Implement item usage.
+            CombatActionType.Skip => characterData.SkipTurn,
+            _ => null
+        };
     }
 
-    private void BasicAttack(TargetSelectionArgs args)
+    public bool TryUseSkill(Combat combat, CombatantActionArgs args)
     {
-        characterData.BasicAttack.Execute(args);
-        OnSkillUsed?.Invoke(this, characterData.BasicAttack);
-    }
-
-    public bool TryUseSkill(int index, TargetSelectionArgs args)
-    {
-        if (index == SkipTurnIndex)
+        TargetSelectionArgs targetSelectionArgs = new()
         {
-            SkipTurn(args);
+            Combat = combat,
+            Invoker = this,
+            Targets = args.Targets
+        };
+
+        Skill skill = GetSkillFromActionType(args.ActionType, args.ActionIndex);
+        if (skill.CanExecute(targetSelectionArgs))
+        {
+            skill.Execute(targetSelectionArgs);
+            OnSkillUsed?.Invoke(this, skill);
             return true;
         }
-
-        if (index == BasicAttackIndex)
-        {
-            BasicAttack(args);
-            return true;
-        }
-
-        if (index < 0 || index >= characterData.Skills.Length)
-            return false;
-
-        if (!characterData.Skills[index].CanExecute(args))
-            return false;
-
-        Skill skill = characterData.Skills[index];
-        skill.Execute(args);
-        OnSkillUsed?.Invoke(this, skill);
-        return true;
+        
+        return false;
     }
 
     // TODO: Refactor this so that we get targets from the selection.

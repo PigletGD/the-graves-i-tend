@@ -11,85 +11,45 @@ public class Combat : MonoBehaviour
     public static event Action<Combatant> OnTurnEnded;
     public static event Action<bool> OnCombatEnded;
 
-    [SerializeField] private Combatant playerCombatant;
-    [SerializeField] private Combatant enemyCombatant;
     [SerializeField] private CombatArena arena;
+    [SerializeField] private CombatUI ui;
+    [SerializeField] private TargetSelector targeting;
 
     private bool canPlayerAct;
 
     private Combatant activeCombatant;
+    private CombatantActionArgs combatantActionArgs;
 
-    public List<ITarget> Targets { get; private set; } = new();
-
-    public Combatant PlayerCombatant => playerCombatant;
-    public Combatant EnemyCombatant => enemyCombatant;
-    public Combatant ActiveCombatant => activeCombatant;
+    public List<Combatant> PlayerCombatants { get; private set; } = new();
+    public List<Combatant> EnemyCombatants { get; private set; } = new();
 
     private void Start()
     {
-        if (playerCombatant != null && enemyCombatant != null && !playerCombatant.Equals(enemyCombatant))
-        {
-            Targets.Add(enemyCombatant);
-        }
+        Combatant[] combatants = FindObjectsByType<Combatant>(FindObjectsSortMode.None);
+        PlayerCombatants = combatants.Where(combatant => combatant.IsPlayerControlled).ToList();
+        EnemyCombatants = combatants.Where(combatant => !combatant.IsPlayerControlled).ToList();
 
-        arena.PositionCombatants(new[] { playerCombatant }, new[] { enemyCombatant });
+        arena.PositionCombatants(PlayerCombatants.ToArray(), EnemyCombatants.ToArray());
+        ui.Initialize(this);
         StartCombat();
+    }
+
+    private void OnEnable()
+    {
+        ui.OnActionButton += OnActionSelected;
+        targeting.OnTargetsSelected += OnTargetsSelected;
+    }
+
+    private void OnDisable()
+    {
+        ui.OnActionButton -= OnActionSelected;
+        targeting.OnTargetsSelected -= OnTargetsSelected;
     }
 
     private void StartCombat()
     {
-        CombatTurnOrder.InitializeTurnOrder(new List<Combatant> { playerCombatant, enemyCombatant });
+        CombatTurnOrder.InitializeTurnOrder(PlayerCombatants.Concat(EnemyCombatants).ToList());
         StartNextTurn();
-    }
-
-    public void HandleAttackerSetupForSelected(ITarget selected)
-    {
-        if (selected == null)
-            return;
-
-        if (!selected.Equals(playerCombatant))
-        {
-            playerCombatant?.GetSelectionVisualizer()?.SetToUnselectedColor();
-
-            playerCombatant = selected.GetRootObject()?.GetComponent<Combatant>();
-
-            if (Targets.Contains(selected))
-                Targets.Remove(selected);
-
-            Debug.Log($"Attacker is set to {selected.GetRootObject().name}", selected.GetRootObject());
-        }
-        else
-        {
-            selected.GetSelectionVisualizer()?.SetToHoveredColor(true);
-
-            playerCombatant = null;
-
-            Debug.Log($"Removed {selected.GetRootObject().name} as the attacker", selected.GetRootObject());
-        }
-    }
-
-    public void HandleDefenderSetupForSelected(ITarget selected)
-    {
-        if (selected == null)
-            return;
-
-        if (!Targets.Contains(selected))
-        {
-            Targets.Add(selected);
-
-            if (selected.Equals(playerCombatant))
-                playerCombatant = null;
-
-            Debug.Log($"Added {selected.GetRootObject()?.name} as a target", selected.GetRootObject());
-        }
-        else
-        {
-            selected.GetSelectionVisualizer()?.SetToHoveredColor(true);
-
-            Targets.Remove(selected);
-
-            Debug.Log($"Removed {selected.GetRootObject()?.name} as a target", selected.GetRootObject());
-        }
     }
 
     private void StartNextTurn()
@@ -118,16 +78,43 @@ public class Combat : MonoBehaviour
     }
 
     // TEMPORARY
-    public void TryPlayerAct(int index)
+    public void OnActionSelected(CombatActionType actionType, int index)
     {
         if (!canPlayerAct)
             return;
 
+        combatantActionArgs = new CombatantActionArgs(actionType, index);
+        Skill selectedSkill = activeCombatant.GetSkillFromActionType(actionType, index);
 
-        if (!TryExecuteAction(playerCombatant, index == Combatant.SkipTurnIndex ? playerCombatant : enemyCombatant, index))
-            canPlayerAct = true;
-        else
-            canPlayerAct = false;
+        switch (selectedSkill.SkillTargetingMode)
+        {
+            case SkillTargetingMode.SingleEnemy:
+            case SkillTargetingMode.AllEnemies:
+                StartTargetSelection(selectedSkill.SkillTargetingMode, EnemyCombatants.Cast<ITarget>().ToArray());
+                break;
+            case SkillTargetingMode.SingleAlly:
+            case SkillTargetingMode.AllAllies:
+                StartTargetSelection(selectedSkill.SkillTargetingMode, PlayerCombatants.Cast<ITarget>().ToArray());
+                break;
+            case SkillTargetingMode.Self:
+                StartTargetSelection(selectedSkill.SkillTargetingMode, new[] { activeCombatant }.Cast<ITarget>().ToArray());
+                break;
+            default:
+                Debug.LogWarning($"Unhandled skill targeting mode: {selectedSkill.SkillTargetingMode}");
+                break;
+        }
+    }
+
+    private void StartTargetSelection(SkillTargetingMode targetingMode, ITarget[] targets)
+    {
+        targeting.SetTargetingSelectorEnabled(true, targetingMode, targets);
+    }
+
+    private void OnTargetsSelected(ITarget[] selectedTargets)
+    {
+        targeting.SetTargetingSelectorEnabled(false);
+        combatantActionArgs.SetTargets(selectedTargets);
+        TryExecuteAction(combatantActionArgs);
     }
 
     private void TryEnemyAct()
@@ -135,27 +122,43 @@ public class Combat : MonoBehaviour
         if (activeCombatant.IsPlayerControlled)
             return;
 
-        int randomSkillIndex = UnityEngine.Random.Range(0, enemyCombatant.CharacterData.Skills.Count());
-        if (!TryExecuteAction(enemyCombatant, playerCombatant, randomSkillIndex))
+        Skill[] skills = activeCombatant.CharacterData.Skills;
+        bool skillExecuted = false;
+        int skillIndex = UnityEngine.Random.Range(0, skills.Length);
+        Skill skill = skills[skillIndex];
+        Combatant[] targets = skill.SkillTargetingMode switch
         {
-            // Coinflip between skipping or attacking if we fail executing a random skill.
-            if (UnityEngine.Random.Range(0, 2) == 0)
-                TryExecuteAction(enemyCombatant, enemyCombatant, Combatant.SkipTurnIndex);
-            else
-                TryExecuteAction(enemyCombatant, playerCombatant, Combatant.BasicAttackIndex);
+            SkillTargetingMode.SingleEnemy => new[] { SelectRandomCombatant(PlayerCombatants) },
+            SkillTargetingMode.AllEnemies => PlayerCombatants.ToArray(),
+            SkillTargetingMode.SingleAlly => new[] { SelectRandomCombatant(EnemyCombatants) },
+            SkillTargetingMode.AllAllies => EnemyCombatants.ToArray(),
+            SkillTargetingMode.Self => new[] { activeCombatant },
+            SkillTargetingMode.None => Array.Empty<Combatant>(),
+            _ => null
+        };
+
+        if (TryExecuteAction(new (CombatActionType.Skill, skillIndex, targets)))
+            skillExecuted = true;
+
+        if (skillExecuted)
+            return;
+
+        if (UnityEngine.Random.Range(0, 2) == 0)
+            TryExecuteAction(new (CombatActionType.Skip, targets: new[] { activeCombatant }));
+        else
+            TryExecuteAction(new (CombatActionType.Attack, targets: new[] { SelectRandomCombatant(PlayerCombatants) }));
+
+        static Combatant SelectRandomCombatant(IEnumerable<Combatant> combatants)
+        {
+            Combatant[] combatantArray = combatants.ToArray();
+            int targetIndex = UnityEngine.Random.Range(0, combatantArray.Length);
+            return combatantArray[targetIndex];
         }
     }
 
-    private bool TryExecuteAction(Combatant invoker, Combatant target, int index)
+    private bool TryExecuteAction(CombatantActionArgs args)
     {
-        TargetSelectionArgs targetSelectionArgs = new()
-        {
-            Combat = this,
-            Invoker = invoker,
-            Targets = new[] { target }
-        };
-
-        if (invoker.TryUseSkill(index, targetSelectionArgs))
+        if (activeCombatant.TryUseSkill(this, args))
         {
             FinishCurrentTurn();
             return true;
@@ -163,5 +166,38 @@ public class Combat : MonoBehaviour
 
         Debug.Log($"Skill failed!");
         return false;
+    }
+}
+
+public enum CombatActionType
+{
+    Attack,
+    Skill,
+    Item,
+    Skip,
+}
+
+public class CombatantActionArgs
+{
+    public CombatActionType ActionType { get; }
+    public int ActionIndex { get; }
+    public ITarget[] Targets { get; private set; }
+
+    public CombatantActionArgs(CombatActionType actionType, int actionIndex = -1) : this(actionType, actionIndex, null)
+    {
+        ActionType = actionType;
+        ActionIndex = actionIndex;
+    }
+
+    public CombatantActionArgs(CombatActionType actionType, int actionIndex = -1, Combatant[] targets = null)
+    {
+        ActionType = actionType;
+        ActionIndex = actionIndex;
+        Targets = targets;
+    }
+
+    public void SetTargets(ITarget[] targets)
+    {
+        Targets = targets;
     }
 }

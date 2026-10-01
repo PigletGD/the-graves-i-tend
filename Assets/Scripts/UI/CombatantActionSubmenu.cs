@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatantActionsPanel : MonoBehaviour
+public class CombatantActionSubmenu : MonoBehaviour
 {
-    public event Action<int> OnActionSelected;
+    public event Action<int> OnActionButtonSelected;
 
     [SerializeField] private CombatantActionButton combatantActionButtonPrefab;
     
     private List<CombatantActionButton> combatantActionButtons = new();
 
-    public void UpdateActionsPanel(bool isSkills, Combatant combatant)
+    public void UpdateActions(Combatant combatant)
     {
-        int actionCount = isSkills ? combatant.CharacterData.Skills.Length : 0;
+        int actionCount = combatant.CharacterData.Skills.Length;
         InstantiateActionButtons(actionCount);
 
         for (int i = 0; i < combatantActionButtons.Count; i++)
@@ -37,7 +37,7 @@ public class CombatantActionsPanel : MonoBehaviour
         {
             CombatantActionButton combatantActionButton = Instantiate(combatantActionButtonPrefab, transform);
 
-            combatantActionButton.OnClick += index => OnActionSelected?.Invoke(index);
+            combatantActionButton.OnClick += index => OnActionButtonSelected?.Invoke(index);
             combatantActionButtons.Add(combatantActionButton);
         }
     }
