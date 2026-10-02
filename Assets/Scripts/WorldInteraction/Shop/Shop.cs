@@ -72,6 +72,7 @@ public class Shop : MonoBehaviour
         else
         {
             itemDescriptionText.transform.parent.gameObject.SetActive(false);       // set whole description panel to be inactive. parent because the text is just the child
+            itemDescriptionText.text = "Item Description";
         }
         
     }
