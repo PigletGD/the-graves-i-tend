@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum SubshopType
 {
-    All, Consumable, Equipment, Reagent
+    All = 0, Consumable = 1, Equipment = 2, Reagent = 3
 }
 
 /// <summary>

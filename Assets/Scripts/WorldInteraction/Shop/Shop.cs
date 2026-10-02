@@ -72,7 +72,6 @@ public class Shop : MonoBehaviour
         else
         {
             itemDescriptionText.transform.parent.gameObject.SetActive(false);       // set whole description panel to be inactive. parent because the text is just the child
-            itemDescriptionText.text = "Item Description";
         }
         
     }
@@ -96,16 +95,16 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void ChangeSubShop(SubshopType subshopType)
+    public void ChangeSubShop(int subshopType)
     {
         for (int i = 0; i < subshops.Count; i++)
         {
-            if (subshopType == (SubshopType)i)
+            if (subshopType == i)
                 subshops[i].gameObject.SetActive(true);
             else
                 subshops[i].gameObject.SetActive(false);
         }
         SetSelectedItem(null);
-        purchaseQuantity = 1;
+        SetPurchaseQuantity(1);
     }
 }
