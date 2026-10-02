@@ -87,6 +87,8 @@ public class Shop : MonoBehaviour
         }
     }
 
+    /*
+     * To be implemented as a way to update subshops whenever we add something to it while browsing the shop
     public void ResetSubshops()
     {
         for (int i = 0; i < subshops.Count; i++)
@@ -94,6 +96,7 @@ public class Shop : MonoBehaviour
             
         }
     }
+    */
 
     public void ChangeSubShop(int subshopType)
     {
@@ -104,6 +107,11 @@ public class Shop : MonoBehaviour
             else
                 subshops[i].gameObject.SetActive(false);
         }
+        ResetShopDisplay();
+    }
+
+    public void ResetShopDisplay()
+    {
         SetSelectedItem(null);
         SetPurchaseQuantity(1);
     }
