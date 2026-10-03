@@ -23,14 +23,14 @@ public class PopupEffectUISpawner : MonoBehaviour
     {
         Combatant.OnHPChanged += OnHPChanged;
         Combatant.OnSkillUsed += OnSkillUsed;
-        Attempt.OnAttemptMissed += OnAttemptMissed;
+        Attempt.OnAttemptFailed += OnAttemptFailed;
     }
     
     private void OnDisable()
     {
         Combatant.OnHPChanged -= OnHPChanged;
         Combatant.OnSkillUsed -= OnSkillUsed;
-        Attempt.OnAttemptMissed -= OnAttemptMissed;
+        Attempt.OnAttemptFailed -= OnAttemptFailed;
     }
 
     private void ShowPopup(ITarget target, string message)
@@ -87,10 +87,13 @@ public class PopupEffectUISpawner : MonoBehaviour
         ShowPopup(combatant, damageAmount.ToString());
     }
 
-    private void OnAttemptMissed(ITarget _, ITarget target)
+    private void OnAttemptFailed(TargetSelectionArgs args, TargetSelectionCondition condition)
     {
-        if (target is Combatant combatant)
-            ShowPopup(combatant, "Missed!");
+        foreach(ITarget target in args.Targets)
+        {
+            if (target is Combatant combatant)
+                ShowPopup(combatant, "Missed!");
+        }
     }
     
     private void OnSkillUsed(Combatant combatant, Skill skill)

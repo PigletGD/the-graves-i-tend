@@ -13,27 +13,22 @@ MonoBehaviour:
   m_Name: Basic Attack
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
   skillTargetingMode: 1
-  skillCosts: []
-  targetedAttempts:
-  - targetRelationship: 1
-    attempts:
-    - accuracy:
-        probability: 1
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects:
-      - rid: 8116162981214814277
-      targetEffects:
-      - rid: 8116162959790833737
+  attempts:
+  - rid: 2942834149664227397
+  conditions: []
+  resourceCosts:
+  - resourceType: 0
+    amount: 0
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833737
+    - rid: 2942834149664227397
+      type: {class: Attempt_Conditional, ns: , asm: Assembly-CSharp}
+      data:
+        effects:
+        - rid: 2942834149664227398
+        conditions: []
+    - rid: 2942834149664227398
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
         damage: 10
-    - rid: 8116162981214814277
-      type: {class: Effect_ManaRecover, ns: , asm: Assembly-CSharp}
-      data:
-        mana: 1

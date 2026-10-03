@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 1389614179967389535}
   - component: {fileID: 4181370392454594277}
   m_Layer: 0
-  m_Name: BaseCombatant_Test
+  m_Name: Base Combatant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

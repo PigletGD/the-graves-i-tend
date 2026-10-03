@@ -123,31 +123,35 @@ public class Combat : MonoBehaviour
             return;
 
         Skill[] skills = activeCombatant.CharacterData.Skills;
-        bool skillExecuted = false;
-        int skillIndex = UnityEngine.Random.Range(0, skills.Length);
-        Skill skill = skills[skillIndex];
-        Combatant[] targets = skill.SkillTargetingMode switch
+
+        if (skills.Length > 0)
         {
-            SkillTargetingMode.SingleEnemy => new[] { SelectRandomCombatant(PlayerCombatants) },
-            SkillTargetingMode.AllEnemies => PlayerCombatants.ToArray(),
-            SkillTargetingMode.SingleAlly => new[] { SelectRandomCombatant(EnemyCombatants) },
-            SkillTargetingMode.AllAllies => EnemyCombatants.ToArray(),
-            SkillTargetingMode.Self => new[] { activeCombatant },
-            SkillTargetingMode.None => Array.Empty<Combatant>(),
-            _ => null
-        };
+            bool skillExecuted = false;
+            int skillIndex = UnityEngine.Random.Range(0, skills.Length);
+            Skill skill = skills[skillIndex];
+            Combatant[] targets = skill.SkillTargetingMode switch
+            {
+                SkillTargetingMode.SingleEnemy => new[] { SelectRandomCombatant(PlayerCombatants) },
+                SkillTargetingMode.AllEnemies => PlayerCombatants.ToArray(),
+                SkillTargetingMode.SingleAlly => new[] { SelectRandomCombatant(EnemyCombatants) },
+                SkillTargetingMode.AllAllies => EnemyCombatants.ToArray(),
+                SkillTargetingMode.Self => new[] { activeCombatant },
+                SkillTargetingMode.None => Array.Empty<Combatant>(),
+                _ => null
+            };
 
-        if (TryExecuteAction(new (CombatActionType.Skill, skillIndex, targets)))
-            skillExecuted = true;
+            if (TryExecuteAction(new(CombatActionType.Skill, skillIndex, targets)))
+                skillExecuted = true;
 
-        if (skillExecuted)
-            return;
+            if (skillExecuted)
+                return;
+        }
 
         if (UnityEngine.Random.Range(0, 2) == 0)
-            TryExecuteAction(new (CombatActionType.Skip, targets: new[] { activeCombatant }));
+            TryExecuteAction(new(CombatActionType.Skip, targets: new[] { activeCombatant }));
         else
-            TryExecuteAction(new (CombatActionType.Attack, targets: new[] { SelectRandomCombatant(PlayerCombatants) }));
-
+            TryExecuteAction(new(CombatActionType.Attack, targets: new[] { SelectRandomCombatant(PlayerCombatants) }));
+            
         static Combatant SelectRandomCombatant(IEnumerable<Combatant> combatants)
         {
             Combatant[] combatantArray = combatants.ToArray();

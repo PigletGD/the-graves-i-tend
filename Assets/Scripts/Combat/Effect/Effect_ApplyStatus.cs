@@ -6,8 +6,7 @@ public class Effect_ApplyStatus : Effect
 {
     [SerializeField] private StatusEffectSO statusEffectSO;
     [SerializeField] private int stacksOnApply = 1; // Only relevant to stacking status effects. Placed here because having a separate class is redundant.
-    [SerializeField] private ProbabilityCondition<float> applyChance = new(1);
-    [SerializeField] private Condition_Combatant_StatusEffect[] statusEffectConditions;
+    [SerializeField] private CombatantCondition[] conditions;
 
     public override void Apply(ITarget target)
     {
@@ -17,19 +16,10 @@ public class Effect_ApplyStatus : Effect
             return;
         }
 
-        if (!applyChance.Check(0))
+        foreach (CombatantCondition conditions in conditions)
         {
-            Log($"{statusEffectSO.StatusEffectType} failed apply chance");
-            return;
-        }
-
-        foreach (Condition_Combatant_StatusEffect effectCondition in statusEffectConditions)
-        {
-            if (!effectCondition.Check(combatant))
-            {
-                Log($"failed because of {effectCondition.EffectType}");
+            if (!conditions.Check(combatant))
                 return;
-            }
         }
 
         combatant.StatusEffects.AddEffect(statusEffectSO.CreateInstance(), stacksOnApply);

@@ -13,7 +13,7 @@ public class Combatant : MonoBehaviour, ITarget
     [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private TargetRelationshipType allegiance; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private TargetSelectionVisualizer Visualizer;
-    [SerializeField] private Combatant[] targets;
+    [SerializeField] private Combatant[] targets; // TODO: Might be obsolete/deprecated.
 
     private CombatantStatusEffects statusEffectsController;
 
@@ -37,19 +37,19 @@ public class Combatant : MonoBehaviour, ITarget
 #region Stat Updates
     public void TakeDamage(float hp)
     {
-        stats.UpdateHP(-hp);
+        stats.UpdateResource(CombatantResourceType.HP, -hp);
         OnHPChanged?.Invoke(this, -hp);
     }
 
     public void ConsumeMana(float mp)
     {
-        stats.UpdateMP(-mp);
+        stats.UpdateResource(CombatantResourceType.MP, -mp);
         OnMPChanged?.Invoke(this, -mp);
     }
 
     public void RecoverMana(float mp)
     {
-        stats.UpdateMP(mp);
+        stats.UpdateResource(CombatantResourceType.MP, mp);
         OnMPChanged?.Invoke(this, mp);
     }
     #endregion
@@ -116,4 +116,9 @@ public class Combatant : MonoBehaviour, ITarget
 
         return allegiance == otherRelationship ? TargetRelationshipType.Friendly : TargetRelationshipType.Hostile;
     }
+
+
+
+    public float GetResourceAmount(CombatantResourceType resourceType) => stats.GetResourceAmount(resourceType);
+    public void UpdateResource(CombatantResourceType resourceType, float amount) => stats.UpdateResource(resourceType, amount);
 }
