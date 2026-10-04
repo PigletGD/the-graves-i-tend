@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum SkillTargetingMode
+public enum TargetSelectionMode
 {
     None,
     SingleEnemy,
@@ -12,10 +12,10 @@ public enum SkillTargetingMode
 
 public abstract class Skill : ScriptableObject
 {
-    [SerializeField] private SkillTargetingMode skillTargetingMode = SkillTargetingMode.SingleEnemy;
+    [SerializeField] private TargetSelectionMode visualTargetingMode = TargetSelectionMode.SingleEnemy;
     [SerializeReference, SerializeReferenceDropdown] protected Attempt[] attempts;
 
-    public SkillTargetingMode SkillTargetingMode => skillTargetingMode;
+    public TargetSelectionMode VisualTargetingMode => visualTargetingMode;
 
     public abstract bool CanExecute(TargetSelectionArgs args);
     public abstract bool Execute(TargetSelectionArgs args);

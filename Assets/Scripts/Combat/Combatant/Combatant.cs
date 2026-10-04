@@ -11,7 +11,6 @@ public class Combatant : MonoBehaviour, ITarget
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
-    [SerializeField] private TargetRelationshipType allegiance; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private TargetSelectionVisualizer Visualizer;
     [SerializeField] private Combatant[] targets; // TODO: Might be obsolete/deprecated.
 
@@ -72,7 +71,7 @@ public class Combatant : MonoBehaviour, ITarget
         {
             Combat = combat,
             Invoker = this,
-            Targets = args.Targets
+            Targets = args.Targets,
         };
 
         Skill skill = GetSkillFromActionType(args.ActionType, args.ActionIndex);
@@ -101,23 +100,6 @@ public class Combatant : MonoBehaviour, ITarget
     {
         return gameObject;
     }
-
-    public TargetRelationshipType GetAllegiance() => allegiance;
-
-    public TargetRelationshipType GetTargetRelationshipTo(ITarget other)
-    {
-        if (allegiance == TargetRelationshipType.None)
-            return TargetRelationshipType.None;
-
-        TargetRelationshipType otherRelationship = other.GetAllegiance();
-
-        if (otherRelationship == TargetRelationshipType.None)
-            return TargetRelationshipType.None;
-
-        return allegiance == otherRelationship ? TargetRelationshipType.Friendly : TargetRelationshipType.Hostile;
-    }
-
-
 
     public float GetResourceAmount(CombatantResourceType resourceType) => stats.GetResourceAmount(resourceType);
     public void UpdateResource(CombatantResourceType resourceType, float amount) => stats.UpdateResource(resourceType, amount);

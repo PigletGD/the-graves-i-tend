@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &380675968545232588
+--- !u!1001 &6667114705905277510
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,56 +10,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1175
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1175
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1175
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2724737080336842819, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_Size.x
-      value: 1.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 2724737080336842819, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_Size.y
-      value: 3.2216244
-      objectReference: {fileID: 0}
-    - target: {fileID: 2724737080336842819, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_Offset.y
-      value: 1.4090462
-      objectReference: {fileID: 0}
     - target: {fileID: 2732537615138397948, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: characterData
       value: 
-      objectReference: {fileID: 11400000, guid: 8df25a2c43633234db3a8efaaa66198a, type: 2}
+      objectReference: {fileID: 11400000, guid: 74f2a8f309c261845a920883cd5111e9, type: 2}
     - target: {fileID: 3932645160479833842, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -102,27 +70,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3965256510140212215, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Size.x
-      value: 17.772974
+      value: 18.46
       objectReference: {fileID: 0}
     - target: {fileID: 3965256510140212215, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Size.y
-      value: 27.2
+      value: 18.32
       objectReference: {fileID: 0}
     - target: {fileID: 3965256510140212215, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3243233969951032530, guid: a3c8d3767340ac247b2436e39d734861, type: 3}
+      objectReference: {fileID: 2160090853450297750, guid: cddb1d4b79a7c304aadb5c8c2b0b1aa9, type: 3}
     - target: {fileID: 3965256510140212215, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4398218371836762104, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Name
-      value: DoukiSprite
+      value: Air Mandragora A Sprite
       objectReference: {fileID: 0}
     - target: {fileID: 7153848428233125620, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Name
-      value: DoukiCombatant_Test
+      value: Air Mandragora A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

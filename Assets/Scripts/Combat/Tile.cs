@@ -57,13 +57,4 @@ public class Tile : MonoBehaviour, ITarget
         return gameObject;
     }
 
-    public TargetRelationshipType GetAllegiance()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public TargetRelationshipType GetTargetRelationshipTo(ITarget other)
-    {
-        throw new System.NotImplementedException();
-    }
 }

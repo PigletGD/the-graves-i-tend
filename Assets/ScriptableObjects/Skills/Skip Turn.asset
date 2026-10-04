@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Skip Turn
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
-  skillTargetingMode: 5
+  visualTargetingMode: 5
   attempts:
-  - rid: 2942834149664227399
+  - rid: 2942834173696278597
   conditions: []
   resourceCosts: []
   references:
     version: 2
     RefIds:
-    - rid: 2942834149664227399
-      type: {class: Attempt_Conditional, ns: , asm: Assembly-CSharp}
+    - rid: 2942834173696278597
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
       data:
+        targetingMode: 0
         effects:
-        - rid: 2942834149664227400
-        conditions: []
-    - rid: 2942834149664227400
+        - rid: 2942834173696278598
+    - rid: 2942834173696278598
       type: {class: Effect_ManaRecover, ns: , asm: Assembly-CSharp}
       data:
         mana: 2

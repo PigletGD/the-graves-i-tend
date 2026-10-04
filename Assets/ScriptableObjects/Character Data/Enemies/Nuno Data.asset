@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a84ec836f98db24d951673c3b2af3ad, type: 3}
-  m_Name: Douki
+  m_Name: Nuno Data
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: Douki
-  characterTitle: The Gravekeeper
-  portrait: {fileID: 7751706147673198722, guid: 0d82c10474e0515428b1fc138015d9c9, type: 3}
+  characterName: Nuno
+  characterTitle: 
+  portrait: {fileID: 0}
   basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
   skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
   skills: []
   maxHP: 100
   maxMP: 9
-  speed: 100
+  baseAtk: 10
+  speed: 33

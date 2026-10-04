@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a84ec836f98db24d951673c3b2af3ad, type: 3}
-  m_Name: Astra
+  m_Name: Astra Data
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: Astra
   characterTitle: The Stargazer

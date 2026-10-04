@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3965256510140212215}
   - component: {fileID: 7868829996477448352}
   m_Layer: 0
-  m_Name: BaseSprite
+  m_Name: Base Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 28.124706, y: 33.690002}
@@ -159,10 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Combatant
   isPlayerControlled: 0
   characterData: {fileID: 0}
-  skills: []
-  targetRelationship: 0
-  targets: []
   Visualizer: {fileID: 7868829996477448352}
+  targets: []
 --- !u!61 &2724737080336842819
 BoxCollider2D:
   m_ObjectHideFlags: 0

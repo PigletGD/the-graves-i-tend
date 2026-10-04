@@ -6,7 +6,7 @@ public class Attempt_Conditional : Attempt
 {
     [SerializeReference, SerializeReferenceDropdown] public TargetSelectionCondition[] conditions;
 
-    public override void Execute(TargetSelectionArgs args)
+    protected override void ExecuteAttempt(TargetSelectionArgs args, ITarget[] targets)
     {
         foreach (TargetSelectionCondition condition in conditions)
         {
@@ -17,7 +17,7 @@ public class Attempt_Conditional : Attempt
             }
         }
 
-        foreach (ITarget target in args.Targets)
+        foreach (ITarget target in targets)
         {
             foreach (Effect effect in effects)
             {

@@ -89,10 +89,13 @@ public class PopupEffectUISpawner : MonoBehaviour
 
     private void OnAttemptFailed(TargetSelectionArgs args, TargetSelectionCondition condition)
     {
-        foreach(ITarget target in args.Targets)
+        if (args.Targets == null)
+            return;
+
+        foreach (ITarget target in args.Targets)
         {
             if (target is Combatant combatant)
-                ShowPopup(combatant, "Missed!");
+                ShowPopup(combatant, "Failed!");
         }
     }
     

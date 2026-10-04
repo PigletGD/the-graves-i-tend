@@ -41,13 +41,13 @@ public class TargetSelector : MonoBehaviour
         pointAction.Disable();
     }
 
-    public void SetTargetingSelectorEnabled(bool isEnabled, SkillTargetingMode skillTargetingMode = SkillTargetingMode.None, ITarget[] targets = null)
+    public void SetTargetingSelectorEnabled(bool isEnabled, TargetSelectionMode visualTargetingMode = TargetSelectionMode.None, ITarget[] targets = null)
     {
         isTargetingEnabled = isEnabled;
         targetableTargets.Clear();
         currentHoveredTarget = null;
 
-        isTargetingAll = skillTargetingMode == SkillTargetingMode.AllAllies || skillTargetingMode == SkillTargetingMode.AllEnemies;
+        isTargetingAll = visualTargetingMode == TargetSelectionMode.AllAllies || visualTargetingMode == TargetSelectionMode.AllEnemies;
         if (isEnabled)
             targetableTargets.AddRange(targets);
 

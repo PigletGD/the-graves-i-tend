@@ -77,7 +77,6 @@ public class Combat : MonoBehaviour
         Invoke(nameof(StartNextTurn), 1f);
     }
 
-    // TEMPORARY
     public void OnActionSelected(CombatActionType actionType, int index)
     {
         if (!canPlayerAct)
@@ -86,28 +85,29 @@ public class Combat : MonoBehaviour
         combatantActionArgs = new CombatantActionArgs(actionType, index);
         Skill selectedSkill = activeCombatant.GetSkillFromActionType(actionType, index);
 
-        switch (selectedSkill.SkillTargetingMode)
+        switch (selectedSkill.VisualTargetingMode)
         {
-            case SkillTargetingMode.SingleEnemy:
-            case SkillTargetingMode.AllEnemies:
-                StartTargetSelection(selectedSkill.SkillTargetingMode, EnemyCombatants.Cast<ITarget>().ToArray());
+            case TargetSelectionMode.SingleEnemy:
+            case TargetSelectionMode.AllEnemies:
+                StartTargetSelection(selectedSkill.VisualTargetingMode, EnemyCombatants.Cast<ITarget>().ToArray());
                 break;
-            case SkillTargetingMode.SingleAlly:
-            case SkillTargetingMode.AllAllies:
-                StartTargetSelection(selectedSkill.SkillTargetingMode, PlayerCombatants.Cast<ITarget>().ToArray());
+            case TargetSelectionMode.SingleAlly:
+            case TargetSelectionMode.AllAllies:
+                StartTargetSelection(selectedSkill.VisualTargetingMode, PlayerCombatants.Cast<ITarget>().ToArray());
                 break;
-            case SkillTargetingMode.Self:
-                StartTargetSelection(selectedSkill.SkillTargetingMode, new[] { activeCombatant }.Cast<ITarget>().ToArray());
+            case TargetSelectionMode.None:
+            case TargetSelectionMode.Self:
+                StartTargetSelection(selectedSkill.VisualTargetingMode, new[] { activeCombatant }.Cast<ITarget>().ToArray());
                 break;
             default:
-                Debug.LogWarning($"Unhandled skill targeting mode: {selectedSkill.SkillTargetingMode}");
+                Debug.LogWarning($"Unhandled visual targeting mode: {selectedSkill.VisualTargetingMode}");
                 break;
         }
     }
 
-    private void StartTargetSelection(SkillTargetingMode targetingMode, ITarget[] targets)
+    private void StartTargetSelection(TargetSelectionMode visualTargetingMode, ITarget[] targets)
     {
-        targeting.SetTargetingSelectorEnabled(true, targetingMode, targets);
+        targeting.SetTargetingSelectorEnabled(true, visualTargetingMode, targets);
     }
 
     private void OnTargetsSelected(ITarget[] selectedTargets)
@@ -129,15 +129,15 @@ public class Combat : MonoBehaviour
             bool skillExecuted = false;
             int skillIndex = UnityEngine.Random.Range(0, skills.Length);
             Skill skill = skills[skillIndex];
-            Combatant[] targets = skill.SkillTargetingMode switch
+            ITarget[] targets = skill.VisualTargetingMode switch
             {
-                SkillTargetingMode.SingleEnemy => new[] { SelectRandomCombatant(PlayerCombatants) },
-                SkillTargetingMode.AllEnemies => PlayerCombatants.ToArray(),
-                SkillTargetingMode.SingleAlly => new[] { SelectRandomCombatant(EnemyCombatants) },
-                SkillTargetingMode.AllAllies => EnemyCombatants.ToArray(),
-                SkillTargetingMode.Self => new[] { activeCombatant },
-                SkillTargetingMode.None => Array.Empty<Combatant>(),
-                _ => null
+                TargetSelectionMode.None => Array.Empty<ITarget>(),
+                TargetSelectionMode.SingleEnemy => new ITarget[] { SelectRandomCombatant(PlayerCombatants) },
+                TargetSelectionMode.AllEnemies => PlayerCombatants.Cast<ITarget>().ToArray(),
+                TargetSelectionMode.SingleAlly => new ITarget[] { SelectRandomCombatant(EnemyCombatants) },
+                TargetSelectionMode.AllAllies => EnemyCombatants.Cast<ITarget>().ToArray(),
+                TargetSelectionMode.Self => new ITarget[] { activeCombatant },
+                _ => throw new ArgumentOutOfRangeException(nameof(skill.VisualTargetingMode), skill.VisualTargetingMode, "Unsupported attempt targeting mode."),
             };
 
             if (TryExecuteAction(new(CombatActionType.Skill, skillIndex, targets)))
@@ -148,9 +148,9 @@ public class Combat : MonoBehaviour
         }
 
         if (UnityEngine.Random.Range(0, 2) == 0)
-            TryExecuteAction(new(CombatActionType.Skip, targets: new[] { activeCombatant }));
+            TryExecuteAction(new(CombatActionType.Skip, targets: new ITarget[] { activeCombatant }));
         else
-            TryExecuteAction(new(CombatActionType.Attack, targets: new[] { SelectRandomCombatant(PlayerCombatants) }));
+            TryExecuteAction(new(CombatActionType.Attack, targets: new ITarget[] { SelectRandomCombatant(PlayerCombatants) }));
             
         static Combatant SelectRandomCombatant(IEnumerable<Combatant> combatants)
         {
@@ -187,13 +187,7 @@ public class CombatantActionArgs
     public int ActionIndex { get; }
     public ITarget[] Targets { get; private set; }
 
-    public CombatantActionArgs(CombatActionType actionType, int actionIndex = -1) : this(actionType, actionIndex, null)
-    {
-        ActionType = actionType;
-        ActionIndex = actionIndex;
-    }
-
-    public CombatantActionArgs(CombatActionType actionType, int actionIndex = -1, Combatant[] targets = null)
+    public CombatantActionArgs(CombatActionType actionType, int actionIndex = -1, ITarget[] targets = null)
     {
         ActionType = actionType;
         ActionIndex = actionIndex;
