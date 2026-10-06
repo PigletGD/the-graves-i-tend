@@ -5,6 +5,7 @@ using UnityEngine;
 public class CombatUI : MonoBehaviour
 {
     public event Action<CombatActionType, int> OnActionButton;
+    public event Action OnTargetingCancelRequested;
 
     // TODO: Maybe combatant panel should be in its own class for handling?
     [SerializeField] private PlayerCombatantPanel playerCombatantPanelPrefab;
@@ -49,6 +50,7 @@ public class CombatUI : MonoBehaviour
         Combat.OnCombatEnded += OnCombatEnded;
 
         combatantActionsMenu.OnMenuActionSelected += OnActionButtonSelected;
+        combatantActionsMenu.OnTargetingCancelRequested += OnTargetingCancelRequest;
     }
 
     private void OnDisable()
@@ -58,6 +60,7 @@ public class CombatUI : MonoBehaviour
         Combat.OnCombatEnded -= OnCombatEnded;
 
         combatantActionsMenu.OnMenuActionSelected -= OnActionButtonSelected;
+        combatantActionsMenu.OnTargetingCancelRequested -= OnTargetingCancelRequest;
     }
 
     public void OnTurnStarted(Combatant combatant)
@@ -96,5 +99,10 @@ public class CombatUI : MonoBehaviour
     private void OnActionButtonSelected(CombatActionType actionType, int index)
     {
         OnActionButton?.Invoke(actionType, index);
+    }
+
+    private void OnTargetingCancelRequest()
+    {
+        OnTargetingCancelRequested?.Invoke();
     }
 }

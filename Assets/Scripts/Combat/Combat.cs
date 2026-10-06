@@ -37,13 +37,17 @@ public class Combat : MonoBehaviour
     private void OnEnable()
     {
         ui.OnActionButton += OnActionSelected;
+        ui.OnTargetingCancelRequested += StopTargetSelection;
         targeting.OnTargetsSelected += OnTargetsSelected;
+        targeting.OnHoveredTargetChanged += OnHoveredTargetChanged;
     }
 
     private void OnDisable()
     {
         ui.OnActionButton -= OnActionSelected;
+        ui.OnTargetingCancelRequested -= StopTargetSelection;
         targeting.OnTargetsSelected -= OnTargetsSelected;
+        targeting.OnHoveredTargetChanged -= OnHoveredTargetChanged;
     }
 
     private void StartCombat()
@@ -63,6 +67,7 @@ public class Combat : MonoBehaviour
         else
         {
             canPlayerAct = activeCombatant.IsPlayerControlled;
+            arena.SetCurrentCombatant(activeCombatant);
             OnTurnStarted?.Invoke(activeCombatant);
 
             Invoke(nameof(TryEnemyAct), 1f); // Not recommended to Invoke. This is only done so that we see the enemy "thinking".
@@ -72,9 +77,15 @@ public class Combat : MonoBehaviour
     private void FinishCurrentTurn()
     {
         CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
+        arena.SetCurrentCombatant(null);
         OnTurnEnded?.Invoke(activeCombatant);
 
         Invoke(nameof(StartNextTurn), 1f);
+    }
+
+    private void OnHoveredTargetChanged(ITarget target)
+    {
+        arena.SetHoveredCombatant(target as Combatant);
     }
 
     public void OnActionSelected(CombatActionType actionType, int index)
@@ -110,9 +121,14 @@ public class Combat : MonoBehaviour
         targeting.SetTargetingSelectorEnabled(true, visualTargetingMode, targets);
     }
 
-    private void OnTargetsSelected(ITarget[] selectedTargets)
+    private void StopTargetSelection()
     {
         targeting.SetTargetingSelectorEnabled(false);
+    }
+
+    private void OnTargetsSelected(ITarget[] selectedTargets)
+    {
+        StopTargetSelection();
         combatantActionArgs.SetTargets(selectedTargets);
         TryExecuteAction(combatantActionArgs);
     }

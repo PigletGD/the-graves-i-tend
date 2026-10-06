@@ -5,6 +5,7 @@ using UnityEngine;
 public class CombatantActionMenu : MonoBehaviour
 {
     public event Action<CombatActionType, int> OnMenuActionSelected;
+    public event Action OnTargetingCancelRequested;
 
     [SerializeField] private CombatantActionSubmenu combatActionSubmenu;
 
@@ -87,9 +88,10 @@ public class CombatantActionMenu : MonoBehaviour
         OpenSubmenu(CombatActionType.Item);
     }
 
-    public void OnOpenMenu()
+    public void OnCloseSubmenuButton()
     {
         gameObject.SetActive(true);
+        OnTargetingCancelRequested?.Invoke();
     }
 
     private void OpenSubmenu(CombatActionType actionType)
@@ -100,6 +102,7 @@ public class CombatantActionMenu : MonoBehaviour
         gameObject.SetActive(false);
         combatActionSubmenu.gameObject.SetActive(true);
         combatantActionDescriptionMenu.gameObject.SetActive(false);
+        OnTargetingCancelRequested?.Invoke();
     }
 
     public void HideSubmenus()

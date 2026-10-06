@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Basic Attack
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
+  description: 
   visualTargetingMode: 1
   attempts:
   - rid: 2942834149664227397

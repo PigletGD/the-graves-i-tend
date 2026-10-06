@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class TargetSelector : MonoBehaviour
 {
     public event Action<ITarget[]> OnTargetsSelected;
+    public event Action<ITarget> OnHoveredTargetChanged;
 
     private bool isTargetingEnabled;
     private ITarget currentHoveredTarget;
@@ -46,6 +47,7 @@ public class TargetSelector : MonoBehaviour
         isTargetingEnabled = isEnabled;
         targetableTargets.Clear();
         currentHoveredTarget = null;
+        OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
 
         isTargetingAll = visualTargetingMode == TargetSelectionMode.AllAllies || visualTargetingMode == TargetSelectionMode.AllEnemies;
         if (isEnabled)
@@ -86,6 +88,8 @@ public class TargetSelector : MonoBehaviour
         currentHoveredTarget = newHoveredTarget;
         if (currentHoveredTarget != null)
             ShowTargetVisualizer(currentHoveredTarget);
+
+        OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
     }
 
     private void ShowTargetVisualizer(ITarget target)

@@ -82,6 +82,16 @@ MonoBehaviour:
   - {fileID: 6463219095405231443}
   rightSidePositions:
   - {fileID: 5482521408832918204}
+  allyTileData:
+    baseTile: {fileID: -1274445775993155331, guid: c0de155259b920a45a850f864f9f81ee, type: 3}
+    unoccupiedSprite: {fileID: -4768653096021127115, guid: 6b3d739e8f299f34195462216eea7036, type: 3}
+    currentTurnSprite: {fileID: -1187843640329442069, guid: f07b609b34cd39d4d9d9f3d2c3dd317e, type: 3}
+    targetedSprite: {fileID: 5606680089603763112, guid: df54096b878fe104c84cca5e1160f76c, type: 3}
+  enemyTileData:
+    baseTile: {fileID: 2006413731135493715, guid: 16142ad86f4fc3a4b9cdc6e31c14788a, type: 3}
+    unoccupiedSprite: {fileID: -7778896424610023130, guid: 25065952a35a1294ba42d253ca48d0dd, type: 3}
+    currentTurnSprite: {fileID: 3264998785116148363, guid: f8b06286dd8c46541beff5ef22a57f61, type: 3}
+    targetedSprite: {fileID: 7562969298674925436, guid: 70b3b76d6bd99724d9af571cc35e79c6, type: 3}
 --- !u!1 &3117631122916954505
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,5 +2,7 @@ using UnityEngine;
 
 public class CombatArenaRow : MonoBehaviour
 {
-    public Transform[] combatantPositions;
+    [SerializeField] private CombatArenaTile[] combatantTiles;
+
+    public CombatArenaTile[] CombatantTiles => combatantTiles;
 }

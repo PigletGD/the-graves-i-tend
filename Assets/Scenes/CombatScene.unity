@@ -541,6 +541,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 41382043734959144, guid: 18025e3415881cc4da9a621ed5ff50ed, type: 3}
+      propertyPath: isPlayerControlled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 41382043734959144, guid: 18025e3415881cc4da9a621ed5ff50ed, type: 3}
       propertyPath: targetRelationship
       value: 1
       objectReference: {fileID: 0}
@@ -624,99 +628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b55504830ac8548a2ca82ba658da7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatUIManager
---- !u!1001 &914898213
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skills.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: isPlayerControlled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: targetRelationship
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skillSlots.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skills.Array.data[0].skill
-      value: 
-      objectReference: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skillSlots.Array.data[0].skill
-      value: 
-      objectReference: {fileID: 11400000, guid: 3437b848a1ad95f4492058e7e776d5c4, type: 2}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skills.Array.data[0].isLearned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skillSlots.Array.data[0].isLearned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354375961912604728, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_Name
-      value: DoukiCombatant (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354375961912604728, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
 --- !u!1 &1037809503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,99 +1178,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b553c14573faf4144af87997f7212060, type: 3}
---- !u!1001 &1832145437
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skills.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: isPlayerControlled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: targetRelationship
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skillSlots.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skills.Array.data[0].skill
-      value: 
-      objectReference: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skillSlots.Array.data[0].skill
-      value: 
-      objectReference: {fileID: 11400000, guid: 3437b848a1ad95f4492058e7e776d5c4, type: 2}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skills.Array.data[0].isLearned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351867180726683696, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: skillSlots.Array.data[0].isLearned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736827883078133822, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354375961912604728, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_Name
-      value: DoukiCombatant (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7354375961912604728, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 04d60fde942a51d4b95238170d041c44, type: 3}
 --- !u!1 &1926496778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,8 +1318,6 @@ SceneRoots:
   - {fileID: 1569054243}
   - {fileID: 1926496780}
   - {fileID: 1276477490}
-  - {fileID: 914898213}
-  - {fileID: 1832145437}
   - {fileID: 322468229}
   - {fileID: 1596793292}
   - {fileID: 3441807080513577869}

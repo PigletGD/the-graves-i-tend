@@ -4,30 +4,84 @@ public class CombatArena : MonoBehaviour
 {
     [SerializeField] private CombatArenaRow[] leftSidePositions;
     [SerializeField] private CombatArenaRow[] rightSidePositions;
+    [SerializeField] private CombatArenaTileData allyTileData;
+    [SerializeField] private CombatArenaTileData enemyTileData;
+
+    private Combatant currentCombatant;
+    private Combatant hoveredCombatant;
 
     public void PositionCombatants(Combatant[] leftSideCombatants, Combatant[] rightSideCombatants)
     {
-        PositionCombatants(leftSideCombatants, leftSidePositions, false);
-        PositionCombatants(rightSideCombatants, rightSidePositions, true);
+        currentCombatant = null;
+        hoveredCombatant = null;
+
+        PositionCombatants(leftSideCombatants, leftSidePositions, false, true);
+        PositionCombatants(rightSideCombatants, rightSidePositions, true, false);
     }
 
-    private void PositionCombatants(Combatant[] combatants, CombatArenaRow[] rows, bool shouldFaceOpposite)
+    private void PositionCombatants(Combatant[] combatants, CombatArenaRow[] rows, bool isRightSide, bool isAlly)
     {
         int combatantIndex = 0;
 
         foreach (CombatArenaRow row in rows)
         {
-            foreach (Transform position in row.combatantPositions)
+            foreach (CombatArenaTile tile in row.CombatantTiles)
             {
+                CombatArenaTileData tileData = isAlly ? allyTileData : enemyTileData;
+                tile.SetBaseTile(tileData.BaseTile);
+                tile.SetTile(null, tileData);
+
                 if (combatantIndex >= combatants.Length)
-                    return;
+                {
+                    tile.SetModifierTile(tileData.UnoccupiedSprite);
+                    continue;
+                }
 
                 Combatant combatant = combatants[combatantIndex++];
-                combatant.transform.SetParent(position, false);
+                tile.SetTile(combatant, tileData);
+                tile.SetModifierTile(null);
+                combatant.transform.SetParent(tile.CombatantPosition, false);
                 combatant.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-                if (shouldFaceOpposite)
+                if (isRightSide)
                     combatant.transform.localScale = new(-combatant.transform.localScale.x, combatant.transform.localScale.y, combatant.transform.localScale.z);
+
+            }
+        }
+    }
+
+    public void SetCurrentCombatant(Combatant combatant)
+    {
+        currentCombatant = combatant;
+        RefreshCombatantTiles();
+    }
+
+    public void SetHoveredCombatant(Combatant combatant)
+    {
+        hoveredCombatant = combatant;
+        RefreshCombatantTiles();
+    }
+
+    private void RefreshCombatantTiles()
+    {
+        RefreshCombatantTiles(leftSidePositions);
+        RefreshCombatantTiles(rightSidePositions);
+    }
+
+    private void RefreshCombatantTiles(CombatArenaRow[] rows)
+    {
+        foreach (CombatArenaRow row in rows)
+        {
+            foreach (CombatArenaTile tile in row.CombatantTiles)
+            {
+                Combatant combatant = tile.Combatant;
+                if (combatant == null)
+                    continue;
+
+                Sprite modifierSprite = combatant == hoveredCombatant ? tile.TileData.TargetedSprite
+                    : combatant == currentCombatant ? tile.TileData.CurrentTurnSprite : null;
+
+                tile.SetModifierTile(modifierSprite);
             }
         }
     }

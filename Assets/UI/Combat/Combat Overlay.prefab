@@ -1693,7 +1693,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4335408848584486268}
         m_TargetAssemblyTypeName: CombatantActionMenu, Assembly-CSharp
-        m_MethodName: OnOpenMenu
+        m_MethodName: OnCloseSubmenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
