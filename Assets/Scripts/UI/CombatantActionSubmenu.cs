@@ -7,7 +7,7 @@ public class CombatantActionSubmenu : MonoBehaviour
     public event Action<int> OnActionButtonSelected;
 
     [SerializeField] private CombatantActionButton combatantActionButtonPrefab;
-    
+
     private List<CombatantActionButton> combatantActionButtons = new();
 
     public void UpdateActions(Combatant combatant)

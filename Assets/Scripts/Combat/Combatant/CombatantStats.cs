@@ -28,14 +28,14 @@ public class CombatantStats
     /// </summary>
     public float ActionValue => 10000f / currentSpeed;
 
-    public void Initialize(CharacterData characterData)
+    public void Initialize(CharacterData characterData, float startingMP)
     {
         maxHP = characterData.MaxHP;
         maxMP = characterData.MaxMP;
         maxSpeed = characterData.Speed;
 
         currentHP = maxHP;
-        currentMP = maxMP; // Reminder to move this literal out.
+        currentMP = startingMP; // Reminder to move this literal out.
         currentSpeed = maxSpeed;
 
         currentElation = 0;

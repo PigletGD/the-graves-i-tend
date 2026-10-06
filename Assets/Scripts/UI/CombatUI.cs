@@ -1,23 +1,45 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatUI : MonoBehaviour
 {
     public event Action<CombatActionType, int> OnActionButton;
 
-    [SerializeField] private PlayerCombatantPanel playerCombatantPanel; // TODO: In its own class
-    [SerializeField] private EnemyCombatantPanel enemyCombatantPanel; // TODO: In its own class
+    // TODO: Maybe combatant panel should be in its own class for handling?
+    [SerializeField] private PlayerCombatantPanel playerCombatantPanelPrefab;
+    [SerializeField] private Transform playerCombatantPanelParent;
+    [SerializeField] private EnemyCombatantPanel enemyCombatantPanelPrefab;
+    [SerializeField] private Transform enemyCombatantPanelParent;
+
 
     [SerializeField] private TurnOrderPanel turnOrderPanel;
     [SerializeField] private CombatantActionMenu combatantActionsMenu;
     [SerializeField] private CombatResultsPanel combatResultsPanel;
 
+    private List<PlayerCombatantPanel> playerCombatantPanels = new();
+    private List<EnemyCombatantPanel> enemyCombatantPanels = new();
+
     // TODO: Clean method.
     public void Initialize(Combat combat)
     {
-        playerCombatantPanel.Initialize(combat.PlayerCombatants.FirstOrDefault());
-        enemyCombatantPanel.Initialize(combat.EnemyCombatants.FirstOrDefault());
+        InitializeCombatantPanels(combat.PlayerCombatants, playerCombatantPanelPrefab, playerCombatantPanelParent, playerCombatantPanels);
+        InitializeCombatantPanels(combat.EnemyCombatants, enemyCombatantPanelPrefab, enemyCombatantPanelParent, enemyCombatantPanels);
+    }
+
+    private void InitializeCombatantPanels<TPanel>(IReadOnlyList<Combatant> combatants, TPanel panelTemplate, Transform panelParent, List<TPanel> panels) where TPanel : CombatantPanel
+    {
+        while (panels.Count < combatants.Count)
+            panels.Add(Instantiate(panelTemplate, panelParent));
+
+        for (int i = 0; i < panels.Count; i++)
+        {
+            bool hasCombatant = i < combatants.Count;
+            panels[i].gameObject.SetActive(hasCombatant);
+
+            if (hasCombatant)
+                panels[i].Initialize(combatants[i]);
+        }
     }
 
     private void OnEnable()
@@ -65,6 +87,7 @@ public class CombatUI : MonoBehaviour
         bool isPlayerControlled = combatant != null && combatant.IsPlayerControlled;
 
         combatantActionsMenu.gameObject.SetActive(isPlayerControlled);
+        combatantActionsMenu.HideSubmenus();
 
         if (isPlayerControlled)
             combatantActionsMenu.SetCombatant(combatant);

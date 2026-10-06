@@ -13,7 +13,11 @@ public class CombatantActionButton : MonoBehaviour
 
     private void Awake()
     {
-        button.onClick.AddListener(() => OnClick?.Invoke(Index));
+        button.onClick.AddListener(() =>
+        {
+            button.Select();
+            OnClick?.Invoke(Index);
+        });
     }
 
     public void UpdateCombatantActionButton(int index, string action)

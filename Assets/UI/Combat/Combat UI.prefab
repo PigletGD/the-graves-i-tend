@@ -224,8 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b55504830ac8548a2ca82ba658da7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatUIManager
-  playerCombatantPanel: {fileID: 1775367470177173885}
-  enemyCombatantPanel: {fileID: 4113859750343012314}
+  playerCombatantPanelPrefab: {fileID: 5632185632702083795, guid: fa2e156bf3141a844a2ba81c413d2c76, type: 3}
+  playerCombatantPanelParent: {fileID: 1371860270926172851}
+  enemyCombatantPanelPrefab: {fileID: 2012759563943949370, guid: a1f4e6a580f700e46909ef55bbd349fa, type: 3}
+  enemyCombatantPanelParent: {fileID: 7418416890299904993}
   turnOrderPanel: {fileID: 7350890874625575095}
   combatantActionsMenu: {fileID: 7337442819869503312}
   combatResultsPanel: {fileID: 8966939945243617064}
@@ -818,28 +820,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
---- !u!114 &1775367470177173885 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4709355022080050001, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+--- !u!224 &1371860270926172851 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5399940867307851935, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
   m_PrefabInstance: {fileID: 6483391526586630700}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 141527b739ea8024594058416db442d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombatantPanel
---- !u!114 &4113859750343012314 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6984801116018028022, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
-  m_PrefabInstance: {fileID: 6483391526586630700}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5915bfdd13f90947b38280393344e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyCombatantPanel
 --- !u!224 &5848083853870077865 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 635345621102286213, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
@@ -867,6 +852,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d695b0108b61e4791b93caea5cf5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionTurnPanel
+--- !u!224 &7418416890299904993 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4542479343282827725, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}
+  m_PrefabInstance: {fileID: 6483391526586630700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8966939945243617064 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2704792424935908612, guid: 7504cef8711f23b45a86f6d6157978a5, type: 3}

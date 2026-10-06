@@ -12,9 +12,11 @@ public enum TargetSelectionMode
 
 public abstract class Skill : ScriptableObject
 {
+    [SerializeField] private string description;
     [SerializeField] private TargetSelectionMode visualTargetingMode = TargetSelectionMode.SingleEnemy;
     [SerializeReference, SerializeReferenceDropdown] protected Attempt[] attempts;
 
+    public string Description => description;
     public TargetSelectionMode VisualTargetingMode => visualTargetingMode;
 
     public abstract bool CanExecute(TargetSelectionArgs args);

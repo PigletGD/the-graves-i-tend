@@ -11,8 +11,9 @@ public class Combatant : MonoBehaviour, ITarget
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CombatantStats stats; // Temporary. This should be passed in when creating the combatant.
+    [SerializeField] private float startingMP = 9; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private TargetSelectionVisualizer Visualizer;
-    [SerializeField] private Combatant[] targets; // TODO: Might be obsolete/deprecated.
+    [SerializeField] private BoxCollider2D boxCollider;
 
     private CombatantStatusEffects statusEffectsController;
 
@@ -21,13 +22,14 @@ public class Combatant : MonoBehaviour, ITarget
 
     public CharacterData CharacterData => characterData;
     public CombatantStats Stats => stats;
+    public BoxCollider2D BoxCollider => boxCollider;
 
 
     public CombatantStatusEffects StatusEffects => statusEffectsController;
 
     private void Awake()
     {
-        stats.Initialize(characterData);
+        stats.Initialize(characterData, startingMP);
         statusEffectsController = new();
 
         Visualizer?.SetToUnselectedColor();
@@ -83,12 +85,6 @@ public class Combatant : MonoBehaviour, ITarget
         }
         
         return false;
-    }
-
-    // TODO: Refactor this so that we get targets from the selection.
-    public ITarget[] GetTargets(Combat _)
-    {
-        return targets;
     }
 
     public TargetSelectionVisualizer GetSelectionVisualizer()

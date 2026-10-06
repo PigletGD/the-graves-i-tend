@@ -7,11 +7,11 @@ public class CombatArena : MonoBehaviour
 
     public void PositionCombatants(Combatant[] leftSideCombatants, Combatant[] rightSideCombatants)
     {
-        PositionCombatants(leftSideCombatants, leftSidePositions);
-        PositionCombatants(rightSideCombatants, rightSidePositions);
+        PositionCombatants(leftSideCombatants, leftSidePositions, false);
+        PositionCombatants(rightSideCombatants, rightSidePositions, true);
     }
 
-    private void PositionCombatants(Combatant[] combatants, CombatArenaRow[] rows)
+    private void PositionCombatants(Combatant[] combatants, CombatArenaRow[] rows, bool shouldFaceOpposite)
     {
         int combatantIndex = 0;
 
@@ -25,6 +25,9 @@ public class CombatArena : MonoBehaviour
                 Combatant combatant = combatants[combatantIndex++];
                 combatant.transform.SetParent(position, false);
                 combatant.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+                if (shouldFaceOpposite)
+                    combatant.transform.localScale = new(-combatant.transform.localScale.x, combatant.transform.localScale.y, combatant.transform.localScale.z);
             }
         }
     }

@@ -21,36 +21,24 @@ PrefabInstance:
       value: 0.126
       objectReference: {fileID: 0}
     - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1775569374697490496, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2724737080336842819, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
+      propertyPath: m_Size.x
+      value: 1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724737080336842819, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Size.y
-      value: 3.9929726
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724737080336842819, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2724737080336842819, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Offset.y
-      value: 1.6314143
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2732537615138397948, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: characterData
@@ -97,6 +85,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3965256510140212215, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965256510140212215, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Size.x
       value: 31.945347
       objectReference: {fileID: 0}
@@ -118,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7153848428233125620, guid: f915204a69f99c14ea54548aeda5fcde, type: 3}
       propertyPath: m_Name
-      value: JaqCombatant_Test
+      value: Jaq Combatant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

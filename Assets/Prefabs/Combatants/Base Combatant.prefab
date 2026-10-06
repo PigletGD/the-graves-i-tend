@@ -159,8 +159,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Combatant
   isPlayerControlled: 0
   characterData: {fileID: 0}
+  startingMP: 9
   Visualizer: {fileID: 7868829996477448352}
-  targets: []
+  boxCollider: {fileID: 2724737080336842819}
 --- !u!61 &2724737080336842819
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1.4054092}
+  m_Offset: {x: 0, y: 1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -205,7 +206,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.05, y: 3.8108184}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1389614179967389535
 MonoBehaviour:
