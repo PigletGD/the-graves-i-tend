@@ -49,6 +49,12 @@ public static class CombatTurnOrder
         }
     }
 
+    public static void RemoveCombatant(Combatant combatant)
+    {
+        if (actionValues.Remove(combatant))
+            OnTurnOrderUpdated?.Invoke();
+    }
+
     public static List<(Combatant combatant, float actionValue)> GetTurnOrderPrediction(int turnCount)
     {
         List<(Combatant combatant, float actionValue)> prediction = new();

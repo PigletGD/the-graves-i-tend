@@ -18,7 +18,7 @@ public class Combatant : MonoBehaviour, ITarget
     private CombatantStatusEffects statusEffectsController;
 
     public bool IsPlayerControlled => isPlayerControlled;
-    public bool IsAlive => stats.CurrentHP > 0;
+    public bool IsDead => stats.CurrentHP <= 0;
 
     public CharacterData CharacterData => characterData;
     public CombatantStats Stats => stats;

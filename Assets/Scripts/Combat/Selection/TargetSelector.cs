@@ -51,7 +51,10 @@ public class TargetSelector : MonoBehaviour
 
         isTargetingAll = visualTargetingMode == TargetSelectionMode.AllAllies || visualTargetingMode == TargetSelectionMode.AllEnemies;
         if (isEnabled)
-            targetableTargets.AddRange(targets);
+        {
+            foreach (ITarget target in targets)
+                targetableTargets.Add(target);
+        }
 
         ClearTargetVisualizers();
         if (isEnabled && isTargetingAll)
@@ -67,7 +70,10 @@ public class TargetSelector : MonoBehaviour
         if (TryGetHoveredTarget(out ITarget target))
         {
             if (isTargetingAll)
-                OnTargetsSelected?.Invoke(targetableTargets.ToArray());
+            {
+                if (targetableTargets.Count > 0)
+                    OnTargetsSelected?.Invoke(targetableTargets.ToArray());
+            }
             else
                 OnTargetsSelected?.Invoke(new[] { target });
         }

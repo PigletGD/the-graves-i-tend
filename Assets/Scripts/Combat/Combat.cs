@@ -60,32 +60,11 @@ public class Combat : MonoBehaviour
     {
         activeCombatant = CombatTurnOrder.GetNextCombatant();
 
-        if (!activeCombatant.IsAlive)
-        {
-            OnCombatEnded?.Invoke(!activeCombatant.IsPlayerControlled);
-        }
-        else
-        {
-            canPlayerAct = activeCombatant.IsPlayerControlled;
-            arena.SetCurrentCombatant(activeCombatant);
-            OnTurnStarted?.Invoke(activeCombatant);
+        canPlayerAct = activeCombatant.IsPlayerControlled;
+        arena.SetCurrentCombatant(activeCombatant);
+        OnTurnStarted?.Invoke(activeCombatant);
 
-            Invoke(nameof(TryEnemyAct), 1f); // Not recommended to Invoke. This is only done so that we see the enemy "thinking".
-        }
-    }
-
-    private void FinishCurrentTurn()
-    {
-        CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
-        arena.SetCurrentCombatant(null);
-        OnTurnEnded?.Invoke(activeCombatant);
-
-        Invoke(nameof(StartNextTurn), 1f);
-    }
-
-    private void OnHoveredTargetChanged(ITarget target)
-    {
-        arena.SetHoveredCombatant(target as Combatant);
+        Invoke(nameof(TryEnemyAct), 1f); // Not recommended to Invoke. This is only done so that we see the enemy "thinking".
     }
 
     public void OnActionSelected(CombatActionType actionType, int index)
@@ -100,11 +79,11 @@ public class Combat : MonoBehaviour
         {
             case TargetSelectionMode.SingleEnemy:
             case TargetSelectionMode.AllEnemies:
-                StartTargetSelection(selectedSkill.VisualTargetingMode, EnemyCombatants.Cast<ITarget>().ToArray());
+                StartTargetSelection(selectedSkill.VisualTargetingMode, EnemyCombatants.Where(x => !x.IsDead).Cast<ITarget>().ToArray());
                 break;
             case TargetSelectionMode.SingleAlly:
             case TargetSelectionMode.AllAllies:
-                StartTargetSelection(selectedSkill.VisualTargetingMode, PlayerCombatants.Cast<ITarget>().ToArray());
+                StartTargetSelection(selectedSkill.VisualTargetingMode, PlayerCombatants.Where(x => !x.IsDead).Cast<ITarget>().ToArray());
                 break;
             case TargetSelectionMode.None:
             case TargetSelectionMode.Self:
@@ -124,6 +103,11 @@ public class Combat : MonoBehaviour
     private void StopTargetSelection()
     {
         targeting.SetTargetingSelectorEnabled(false);
+    }
+
+    private void OnHoveredTargetChanged(ITarget target)
+    {
+        arena.SetHoveredCombatant(target as Combatant);
     }
 
     private void OnTargetsSelected(ITarget[] selectedTargets)
@@ -186,6 +170,36 @@ public class Combat : MonoBehaviour
 
         Debug.Log($"Skill failed!");
         return false;
+    }
+
+    private void FinishCurrentTurn()
+    {
+        CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
+        arena.SetCurrentCombatant(null);
+        OnTurnEnded?.Invoke(activeCombatant);
+
+        foreach (Combatant combatant in PlayerCombatants.Concat(EnemyCombatants))
+        {
+            if (combatant.IsDead)
+                CombatTurnOrder.RemoveCombatant(combatant);
+        }
+
+        if (CheckCombatEnded())
+            return;
+
+        Invoke(nameof(StartNextTurn), 1f);
+    }
+
+    private bool CheckCombatEnded()
+    {
+        bool allPlayersDead = PlayerCombatants.All(combatant => combatant.IsDead);
+        bool allEnemiesDead = EnemyCombatants.All(combatant => combatant.IsDead);
+
+        if (!allPlayersDead && !allEnemiesDead)
+            return false;
+
+        OnCombatEnded?.Invoke(allEnemiesDead && !allPlayersDead);
+        return true;
     }
 }
 
