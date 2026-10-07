@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
 
         if (inkFile != null)
         {
-            Debug.Log("Starting story");
+
             StartStory(inkFile);
         }
     }
@@ -87,7 +87,7 @@ public class DialogueManager : MonoBehaviour
             if (dialogueText.text == currentDialogue)
             {
                 isDialoguePlaying = false;
-                DelayStoryContinue(2f);
+                StartCoroutine(DelayStoryContinue(2f));
             }
         }
     }
