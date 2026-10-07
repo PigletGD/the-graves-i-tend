@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class TargetSelectionVisualizer : MonoBehaviour
@@ -10,7 +9,6 @@ public class TargetSelectionVisualizer : MonoBehaviour
     [SerializeField] private Color attackerColor;
     [SerializeField] private Color defenderColor;
     
-    public bool IsHovered { get; set; }
     public bool IsSelected { get; set; }
 
     private void Awake()

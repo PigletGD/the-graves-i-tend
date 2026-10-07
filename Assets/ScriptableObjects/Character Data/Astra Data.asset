@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a84ec836f98db24d951673c3b2af3ad, type: 3}
+  m_Name: Astra Data
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  characterName: Astra
+  characterTitle: The Stargazer
+  portrait: {fileID: -6485744407679699490, guid: ef4253ea9391e274188888d72c1718cc, type: 3}
+  basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
+  skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
+  skills:
+  - {fileID: 11400000, guid: 552dcaf6a8a209b45bd992ea7b916aab, type: 2}
+  - {fileID: 11400000, guid: 4bb6dbf727cd5494ea776b208c8a21e7, type: 2}
+  - {fileID: 11400000, guid: c039de1157259e445a6ee768c6977b39, type: 2}
+  maxHP: 100
+  maxMP: 9
+  baseAtk: 10
+  speed: 80

@@ -11,41 +11,48 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Cirrus Bolt
-  m_EditorClassIdentifier: Assembly-CSharp::Skill
-  skillCosts:
+  m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
+  description: Create sharp 3 shards from cirrus dust in the clouds and sling them
+    at a single enemy. Deal low damage with each bolt.
+  visualTargetingMode: 1
+  attempts:
+  - rid: 2942834247786037725
+  - rid: 2942834247786037727
+  - rid: 2942834246597738565
+  conditions: []
+  resourceCosts:
   - resourceType: 1
-    value: 1
-  targetedAttempts:
-  - targetRelationship: 1
-    attempts:
-    - accuracy:
-        probability: 0.8
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects: []
-      targetEffects:
-      - rid: 8116162959790833751
-    - accuracy:
-        probability: 0.8
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects: []
-      targetEffects:
-      - rid: 8116162959790833751
-    - accuracy:
-        probability: 0.8
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects: []
-      targetEffects:
-      - rid: 8116162959790833751
+    amount: 1
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833751
+    - rid: 2942834246597738565
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834247786037724
+    - rid: 2942834247786037724
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 3
+    - rid: 2942834247786037725
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834247786037726
+    - rid: 2942834247786037726
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 3
+    - rid: 2942834247786037727
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834247786037728
+    - rid: 2942834247786037728
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
         damage: 3

@@ -12,27 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Basic Attack
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
-  skillCosts: []
-  targetedAttempts:
-  - targetRelationship: 1
-    attempts:
-    - accuracy:
-        probability: 1
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects:
-      - rid: 8116162981214814277
-      targetEffects:
-      - rid: 8116162959790833737
+  description: Attack the enemy with a basic attack and recover 1 Mana.
+  visualTargetingMode: 1
+  attempts:
+  - rid: 2942834246597738891
+  conditions: []
+  resourceCosts: []
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833737
+    - rid: 2942834246597738891
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834246597738892
+        - rid: 2942834246597738893
+        - rid: 2942834246597738902
+    - rid: 2942834246597738892
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
-        damage: 10
-    - rid: 8116162981214814277
+        damage: 7
+    - rid: 2942834246597738893
       type: {class: Effect_ManaRecover, ns: , asm: Assembly-CSharp}
       data:
         mana: 1
+    - rid: 2942834246597738902
+      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectSO: {fileID: 11400000, guid: 0e3dfe98ad315ac4b89a3535f7b754e3, type: 2}
+        stacksOnApply: 1

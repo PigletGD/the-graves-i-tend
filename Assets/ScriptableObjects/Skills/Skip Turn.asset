@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Skip Turn
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
-  skillCosts: []
-  targetedAttempts:
-  - targetRelationship: 2
-    attempts:
-    - accuracy:
-        probability: 1
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects:
-      - rid: 8116162959790833742
-      targetEffects: []
+  description: Skips the turn and recovers 2 Mana.
+  visualTargetingMode: 5
+  attempts:
+  - rid: 2942834173696278597
+  conditions: []
+  resourceCosts: []
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833742
+    - rid: 2942834173696278597
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 0
+        effects:
+        - rid: 2942834173696278598
+    - rid: 2942834173696278598
       type: {class: Effect_ManaRecover, ns: , asm: Assembly-CSharp}
       data:
         mana: 2

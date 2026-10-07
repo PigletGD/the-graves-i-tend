@@ -9,14 +9,14 @@ public abstract class CombatantPanel : MonoBehaviour
 
     public void OnEnable()
     {
-        Combatant.OnHPChanged += OnHPChanged;
-        Combatant.OnMPChanged += OnMPChanged;
+        Combatant.OnHealthChanged += OnHPChanged;
+        Combatant.OnManaChanged += OnMPChanged;
     }
     
     public void OnDisable()
     {
-        Combatant.OnHPChanged -= OnHPChanged;
-        Combatant.OnMPChanged -= OnMPChanged;
+        Combatant.OnHealthChanged -= OnHPChanged;
+        Combatant.OnManaChanged -= OnMPChanged;
     }
 
     public virtual void Initialize(Combatant combatant)

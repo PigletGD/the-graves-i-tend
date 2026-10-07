@@ -3,7 +3,6 @@
 /// </summary>
 public abstract class StackableStatusEffect : StatusEffect, IStackable
 {
-    protected StatusEffectType statusEffectType;
     protected int currentStacks;
     protected int maxStacks;
 

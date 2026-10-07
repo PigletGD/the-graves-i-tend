@@ -11,34 +11,32 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Gravity
-  m_EditorClassIdentifier: Assembly-CSharp::Skill
-  skillCosts:
+  m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
+  description: Create sharp 3 shards from cirrus dust in the clouds and sling them
+    at a single enemy. Deal low damage with each bolt.
+  visualTargetingMode: 1
+  attempts:
+  - rid: 2942834247786037725
+  conditions: []
+  resourceCosts:
   - resourceType: 1
-    value: 7
-  targetedAttempts:
-  - targetRelationship: 1
-    attempts:
-    - accuracy:
-        probability: 0
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects: []
-      targetEffects:
-      - rid: 8116162959790833752
-      - rid: 8116162959790833753
+    amount: 7
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833752
+    - rid: 2942834247786037725
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834247786037726
+        - rid: 2942834247786037729
+    - rid: 2942834247786037726
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
         damage: 15
-    - rid: 8116162959790833753
+    - rid: 2942834247786037729
       type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
       data:
         statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
-        stacksOnApply: 1
-        applyChance:
-          probability: 1
-        statusEffectCondition: []
+        stacksOnApply: 3

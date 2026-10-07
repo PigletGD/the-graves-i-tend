@@ -11,34 +11,63 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
   m_Name: Threaded Recall
-  m_EditorClassIdentifier: Assembly-CSharp::Skill
-  skillCosts: []
-  targetedAttempts:
-  - targetRelationship: 1
-    attempts:
-    - accuracy:
-        probability: 1
-      combatConditions: []
-      invokerConditions: []
-      targetConditions: []
-      invokerEffects: []
-      targetEffects:
-      - rid: 8116162959790833747
-      - rid: 8116162959790833745
-      - rid: 8116162959790833746
+  m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
+  description: Expedite suffering, revisit all the sundering. Consume all Sunder
+    to deal scaling damage. Additionally, Stuns the target if Sunder is at least
+    25.
+  visualTargetingMode: 1
+  attempts:
+  - rid: 2942834173696278597
+  - rid: 2942834246597738897
+  - rid: 2942834246597738904
+  conditions: []
+  resourceCosts: []
   references:
     version: 2
     RefIds:
-    - rid: 8116162959790833745
+    - rid: 2942834173696278597
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834246597738895
+    - rid: 2942834246597738895
       type: {class: Effect_DamagePerStatusEffectStack, ns: , asm: Assembly-CSharp}
       data:
         statusEffectType: 6
-        damagePerStack: 2
-    - rid: 8116162959790833746
+        damagePerStack: 1.5
+    - rid: 2942834246597738897
+      type: {class: Attempt_Conditional, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834246597738900
+        conditions:
+        - rid: 2942834246597738899
+    - rid: 2942834246597738899
+      type: {class: SkillCondition_HasStatusEffect, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectType: 6
+        stacksRequired: 25
+    - rid: 2942834246597738900
+      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectSO: {fileID: 11400000, guid: 0e3dfe98ad315ac4b89a3535f7b754e3, type: 2}
+        stacksOnApply: 1
+    - rid: 2942834246597738904
+      type: {class: Attempt_Conditional, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834246597738907
+        conditions:
+        - rid: 2942834246597738906
+    - rid: 2942834246597738906
+      type: {class: SkillCondition_HasStatusEffect, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectType: 6
+        stacksRequired: 25
+    - rid: 2942834246597738907
       type: {class: Effect_RemoveStatus, ns: , asm: Assembly-CSharp}
       data:
         statusEffectType: 6
-    - rid: 8116162959790833747
-      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 4
