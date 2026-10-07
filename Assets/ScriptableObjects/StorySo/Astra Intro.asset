@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6039a0447935f41a76c1bb5ba45e07, type: 3}
+  m_Name: Astra Intro
+  m_EditorClassIdentifier: Assembly-CSharp::StorySO
+  <inkJsonFile>k__BackingField: {fileID: 0}
+  voiceArray:
+  - {fileID: 8300000, guid: e6230b9b45e225c42be935a0914c1715, type: 3}
+  - {fileID: 8300000, guid: b8cc5015b9c90d941939f7dd2283ba44, type: 3}
+  - {fileID: 8300000, guid: 72932de5ab40fee4ca05364c3599890c, type: 3}
+  - {fileID: 8300000, guid: 60ed6ab8eba1fe949b3e2811eeb3ea6d, type: 3}
+  - {fileID: 8300000, guid: 1778060cb1e1f5448b0bdc87837f5f88, type: 3}
+  - {fileID: 8300000, guid: 646f79227d9a9d04a8b9dde1563378eb, type: 3}
+  - {fileID: 8300000, guid: 34e1c6c25be169f4b82f212e299a1bc3, type: 3}
+  - {fileID: 8300000, guid: a5994fe42dfc75548876dd240c3981a3, type: 3}
+  - {fileID: 8300000, guid: d51eb734bf6ce0848832f86a0e0d46dd, type: 3}
+  - {fileID: 8300000, guid: 78e0504fb4c994b4ab391b27f3e95958, type: 3}
+  - {fileID: 8300000, guid: 2a1b176e8ab0f9f409f876af3984dba7, type: 3}
