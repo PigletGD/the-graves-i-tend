@@ -4,11 +4,11 @@ using UnityEngine;
 [Serializable]
 public class Attempt_Conditional : Attempt
 {
-    [SerializeReference, SerializeReferenceDropdown] public TargetSelectionCondition[] conditions;
+    [SerializeReference, SerializeReferenceDropdown] public ISkillCondition[] conditions;
 
     protected override void ExecuteAttempt(TargetSelectionArgs args, ITarget[] targets)
     {
-        foreach (TargetSelectionCondition condition in conditions)
+        foreach (ISkillCondition condition in conditions)
         {
             if (!condition.Check(args))
             {
@@ -22,7 +22,7 @@ public class Attempt_Conditional : Attempt
             foreach (Effect effect in effects)
             {
                 effect.Apply(target);
-            }
+        }
         }
     }
 }

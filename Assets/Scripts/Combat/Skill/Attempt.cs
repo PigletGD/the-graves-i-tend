@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Attempt
 {
-    public static Action<TargetSelectionArgs, TargetSelectionCondition> OnAttemptFailed;
+    public static Action<TargetSelectionArgs, ISkillCondition> OnAttemptFailed;
 
     [SerializeField] private TargetSelectionMode targetingMode = TargetSelectionMode.SingleEnemy;
     [SerializeReference, SerializeReferenceDropdown] public Effect[] effects;

@@ -18,9 +18,9 @@ MonoBehaviour:
   basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
   skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
   skills:
-  - {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
-  - {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
-  - {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
+  - {fileID: 11400000, guid: 11188e8bc439e624f91ba113ea03cad0, type: 2}
+  - {fileID: 11400000, guid: 662f373a04b6bae488f45227047914b7, type: 2}
+  - {fileID: 11400000, guid: 61dc07c26eb052a468ceae9b8f63f6bb, type: 2}
   maxHP: 100
   maxMP: 9
   baseAtk: 10

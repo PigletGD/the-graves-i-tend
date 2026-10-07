@@ -46,7 +46,7 @@ public class CombatantStatusEffects
     public int GetStackCount(StatusEffectType effectType)
     {
         StatusEffect statusEffect = statusEffects.FirstOrDefault(x => x.StatusEffectType == effectType);
-        return statusEffect is StackableStatusEffect stackableEffect ? stackableEffect.StackCount : 0;
+        return statusEffect is StackableStatusEffect stackableEffect ? stackableEffect.StackCount : 1;
     }
 
     public bool HasStatusEffect(StatusEffectType effectType) => statusEffects.Any(x => x.StatusEffectType == effectType);

@@ -5,6 +5,8 @@ using UnityEngine;
 /// </summary>
 public abstract class StatusEffect
 {
+    protected StatusEffectType statusEffectType;
+
     public abstract StatusEffectType StatusEffectType { get; }
 
     public abstract void Apply(ITarget target);

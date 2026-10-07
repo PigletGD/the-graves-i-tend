@@ -15,7 +15,7 @@ public class SkillResourceCost
 [CreateAssetMenu(fileName = "Basic Skill", menuName = "Skills/Basic Skill")]
 public class Skill_Basic : Skill
 {
-    [SerializeReference, SerializeReferenceDropdown] private TargetSelectionCondition[] conditions;
+    [SerializeReference, SerializeReferenceDropdown] private ISkillCondition[] conditions;
     [SerializeField] private SkillResourceCost[] resourceCosts;
 
     public override bool CanExecute(TargetSelectionArgs args)
@@ -32,7 +32,7 @@ public class Skill_Basic : Skill
         if (args.Invoker is not Combatant combatant)
             return false;
 
-        foreach (TargetSelectionCondition condition in conditions)
+        foreach (ISkillCondition condition in conditions)
         {
             if (!condition.Check(args))
                 return false;

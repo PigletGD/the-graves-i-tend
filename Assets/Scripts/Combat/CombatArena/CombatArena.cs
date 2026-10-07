@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatArena : MonoBehaviour
@@ -8,12 +9,12 @@ public class CombatArena : MonoBehaviour
     [SerializeField] private CombatArenaTileData enemyTileData;
 
     private Combatant currentCombatant;
-    private Combatant hoveredCombatant;
+    private HashSet<Combatant> hoveredCombatants = new();
 
     public void PositionCombatants(Combatant[] leftSideCombatants, Combatant[] rightSideCombatants)
     {
         currentCombatant = null;
-        hoveredCombatant = null;
+        hoveredCombatants.Clear();
 
         PositionCombatants(leftSideCombatants, leftSidePositions, false, true);
         PositionCombatants(rightSideCombatants, rightSidePositions, true, false);
@@ -58,7 +59,20 @@ public class CombatArena : MonoBehaviour
 
     public void SetHoveredCombatant(Combatant combatant)
     {
-        hoveredCombatant = combatant;
+        hoveredCombatants.Clear();
+        if (combatant != null)
+            hoveredCombatants.Add(combatant);
+        RefreshCombatantTiles();
+    }
+
+    public void SetHoveredCombatants(IEnumerable<Combatant> combatants)
+    {
+        hoveredCombatants.Clear();
+        foreach (Combatant combatant in combatants)
+        {
+            if (combatant != null)
+                hoveredCombatants.Add(combatant);
+        }
         RefreshCombatantTiles();
     }
 
@@ -78,7 +92,7 @@ public class CombatArena : MonoBehaviour
                 if (combatant == null)
                     continue;
 
-                Sprite modifierSprite = combatant == hoveredCombatant ? tile.TileData.TargetedSprite
+                Sprite modifierSprite = hoveredCombatants.Contains(combatant) ? tile.TileData.TargetedSprite
                     : combatant == currentCombatant ? tile.TileData.CurrentTurnSprite : null;
 
                 tile.SetModifierTile(modifierSprite);

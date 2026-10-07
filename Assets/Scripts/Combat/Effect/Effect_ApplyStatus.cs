@@ -5,8 +5,7 @@ using UnityEngine;
 public class Effect_ApplyStatus : Effect
 {
     [SerializeField] private StatusEffectSO statusEffectSO;
-    [SerializeField] private int stacksOnApply = 1; // Only relevant to stacking status effects. Placed here because having a separate class is redundant.
-    [SerializeField] private CombatantCondition[] conditions;
+    [SerializeField] private int stacksOnApply = 1; // Only relevant to stacking status effects.
 
     public override void Apply(ITarget target)
     {
@@ -14,12 +13,6 @@ public class Effect_ApplyStatus : Effect
         {
             Log("failed because Target is not a combatant");
             return;
-        }
-
-        foreach (CombatantCondition conditions in conditions)
-        {
-            if (!conditions.Check(combatant))
-                return;
         }
 
         combatant.StatusEffects.AddEffect(statusEffectSO.CreateInstance(), stacksOnApply);

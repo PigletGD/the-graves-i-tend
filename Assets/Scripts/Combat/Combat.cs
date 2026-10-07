@@ -62,8 +62,14 @@ public class Combat : MonoBehaviour
 
         canPlayerAct = activeCombatant.IsPlayerControlled;
         arena.SetCurrentCombatant(activeCombatant);
-        OnTurnStarted?.Invoke(activeCombatant);
 
+        if (!activeCombatant.TryStartTurn())
+        {
+            FinishCurrentTurn();
+            return;
+        }
+
+        OnTurnStarted?.Invoke(activeCombatant);
         Invoke(nameof(TryEnemyAct), 1f); // Not recommended to Invoke. This is only done so that we see the enemy "thinking".
     }
 
@@ -98,6 +104,9 @@ public class Combat : MonoBehaviour
     private void StartTargetSelection(TargetSelectionMode visualTargetingMode, ITarget[] targets)
     {
         targeting.SetTargetingSelectorEnabled(true, visualTargetingMode, targets);
+
+        if (visualTargetingMode is TargetSelectionMode.AllEnemies or TargetSelectionMode.AllAllies)
+            arena.SetHoveredCombatants(targets.OfType<Combatant>());
     }
 
     private void StopTargetSelection()

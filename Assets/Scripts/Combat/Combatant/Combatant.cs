@@ -1,12 +1,14 @@
 using System;
+using Mono.Cecil;
 using UnityEngine;
 
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
 public class Combatant : MonoBehaviour, ITarget
 {
-    public static event Action<Combatant, float> OnHPChanged;
-    public static event Action<Combatant, float> OnMPChanged;
+    public static event Action<Combatant, float> OnHealthChanged;
+    public static event Action<Combatant, float> OnManaChanged;
     public static event Action<Combatant, Skill> OnSkillUsed;
+    public static event Action<Combatant, StatusEffectType> OnTurnSkipped;
 
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
     [SerializeField] private CharacterData characterData; // Temporary. This should be passed in when creating the combatant.
@@ -18,7 +20,9 @@ public class Combatant : MonoBehaviour, ITarget
     private CombatantStatusEffects statusEffectsController;
 
     public bool IsPlayerControlled => isPlayerControlled;
+    public bool CanAct => !IsDead && !IsStunned;
     public bool IsDead => stats.CurrentHP <= 0;
+    public bool IsStunned => statusEffectsController.HasStatusEffect(StatusEffectType.Stunned);
 
     public CharacterData CharacterData => characterData;
     public CombatantStats Stats => stats;
@@ -35,25 +39,20 @@ public class Combatant : MonoBehaviour, ITarget
         Visualizer?.SetToUnselectedColor();
     }
 
-#region Stat Updates
-    public void TakeDamage(float hp)
+    public bool TryStartTurn()
     {
-        stats.UpdateResource(CombatantResourceType.HP, -hp);
-        OnHPChanged?.Invoke(this, -hp);
-    }
+        if (!CanAct)
+        {
+            StatusEffectType reason = IsStunned ? StatusEffectType.Stunned : StatusEffectType.None;
+            OnTurnSkipped?.Invoke(this, reason);
 
-    public void ConsumeMana(float mp)
-    {
-        stats.UpdateResource(CombatantResourceType.MP, -mp);
-        OnMPChanged?.Invoke(this, -mp);
-    }
+            if (IsStunned)
+                StatusEffects.RemoveEffect(StatusEffectType.Stunned);
 
-    public void RecoverMana(float mp)
-    {
-        stats.UpdateResource(CombatantResourceType.MP, mp);
-        OnMPChanged?.Invoke(this, mp);
+            return false;
+        }
+        return true;
     }
-    #endregion
 
     public Skill GetSkillFromActionType(CombatActionType actionType, int actionIndex)
     {
@@ -97,6 +96,34 @@ public class Combatant : MonoBehaviour, ITarget
         return gameObject;
     }
 
+    #region Stats
     public float GetResourceAmount(CombatantResourceType resourceType) => stats.GetResourceAmount(resourceType);
-    public void UpdateResource(CombatantResourceType resourceType, float amount) => stats.UpdateResource(resourceType, amount);
+    public void UpdateResource(CombatantResourceType resourceType, float amount)
+    {
+        stats.UpdateResource(resourceType, amount);
+
+        if (resourceType == CombatantResourceType.Health)
+            OnHealthChanged?.Invoke(this, amount);
+        else if (resourceType == CombatantResourceType.Mana)
+            OnManaChanged?.Invoke(this, amount);
+    }
+    
+    public void TakeDamage(float health)
+    {
+        stats.UpdateResource(CombatantResourceType.Health, -health);
+        OnHealthChanged?.Invoke(this, -health);
+    }
+
+    public void RecoverMana(float mana)
+    {
+        stats.UpdateResource(CombatantResourceType.Mana, mana);
+        OnManaChanged?.Invoke(this, mana);
+    }
+    
+    public void ConsumeMana(float mana)
+    {
+        stats.UpdateResource(CombatantResourceType.Mana, -mana);
+        OnManaChanged?.Invoke(this, -mana);
+    }
+    #endregion
 }

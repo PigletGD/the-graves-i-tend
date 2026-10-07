@@ -45,8 +45,8 @@ public class CombatantStats
     {
         return resourceType switch
         {
-            CombatantResourceType.HP => CurrentHP,
-            CombatantResourceType.MP => CurrentMP,
+            CombatantResourceType.Health => CurrentHP,
+            CombatantResourceType.Mana => CurrentMP,
             CombatantResourceType.Elation => CurrentElation,
             _ => throw new ArgumentOutOfRangeException(nameof(resourceType), resourceType, null)
         };
@@ -56,10 +56,10 @@ public class CombatantStats
     {
         switch (resourceType)
         {
-            case CombatantResourceType.HP:
+            case CombatantResourceType.Health:
                 currentHP = Mathf.Clamp(currentHP + amount, 0, maxHP);
                 break;
-            case CombatantResourceType.MP:
+            case CombatantResourceType.Mana:
                 currentMP = Mathf.Clamp(currentMP + amount, 0, maxMP);
                 break;
             case CombatantResourceType.Elation:
