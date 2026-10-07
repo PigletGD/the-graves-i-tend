@@ -9,7 +9,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextAsset inkFile;     // should eventually become a parameter that is passed whenever the scene is loaded
-    
+    [SerializeField] private AudioClip storyAudio;
 
     private Story currentStory;
     private string currentDialogue;
