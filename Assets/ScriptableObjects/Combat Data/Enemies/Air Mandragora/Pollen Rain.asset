@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
-  m_Name: Basic Attack
+  m_Name: Pollen Rain
   m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
-  description: Attack the enemy with a basic attack and recover 1 Mana.
-  visualTargetingMode: 1
+  description: Afflict 1 Helltouched to All Enemies.
+  visualTargetingMode: 2
   attempts:
   - rid: 2942834246597738891
   conditions: []
@@ -24,21 +24,16 @@ MonoBehaviour:
     - rid: 2942834246597738891
       type: {class: Attempt, ns: , asm: Assembly-CSharp}
       data:
-        targetingMode: 1
+        targetingMode: 2
         effects:
-        - rid: 2942834246597738892
-        - rid: 2942834246597738893
-        - rid: 2942834246597738902
-    - rid: 2942834246597738892
-      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 7
-    - rid: 2942834246597738893
-      type: {class: Effect_ManaRecover, ns: , asm: Assembly-CSharp}
-      data:
-        mana: 1
-    - rid: 2942834246597738902
+        - rid: 2942834247786037733
+        - rid: 2942834247786037730
+    - rid: 2942834247786037730
       type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
       data:
-        statusEffectSO: {fileID: 11400000, guid: 0e3dfe98ad315ac4b89a3535f7b754e3, type: 2}
+        statusEffectSO: {fileID: 11400000, guid: 91065212bd2600a47838ec5cbd8480e2, type: 2}
         stacksOnApply: 1
+    - rid: 2942834247786037733
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 2

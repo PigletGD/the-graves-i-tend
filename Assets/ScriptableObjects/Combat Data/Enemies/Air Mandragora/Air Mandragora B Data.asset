@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a84ec836f98db24d951673c3b2af3ad, type: 3}
-  m_Name: Toadstool Data
+  m_Name: Air Mandragora B Data
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: Toadstool
+  characterName: Air Mandragora
   characterTitle: 
   portrait: {fileID: 0}
-  basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
+  basicAttack: {fileID: 11400000, guid: eda9ce491a778914698bdac0637d33dc, type: 2}
   skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: ce277f0d32f985146a1c918c2857d335, type: 2}
   maxHP: 100
   maxMP: 9
-  baseAtk: 10
-  speed: 66
+  baseAtk: 15
+  speed: 50

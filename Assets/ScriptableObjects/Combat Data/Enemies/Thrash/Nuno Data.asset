@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Nuno
   characterTitle: 
   portrait: {fileID: 0}
-  basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
+  basicAttack: {fileID: 11400000, guid: de3b700ce8c37a44ca0446ffdcf25f94, type: 2}
   skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
   skills: []
   maxHP: 100

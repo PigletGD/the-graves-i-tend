@@ -15,10 +15,11 @@ MonoBehaviour:
   characterName: Air Mandragora
   characterTitle: 
   portrait: {fileID: 0}
-  basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
+  basicAttack: {fileID: 11400000, guid: eda9ce491a778914698bdac0637d33dc, type: 2}
   skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: 6fbb61ca75630fb40a1eca3e7d401e9f, type: 2}
   maxHP: 100
   maxMP: 9
   baseAtk: 15
-  speed: 100
+  speed: 75

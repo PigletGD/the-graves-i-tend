@@ -22,4 +22,9 @@ public abstract class StackableStatusEffect : StatusEffect, IStackable
         if (currentStacks < 0)
             currentStacks = 0;
     }
+
+    public virtual void OnReapplied(StatusEffect reappliedEffect, int stacks)
+    {
+        AddStacks(stacks);
+    }
 }

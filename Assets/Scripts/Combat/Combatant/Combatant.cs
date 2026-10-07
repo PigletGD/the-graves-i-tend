@@ -1,5 +1,4 @@
 using System;
-using Mono.Cecil;
 using UnityEngine;
 
 // This can have a parent class called Character for basic information. Apart from that this should only contain combat related code.
@@ -41,6 +40,8 @@ public class Combatant : MonoBehaviour, ITarget
 
     public bool TryStartTurn()
     {
+        StatusEffects.OnTurnStart(this);
+
         if (!CanAct)
         {
             StatusEffectType reason = IsStunned ? StatusEffectType.Stunned : StatusEffectType.None;
@@ -52,6 +53,11 @@ public class Combatant : MonoBehaviour, ITarget
             return false;
         }
         return true;
+    }
+
+    public void EndTurn()
+    {
+        StatusEffects.OnTurnEnd(this);
     }
 
     public Skill GetSkillFromActionType(CombatActionType actionType, int actionIndex)

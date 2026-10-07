@@ -109,6 +109,6 @@ public class PopupEffectUISpawner : MonoBehaviour
 
     private void OnTurnSkipped(Combatant combatant, StatusEffectType reason)
     {
-        ShowPopup(combatant, reason == StatusEffectType.None ? "Cannot Act" : reason.ToString());
+        ShowPopup(combatant, reason == StatusEffectType.None ? "" : reason.ToString());
     }
 }
