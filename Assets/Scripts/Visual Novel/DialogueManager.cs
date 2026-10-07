@@ -8,8 +8,7 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private TextAsset inkFile;     // should eventually become a parameter that is passed whenever the scene is loaded
-    [SerializeField] private AudioClip storyAudio;
+    [SerializeField] private StorySO storySO;   // story to be played
 
     private Story currentStory;
     private string currentDialogue;
@@ -25,10 +24,10 @@ public class DialogueManager : MonoBehaviour
         isDialoguePlaying = false;
         isPaused = false;
 
-        if (inkFile != null)
+        if (storySO != null)
         {
 
-            StartStory(inkFile);
+            StartStory(storySO.inkJsonFile);
         }
     }
 

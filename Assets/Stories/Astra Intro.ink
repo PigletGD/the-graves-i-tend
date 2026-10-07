@@ -1,31 +1,31 @@
-"Just another glorious day in Valen~. MmmmmHm~." #speaker:Astra 
+"Just another glorious day in Valen~. MmmmmHm~." #speaker:Astra #audio:Astra Intro Narration (Speaking) 1
 
-The cauldron was bubbling just fine, making little pops while the fire underneath did its little dance. I always found that a world too quiet leaves space for bad thoughts. The noise helps me focus… Like putting exactly the right ingredient into my concoction~. But, admittedly, it is a distraction.
+The cauldron was bubbling just fine, making little pops while the fire underneath did its little dance. I always found that a world too quiet leaves space for bad thoughts. The noise helps me focus… Like putting exactly the right ingredient into my concoction~. But, admittedly, it is a distraction. #audio:Astra Intro Narration (Thought) 1
 
 I sigh, watching as the leaves sink to the ground. There they are again. The thoughts,  despite the noise.
 
-"Maybe… Maybe I should try it. So much unknown, still, but if I squint… the math might check out. Right?"
+"Maybe… Maybe I should try it. So much unknown, still, but if I squint… the math might check out. Right?"#audio:Astra Intro Narration (Speaking) 2
 
-My sight drifts to the mad collection of notes, written in my own hand. Barely readable. That's me~.
+My sight drifts to the mad collection of notes, written in my own hand. Barely readable. That's me~.#audio:Astra Intro Narration (Thought) 2
 
 But can you blame me? I don't even know how many hundreds of years I've found myself in this little sanctuary. How many hundred more it was when the lunatics sang my name with devotion? Perhaps even a thousand when I was still up there, dancing with nebulas and chasing comets?
 
-I really shouldn't hesitate. 
+I really shouldn't hesitate.
 
-Though the cauldron needs a couple more ingredients. Carefully chosen minerals, crushed in my hand. In my mind's eye, however, I am once again with my notes.
+Though the cauldron needs a couple more ingredients. Carefully chosen minerals, crushed in my hand. In my mind's eye, however, I am once again with my notes. 
 
-"Flower bloom at dusk, souls rest unto thee. A kaleidoscope on a river, stream of colours into the imaginary. A thing of the heavens given freely, kissed by the siblings of the night… And the spice of air, channeled in the heart of the singing mountain. Pfffhhh… Ridiculous~."
+"Flower bloom at dusk, souls rest unto thee. A kaleidoscope on a river, stream of colours into the imaginary. A thing of the heavens given freely, kissed by the siblings of the night… And the spice of air, channeled in the heart of the singing mountain. Pfffhhh… Ridiculous~." #audio:Astra Intro Narration (Speaking) 3
 
-I cannot help but laugh. How could a bunch of fables and bedtime rhymes create the strongest elixir in existence? But still… These special ingredients, paired with my know-how, and countless other components… It's not impossible. I flick through my notes, the calculations, the letters from distant places…
+I cannot help but laugh. How could a bunch of fables and bedtime rhymes create the strongest elixir in existence? But still… These special ingredients, paired with my know-how, and countless other components… It's not impossible. I flick through my notes, the calculations, the letters from distant places…#audio:Astra Intro Narration (Thought) 3
 
-"Fine... Fine. I will do it. I will brew the wishmaker's potion… Even if it means I'll have to go a terribly long way."
+"Fine... Fine. I will do it. I will brew the wishmaker's potion… Even if it means I'll have to go a terribly long way."#audio:Astra Intro Narration (Speaking) 4
 
-… And maybe I'll stop talking to myself when alone.
+… And maybe I'll stop talking to myself when alone.#audio:Astra Intro Narration (Thought) 4
 
-"I juuuuuust have to grab some old friends to make this journey worthwhile..."
+"I juuuuuust have to grab some old friends to make this journey worthwhile..." #audio:Astra Intro Narration (Speaking) 5
 
-The notion of a grand adventure felt exhilarating, exciting! Spending it with friends could be no greater joy, and- What's that smell?
+The notion of a grand adventure felt exhilarating, exciting! Spending it with friends could be no greater joy, and- What's that smell?#audio:Astra Intro Narration (Thought) 5
 
-"OH SHIT, MY CHICKEN STEW! NOOOOO-"
+"OH SHIT, MY CHICKEN STEW! NOOOOO-"#audio:Astra Intro Narration (Speaking) 6
 
 - -> END

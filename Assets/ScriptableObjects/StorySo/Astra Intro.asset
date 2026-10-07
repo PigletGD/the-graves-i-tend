@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6039a0447935f41a76c1bb5ba45e07, type: 3}
   m_Name: Astra Intro
   m_EditorClassIdentifier: Assembly-CSharp::StorySO
-  <inkJsonFile>k__BackingField: {fileID: 0}
+  <inkJsonFile>k__BackingField: {fileID: 4900000, guid: 0a3cda76a25438248bc349651eabeffe, type: 3}
   voiceArray:
   - {fileID: 8300000, guid: e6230b9b45e225c42be935a0914c1715, type: 3}
   - {fileID: 8300000, guid: b8cc5015b9c90d941939f7dd2283ba44, type: 3}
