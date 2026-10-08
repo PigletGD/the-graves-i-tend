@@ -5,7 +5,7 @@ public enum ItemType
     Reagent, Miscellaneous, Weapon, Trinket, Consumable
 }
 
-[CreateAssetMenu(fileName = "Base Item", menuName = "Item/Base Item", order = 1)]
+[CreateAssetMenu(fileName = "Base Item", menuName = "Scriptable Objects/Item/Base Item", order = 1)]
 [System.Serializable]
 public class Item : ScriptableObject
 {
