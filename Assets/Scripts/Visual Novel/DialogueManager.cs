@@ -13,14 +13,16 @@ public class DialogueManager : MonoBehaviour
 
 
     [SerializeField] private StorySO storySO;   // story to be played
-
+    private AudioSource audioSource;
 
     private Story currentStory;
     private string currentDialogue;
 
     private bool isPaused;      // used for delays to time audio and text
     private bool isDialoguePlaying;     // controls whether panel is being displayed
+    private bool isDelayed;     // bool for pausing the text printing
     private int dialogueIndex;          // controls which part of the dialogue string it is currently at
+    private int delayIndex;
     private int textIndex;      // used for how many fixed updates have passed
     private int textSpeed = 4;      // used to print a character after X amount of fixedupdate
 
@@ -35,10 +37,13 @@ public class DialogueManager : MonoBehaviour
     {
         isDialoguePlaying = false;
         isPaused = false;
+        isDelayed = false;
+
+        audioSource = this.GetComponent<AudioSource>();
 
         if (storySO != null)
         {
-
+            storySO.FillDictionary();
             StartStory(storySO.inkJsonFile);
         }
     }
@@ -58,8 +63,10 @@ public class DialogueManager : MonoBehaviour
     {
         isDialoguePlaying = true;
         isPaused = false;
+        isDelayed = false;
         textIndex = 0;
         dialogueIndex = 0;
+        delayIndex = 0;
 
         if (currentStory.canContinue)
         {
@@ -99,7 +106,11 @@ public class DialogueManager : MonoBehaviour
                     speakerText.text = tagValue;
                     break;
                 case AUDIO_TAG:
-
+                    audioSource.clip = storySO.GetAudioClipByName(tagValue);
+                    if (audioSource.clip != null)
+                    {
+                        audioSource.Play();
+                    }
                     break;
                 case DELAY_TAG:
                     break;
@@ -115,7 +126,7 @@ public class DialogueManager : MonoBehaviour
 
     private void UpdateDialogueText()
     {
-        if (isDialoguePlaying && !isPaused)
+        if (isDialoguePlaying && !isPaused && !isDelayed)
         {
             textIndex++;
 
@@ -139,6 +150,12 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         ContinueStory();
+    }
+
+    private IEnumerator DelayDialogue(float delay)
+    { 
+        yield return new WaitForSeconds(delay);
+        isDelayed = false;
     }
 
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StorySO
   <inkJsonFile>k__BackingField: {fileID: 4900000, guid: 0a3cda76a25438248bc349651eabeffe, type: 3}
   voiceArray:
-  - {fileID: 8300000, guid: e6230b9b45e225c42be935a0914c1715, type: 3}
+  - {fileID: 8300000, guid: 79221378b06570a4aaacbd34d7913069, type: 3}
   - {fileID: 8300000, guid: b8cc5015b9c90d941939f7dd2283ba44, type: 3}
   - {fileID: 8300000, guid: 72932de5ab40fee4ca05364c3599890c, type: 3}
   - {fileID: 8300000, guid: 60ed6ab8eba1fe949b3e2811eeb3ea6d, type: 3}
