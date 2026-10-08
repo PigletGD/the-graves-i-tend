@@ -23,14 +23,18 @@ public class DialogueManager : MonoBehaviour
     private bool isDelayed;     // bool for pausing the text printing
     private int dialogueIndex;          // controls which part of the dialogue string it is currently at
     private int delayIndex;
-    private int textIndex;      // used for how many fixed updates have passed
-    private int textSpeed = 4;      // used to print a character after X amount of fixedupdate
+    private int textIndex;      // used for how many fixed updates have passed, the lower the value
+    private int textSpeed = 12;      // text index increments
+    private float dialogueTransitionDelayValue = 2f;
+
+    private const int TEXT_PRINT_VALUE = 60; // the value that needs to be achieved for text index to print the next character;
 
     #region Tags
     private const string SPEAKER_TAG = "speaker";
     private const string AUDIO_TAG = "audio";
     private const string DELAY_TAG = "delay";
     private const string DIALOGUE_TRANSITION_TAG = "dialogue_transition";
+    private const string TEXT_SPEED_TAG = "text_speed";
     #endregion
 
     private void Start()
@@ -107,14 +111,14 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case AUDIO_TAG:
                     audioSource.clip = storySO.GetAudioClipByName(tagValue);
-                    if (audioSource.clip != null)
-                    {
-                        audioSource.Play();
-                    }
+                    audioSource.Play();
                     break;
                 case DELAY_TAG:
                     break;
                 case DIALOGUE_TRANSITION_TAG:
+                    break;
+                case TEXT_SPEED_TAG:
+                    int.TryParse(tagValue, out textSpeed);
                     break;
                 default:
                     Debug.LogWarning("Tag is not a registered Tag key");
@@ -128,10 +132,10 @@ public class DialogueManager : MonoBehaviour
     {
         if (isDialoguePlaying && !isPaused && !isDelayed)
         {
-            textIndex++;
+            textIndex+= textSpeed;
 
             // Controls the speed at which text is printed out
-            if (textIndex >= textSpeed)
+            if (textIndex >= TEXT_PRINT_VALUE)
             {
                 dialogueText.text += currentDialogue[dialogueIndex];
                 dialogueIndex++;
@@ -141,7 +145,7 @@ public class DialogueManager : MonoBehaviour
             if (dialogueText.text == currentDialogue)
             {
                 isDialoguePlaying = false;
-                StartCoroutine(DelayStoryContinue(2f));
+                StartCoroutine(DelayStoryContinue(dialogueTransitionDelayValue));
             }
         }
     }
@@ -158,4 +162,12 @@ public class DialogueManager : MonoBehaviour
         isDelayed = false;
     }
 
+    private IEnumerator DelayAudio(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (audioSource.clip != null)
+        {
+            audioSource.Play();
+        }
+    }
 }
