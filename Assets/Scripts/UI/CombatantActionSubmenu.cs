@@ -10,9 +10,16 @@ public class CombatantActionSubmenu : MonoBehaviour
 
     private List<CombatantActionButton> combatantActionButtons = new();
 
-    public void UpdateActions(Combatant combatant)
+    public void UpdateActions(Combatant combatant, CombatActionType actionType)
     {
-        int actionCount = combatant.CharacterData.Skills.Length;
+        Skill[] actions = actionType switch
+        {
+            CombatActionType.Skill => combatant.CharacterData.Skills,
+            CombatActionType.Item => combatant.CharacterData.Items,
+            _ => throw new ArgumentOutOfRangeException(nameof(actionType), actionType, "Submenus only support skills and items.")
+        };
+
+        int actionCount = actions.Length;
         InstantiateActionButtons(actionCount);
 
         for (int i = 0; i < combatantActionButtons.Count; i++)
@@ -21,7 +28,7 @@ public class CombatantActionSubmenu : MonoBehaviour
 
             if (i < actionCount)
             {
-                actionButton.UpdateCombatantActionButton(i, combatant.CharacterData.Skills[i].name);
+                actionButton.UpdateCombatantActionButton(i, actions[i].name);
                 actionButton.gameObject.SetActive(true);
             }
             else

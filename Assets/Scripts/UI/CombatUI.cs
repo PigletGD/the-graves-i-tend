@@ -81,7 +81,7 @@ public class CombatUI : MonoBehaviour
 
     public void OnQuitButton()
     {
-        Application.Quit();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("WorldInteractionScene");
     }
 
     // TODO: Clean method.

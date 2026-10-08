@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 2724737080336842819}
   - component: {fileID: 1389614179967389535}
   - component: {fileID: 4181370392454594277}
+  - component: {fileID: 6248921090223418993}
   m_Layer: 0
   m_Name: Base Combatant
   m_TagString: Untagged
@@ -238,6 +239,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatantSkillVFXTemporary
   combatant: {fileID: 2732537615138397948}
-  rotationAxis: {x: 0, y: 1, z: 0}
-  angle: 180
   duration: 0.33
+  forwardDistance: 1
+  stunShakeDistance: 0.1
+--- !u!114 &6248921090223418993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153848428233125620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01345d98b6cbe734787895f064acc55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatantIdleVFXTemporary
+  combatant: {fileID: 2732537615138397948}
+  amplitude: 0.025
+  frequency: 0.5

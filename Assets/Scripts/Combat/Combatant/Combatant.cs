@@ -66,7 +66,7 @@ public class Combatant : MonoBehaviour, ITarget
         {
             CombatActionType.Attack => characterData.BasicAttack,
             CombatActionType.Skill => characterData.Skills[actionIndex],
-            CombatActionType.Item => null, // TODO: Implement item usage.
+            CombatActionType.Item => characterData.Items[actionIndex], // TODO: Implement item usage.
             CombatActionType.Skip => characterData.SkipTurn,
             _ => null
         };
@@ -114,6 +114,12 @@ public class Combatant : MonoBehaviour, ITarget
             OnManaChanged?.Invoke(this, amount);
     }
     
+    public void RecoverHealth(float health)
+    {
+        stats.UpdateResource(CombatantResourceType.Health, health);
+        OnHealthChanged?.Invoke(this, health);
+    }
+
     public void TakeDamage(float health)
     {
         stats.UpdateResource(CombatantResourceType.Health, -health);

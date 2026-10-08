@@ -1065,35 +1065,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1699949768
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 687127881976286202, guid: b553c14573faf4144af87997f7212060, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 687127881976286202, guid: b553c14573faf4144af87997f7212060, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 687127881976286202, guid: b553c14573faf4144af87997f7212060, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6655537374823177212, guid: b553c14573faf4144af87997f7212060, type: 3}
-      propertyPath: m_Name
-      value: Air Mandragora B
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b553c14573faf4144af87997f7212060, type: 3}
 --- !u!1 &1926496778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1097,7 @@ MonoBehaviour:
   arena: {fileID: 1038021787}
   ui: {fileID: 341546969}
   targeting: {fileID: 1037809505}
+  enemyDatabase: {fileID: 11400000, guid: 5cdc9655c0adb0e46a28c5b1d84e9bdb, type: 2}
 --- !u!4 &1926496780
 Transform:
   m_ObjectHideFlags: 0
@@ -1141,35 +1113,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2312929539834998723
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4594176014159328434, guid: 87254406830269546be869990408092d, type: 3}
-      propertyPath: m_Name
-      value: Air Mandragora A
-      objectReference: {fileID: 0}
-    - target: {fileID: 7644251717718729908, guid: 87254406830269546be869990408092d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7644251717718729908, guid: 87254406830269546be869990408092d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7644251717718729908, guid: 87254406830269546be869990408092d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 87254406830269546be869990408092d, type: 3}
 --- !u!1001 &3441807080513577869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1240,5 +1183,3 @@ SceneRoots:
   - {fileID: 202390761}
   - {fileID: 1585864820}
   - {fileID: 1037809506}
-  - {fileID: 2312929539834998723}
-  - {fileID: 1699949768}

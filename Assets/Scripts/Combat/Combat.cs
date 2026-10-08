@@ -14,6 +14,7 @@ public class Combat : MonoBehaviour
     [SerializeField] private CombatArena arena;
     [SerializeField] private CombatUI ui;
     [SerializeField] private TargetSelector targeting;
+    [SerializeField] private EnemyDatabase enemyDatabase;
 
     private bool canPlayerAct;
 
@@ -27,7 +28,11 @@ public class Combat : MonoBehaviour
     {
         Combatant[] combatants = FindObjectsByType<Combatant>(FindObjectsSortMode.None);
         PlayerCombatants = combatants.Where(combatant => combatant.IsPlayerControlled).ToList();
-        EnemyCombatants = combatants.Where(combatant => !combatant.IsPlayerControlled).ToList();
+
+        int enemyCount = UnityEngine.Random.Range(1, 4);
+        EnemyCombatants = new List<Combatant>(enemyCount);
+        for (int i = 0; i < enemyCount; i++)
+            EnemyCombatants.Add(enemyDatabase.GetRandomEnemy());
 
         arena.PositionCombatants(PlayerCombatants.ToArray(), EnemyCombatants.ToArray());
         ui.Initialize(this);

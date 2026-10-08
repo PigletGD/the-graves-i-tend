@@ -21,6 +21,7 @@ public class CombatResultsPanel : MonoBehaviour
     
     public void OnExitButton()
     {
-        Application.Quit();
+        // TEMPORARY
+        SceneManager.LoadScene("WorldInteractionScene");
     }
 }

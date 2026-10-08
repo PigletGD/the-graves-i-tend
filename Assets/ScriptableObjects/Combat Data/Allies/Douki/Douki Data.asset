@@ -21,6 +21,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 11188e8bc439e624f91ba113ea03cad0, type: 2}
   - {fileID: 11400000, guid: 662f373a04b6bae488f45227047914b7, type: 2}
   - {fileID: 11400000, guid: 61dc07c26eb052a468ceae9b8f63f6bb, type: 2}
+  items:
+  - {fileID: 11400000, guid: 2005fa97ae390f745998b3167207e7f3, type: 2}
+  - {fileID: 11400000, guid: 0dbf4b7fa5a5ced4db977d2ad9f2e53f, type: 2}
   maxHP: 300
   maxMP: 9
   baseAtk: 10

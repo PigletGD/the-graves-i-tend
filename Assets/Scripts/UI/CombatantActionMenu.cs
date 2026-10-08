@@ -97,7 +97,7 @@ public class CombatantActionMenu : MonoBehaviour
     private void OpenSubmenu(CombatActionType actionType)
     {
         combatActionType = actionType;
-        combatActionSubmenu.UpdateActions(cachedCombatant);
+        combatActionSubmenu.UpdateActions(cachedCombatant, combatActionType);
 
         gameObject.SetActive(false);
         combatActionSubmenu.gameObject.SetActive(true);
@@ -113,7 +113,14 @@ public class CombatantActionMenu : MonoBehaviour
 
     private void OnSubmenuActionSelected(int index)
     {
-        combatantActionDescription.SetText($"{cachedCombatant.CharacterData.Skills[index].Description}");
+        Skill selectedAction = combatActionType switch
+        {
+            CombatActionType.Skill => cachedCombatant.CharacterData.Skills[index],
+            CombatActionType.Item => cachedCombatant.CharacterData.Items[index],
+            _ => throw new ArgumentOutOfRangeException(nameof(combatActionType), combatActionType, "Submenus only support skills and items.")
+        };
+
+        combatantActionDescription.SetText(selectedAction.Description);
         combatantActionDescriptionMenu.gameObject.SetActive(true);
 
         OnMenuActionSelected?.Invoke(combatActionType, index);
