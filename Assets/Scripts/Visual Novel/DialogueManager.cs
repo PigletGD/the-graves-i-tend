@@ -3,12 +3,17 @@ using TMPro;
 using Ink.Runtime;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI speakerText;
+
+
     [SerializeField] private StorySO storySO;   // story to be played
+
 
     private Story currentStory;
     private string currentDialogue;
@@ -18,6 +23,13 @@ public class DialogueManager : MonoBehaviour
     private int dialogueIndex;          // controls which part of the dialogue string it is currently at
     private int textIndex;      // used for how many fixed updates have passed
     private int textSpeed = 4;      // used to print a character after X amount of fixedupdate
+
+    #region Tags
+    private const string SPEAKER_TAG = "speaker";
+    private const string AUDIO_TAG = "audio";
+    private const string DELAY_TAG = "delay";
+    private const string DIALOGUE_TRANSITION_TAG = "dialogue_transition";
+    #endregion
 
     private void Start()
     {
@@ -54,6 +66,7 @@ public class DialogueManager : MonoBehaviour
             currentDialogue = currentStory.Continue();
             dialogueText.text = "";
             dialoguePanel.SetActive(true);
+            HandleTags(currentStory.currentTags);
         }
             
         else
@@ -67,7 +80,38 @@ public class DialogueManager : MonoBehaviour
         currentDialogue = "";
         dialoguePanel.gameObject.SetActive(false);
     }
-    
+
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(":");
+            if (splitTag.Length != 2)
+            {
+                Debug.LogError("Tag Could not be approriately parsed:" + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch (tagKey)
+            {
+                case SPEAKER_TAG:
+                    speakerText.text = tagValue;
+                    break;
+                case AUDIO_TAG:
+
+                    break;
+                case DELAY_TAG:
+                    break;
+                case DIALOGUE_TRANSITION_TAG:
+                    break;
+                default:
+                    Debug.LogWarning("Tag is not a registered Tag key");
+                    break;
+            }
+        }
+    }
+
 
     private void UpdateDialogueText()
     {
