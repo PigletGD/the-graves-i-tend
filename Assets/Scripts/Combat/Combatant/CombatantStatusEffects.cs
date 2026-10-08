@@ -18,8 +18,6 @@ public class CombatantStatusEffects
             statusEffects.Add(statusEffect);
             if (statusEffect is StackableStatusEffect stackableEffect)
                 stackableEffect.AddStacks(stacks - 1);
-
-            Debug.Log($"{statusEffect.StatusEffectType} was added.");
         }
         else if (existingEffect is StackableStatusEffect stackableEffect)
         {
@@ -43,13 +41,18 @@ public class CombatantStatusEffects
         }
     }
 
-    public int GetStackCount(StatusEffectType effectType)
+    public int GetStackCount(StatusEffectType statusEffectType)
     {
-        StatusEffect statusEffect = statusEffects.FirstOrDefault(x => x.StatusEffectType == effectType);
-        return statusEffect is StackableStatusEffect stackableEffect ? stackableEffect.StackCount : 1;
+        StatusEffect statusEffect = statusEffects.FirstOrDefault(x => x.StatusEffectType == statusEffectType);
+        return statusEffect switch
+        {
+            StackableStatusEffect stackableEffect => stackableEffect.StackCount,
+            null => 0,
+            _ => 1
+        };
     }
 
-    public bool HasStatusEffect(StatusEffectType effectType) => statusEffects.Any(x => x.StatusEffectType == effectType);
+    public bool HasStatusEffect(StatusEffectType statusEffectType) => statusEffects.Any(x => x.StatusEffectType == statusEffectType);
 
     public void OnTurnStart(Combatant combatant)
     {

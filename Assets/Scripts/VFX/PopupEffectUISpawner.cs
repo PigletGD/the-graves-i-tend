@@ -22,7 +22,9 @@ public class PopupEffectUISpawner : MonoBehaviour
     private void OnEnable()
     {
         Combatant.OnHealthChanged += OnHPChanged;
+        Combatant.OnStatusAdded += OnStatusAdded;
         Combatant.OnSkillUsed += OnSkillUsed;
+        Combatant.OnSkillFailed += OnSkillFailed;
         Combatant.OnTurnSkipped += OnTurnSkipped;
         //Attempt.OnAttemptFailed += OnAttemptFailed;
     }
@@ -30,7 +32,9 @@ public class PopupEffectUISpawner : MonoBehaviour
     private void OnDisable()
     {
         Combatant.OnHealthChanged -= OnHPChanged;
+        Combatant.OnStatusAdded -= OnStatusAdded;
         Combatant.OnSkillUsed -= OnSkillUsed;
+        Combatant.OnSkillFailed -= OnSkillFailed;
         Combatant.OnTurnSkipped -= OnTurnSkipped;
         //Attempt.OnAttemptFailed -= OnAttemptFailed;
     }
@@ -89,6 +93,11 @@ public class PopupEffectUISpawner : MonoBehaviour
         ShowPopup(combatant, damageAmount.ToString());
     }
 
+    private void OnStatusAdded(Combatant combatant, StatusEffectType statusEffectType)
+    {
+        ShowPopup(combatant, statusEffectType.ToString());
+    }
+
     private void OnAttemptFailed(TargetSelectionArgs args, ISkillCondition _)
     {
         if (args.Targets == null)
@@ -105,6 +114,11 @@ public class PopupEffectUISpawner : MonoBehaviour
     {
         if (skill.name == "Skip Turn")
             ShowPopup(combatant, "Skip Turn");
+    }
+
+    private void OnSkillFailed(Combatant combatant, Skill skill)
+    {
+        ShowPopup(combatant, "Cannot Cast");
     }
 
     private void OnTurnSkipped(Combatant combatant, StatusEffectType reason)

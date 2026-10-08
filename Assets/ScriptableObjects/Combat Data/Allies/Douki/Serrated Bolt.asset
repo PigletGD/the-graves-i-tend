@@ -17,7 +17,7 @@ MonoBehaviour:
   visualTargetingMode: 1
   attempts:
   - rid: 2942834247786037594
-  - rid: 2942834247786037589
+  - rid: 2942834270077976648
   - rid: 2942834173696278597
   conditions: []
   resourceCosts:
@@ -33,22 +33,6 @@ MonoBehaviour:
         effects:
         - rid: 2942834247786037592
         - rid: 2942834247786037593
-    - rid: 2942834247786037589
-      type: {class: Attempt, ns: , asm: Assembly-CSharp}
-      data:
-        targetingMode: 1
-        effects:
-        - rid: 2942834247786037590
-        - rid: 2942834247786037591
-    - rid: 2942834247786037590
-      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 2
-    - rid: 2942834247786037591
-      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
-      data:
-        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
-        stacksOnApply: 1
     - rid: 2942834247786037592
       type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
       data:
@@ -74,3 +58,19 @@ MonoBehaviour:
       data:
         statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
         stacksOnApply: 1
+    - rid: 2942834270077976648
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834270077976651
+        - rid: 2942834270077976650
+    - rid: 2942834270077976650
+      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
+        stacksOnApply: 1
+    - rid: 2942834270077976651
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 2

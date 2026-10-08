@@ -23,8 +23,7 @@ public class Skill_Basic : Skill
         if (args.Invoker is not Combatant combatant)
             return false;
 
-        CanPayResourceCosts(combatant, GetTotalResourceCosts());
-        return true;
+        return CanPayResourceCosts(combatant, GetTotalResourceCosts());
     }
 
     public override bool Execute(TargetSelectionArgs args)

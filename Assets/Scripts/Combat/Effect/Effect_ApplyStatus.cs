@@ -15,6 +15,6 @@ public class Effect_ApplyStatus : Effect
             return;
         }
 
-        combatant.StatusEffects.AddEffect(statusEffectSO.CreateInstance(), stacksOnApply);
+        combatant.AddStatusEffect(statusEffectSO.CreateInstance(), stacksOnApply);
     }
 }

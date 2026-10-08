@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Starburn
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectSO_Starburn
   maxStacks: 2147483647
-  damagePerStack: 50
+  damagePerStack: 1
   turnDuration: 3
   canRefreshOnApply: 1

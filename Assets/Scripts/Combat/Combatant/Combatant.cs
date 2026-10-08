@@ -6,7 +6,9 @@ public class Combatant : MonoBehaviour, ITarget
 {
     public static event Action<Combatant, float> OnHealthChanged;
     public static event Action<Combatant, float> OnManaChanged;
+    public static event Action<Combatant, StatusEffectType> OnStatusAdded;
     public static event Action<Combatant, Skill> OnSkillUsed;
+    public static event Action<Combatant, Skill> OnSkillFailed;
     public static event Action<Combatant, StatusEffectType> OnTurnSkipped;
 
     [SerializeField] private bool isPlayerControlled; // Temporary. This should be passed in when creating the combatant.
@@ -26,7 +28,6 @@ public class Combatant : MonoBehaviour, ITarget
     public CharacterData CharacterData => characterData;
     public CombatantStats Stats => stats;
     public BoxCollider2D BoxCollider => boxCollider;
-
 
     public CombatantStatusEffects StatusEffects => statusEffectsController;
 
@@ -60,6 +61,12 @@ public class Combatant : MonoBehaviour, ITarget
         StatusEffects.OnTurnEnd(this);
     }
 
+    public void AddStatusEffect(StatusEffect statusEffect, int stacks)
+    {
+        StatusEffects.AddEffect(statusEffect, stacks);
+        OnStatusAdded?.Invoke(this, statusEffect.StatusEffectType);
+    }
+
     public Skill GetSkillFromActionType(CombatActionType actionType, int actionIndex)
     {
         return actionType switch
@@ -88,8 +95,11 @@ public class Combatant : MonoBehaviour, ITarget
             OnSkillUsed?.Invoke(this, skill);
             return true;
         }
-        
-        return false;
+        else
+        {
+            OnSkillFailed?.Invoke(this, skill);
+            return false;
+        }
     }
 
     public TargetSelectionVisualizer GetSelectionVisualizer()
