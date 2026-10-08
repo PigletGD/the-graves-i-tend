@@ -65,6 +65,9 @@ public class Combat : MonoBehaviour
 
         if (!activeCombatant.TryStartTurn())
         {
+            if (activeCombatant.IsDead)
+                CombatTurnOrder.RemoveCombatant(activeCombatant);
+
             FinishCurrentTurn();
             return;
         }
@@ -133,9 +136,9 @@ public class Combat : MonoBehaviour
 
         Skill[] skills = activeCombatant.CharacterData.Skills;
 
-        if (skills.Length > 0)
+        // If we have skill we 50/50 it to cast for now.
+        if (skills.Length > 0 && UnityEngine.Random.Range(0, 2) == 0)
         {
-            bool skillExecuted = false;
             int skillIndex = UnityEngine.Random.Range(0, skills.Length);
             Skill skill = skills[skillIndex];
             ITarget[] targets = skill.VisualTargetingMode switch
@@ -150,16 +153,11 @@ public class Combat : MonoBehaviour
             };
 
             if (TryExecuteAction(new(CombatActionType.Skill, skillIndex, targets)))
-                skillExecuted = true;
-
-            if (skillExecuted)
                 return;
         }
-
-        if (UnityEngine.Random.Range(0, 2) == 0)
-            TryExecuteAction(new(CombatActionType.Skip, targets: new ITarget[] { activeCombatant }));
-        else
-            TryExecuteAction(new(CombatActionType.Attack, targets: new ITarget[] { SelectRandomCombatant(PlayerCombatants) }));
+        
+        // Fallback
+        TryExecuteAction(new(CombatActionType.Attack, targets: new ITarget[] { SelectRandomCombatant(PlayerCombatants) }));
             
         static Combatant SelectRandomCombatant(IEnumerable<Combatant> combatants)
         {
@@ -183,6 +181,9 @@ public class Combat : MonoBehaviour
 
     private void FinishCurrentTurn()
     {
+        if (!activeCombatant.IsDead)
+            activeCombatant.EndTurn();
+
         CombatTurnOrder.ResetCombatantActionValue(activeCombatant);
         arena.SetCurrentCombatant(null);
         OnTurnEnded?.Invoke(activeCombatant);

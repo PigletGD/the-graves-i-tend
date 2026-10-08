@@ -23,7 +23,7 @@ public class CombatantStatusEffects
         }
         else if (existingEffect is StackableStatusEffect stackableEffect)
         {
-            stackableEffect.AddStacks(stacks);
+            stackableEffect.OnReapplied(statusEffect, stacks);
             Debug.Log($"{statusEffect.StatusEffectType} stacks updated to {stackableEffect.StackCount}/{stackableEffect.MaxStacks}.");
         }
         else
@@ -50,4 +50,29 @@ public class CombatantStatusEffects
     }
 
     public bool HasStatusEffect(StatusEffectType effectType) => statusEffects.Any(x => x.StatusEffectType == effectType);
+
+    public void OnTurnStart(Combatant combatant)
+    {
+        foreach (StatusEffect statusEffect in statusEffects.ToArray())
+        {
+            statusEffect.OnTurnStart(combatant);
+
+            if (statusEffect is TimedStackableStatusEffect timedStatusEffect && timedStatusEffect.HasExpired)
+                RemoveEffect(statusEffect.StatusEffectType);
+
+            if (combatant.IsDead)
+                break;
+        }
+    }
+
+    public void OnTurnEnd(Combatant combatant)
+    {
+        foreach (StatusEffect statusEffect in statusEffects.ToArray())
+        {
+            statusEffect.OnTurnEnd(combatant);
+
+            if (statusEffect is TimedStackableStatusEffect timedStatusEffect && timedStatusEffect.HasExpired)
+                RemoveEffect(statusEffect.StatusEffectType);
+        }
+    }
 }

@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a84ec836f98db24d951673c3b2af3ad, type: 3}
-  m_Name: Air Mandragora B Data
+  m_Name: Douki Data
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: Air Mandragora
-  characterTitle: 
-  portrait: {fileID: 0}
+  characterName: Douki
+  characterTitle: The Gravekeeper
+  portrait: {fileID: 7751706147673198722, guid: 0d82c10474e0515428b1fc138015d9c9, type: 3}
   basicAttack: {fileID: 11400000, guid: bc948e2f3ee8984468a4d13b579dce01, type: 2}
   skipTurn: {fileID: 11400000, guid: 777a9026a251a9447b35684e12b64814, type: 2}
-  skills: []
-  maxHP: 100
+  skills:
+  - {fileID: 11400000, guid: 11188e8bc439e624f91ba113ea03cad0, type: 2}
+  - {fileID: 11400000, guid: 662f373a04b6bae488f45227047914b7, type: 2}
+  - {fileID: 11400000, guid: 61dc07c26eb052a468ceae9b8f63f6bb, type: 2}
+  maxHP: 300
   maxMP: 9
-  baseAtk: 15
-  speed: 50
+  baseAtk: 10
+  speed: 100
