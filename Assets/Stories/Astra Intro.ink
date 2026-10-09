@@ -1,4 +1,4 @@
-"Just another glorious day in Valen~. MmmmmHm~." #speaker:Astra #audio:Astra Intro Paragraph 1 Speaking #text_speed_multiplier:1.75 #dialogue_transition:3
+"Just another glorious day in Valen~. MmmmmHm~." #speaker:Astra #audio:Astra Intro Paragraph 1 Speaking #text_speed_multiplier:1.55 #dialogue_transition:3
 
 The cauldron was bubbling just fine, making little pops while the fire underneath did its little dance. I always found that a world too quiet leaves space for bad thoughts. The noise helps me focus… Like putting exactly the right ingredient into my concoction~. But, admittedly, it is a distraction. #audio:Astra Intro Paragraph 2 Thought #font_style:italic
 
@@ -14,7 +14,7 @@ I really shouldn't hesitate. #audio:Astra Intro Paragraph 7 Thought #dialogue_tr
 
 Though the cauldron needs a couple more ingredients. Carefully chosen minerals, crushed in my hand. In my mind's eye, however, I am once again with my notes. #audio:Astra Intro Paragraph 8 Thought #font_style:italic
 
-"Flower bloom at dusk, souls rest unto thee. A kaleidoscope on a river, stream of colours into the imaginary. A thing of the heavens given freely, kissed by the siblings of the night… And the spice of air, channeled in the heart of the singing mountain. Pfffhhh… Ridiculous~." #audio:Astra Intro Paragraph 9 Speaking #dialogue_transition:3 #text_speed_multiplier:0.9
+"Flower bloom at dusk, souls rest unto thee. A kaleidoscope on a river, stream of colours into the imaginary. A thing of the heavens given freely, kissed by the siblings of the night… And the spice of air, channeled in the heart of the singing mountain. Pfffhhh… Ridiculous~." #audio:Astra Intro Paragraph 9 Speaking #dialogue_transition:2 #text_speed_multiplier:0.9
 
 I cannot help but laugh. How could a bunch of fables and bedtime rhymes create the strongest elixir in existence? But still… These special ingredients, paired with my know-how, and countless other components… It's not impossible. I flick through my notes, the calculations, the letters from distant places…#audio:Astra Intro Paragraph 10 Thought #text_speed_multiplier:0.87 #font_style:italic
 

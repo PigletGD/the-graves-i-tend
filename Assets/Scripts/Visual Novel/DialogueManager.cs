@@ -234,7 +234,17 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator DelayStoryContinue(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        float loopDelay = delay / 3.0f;
+        for (int i = 0; i <= 3; i++)
+        {
+            yield return new WaitForSeconds(loopDelay);
+
+            while (isPaused && voiceOverSource.isPlaying)
+            {
+                yield return null;
+            }
+        }
+
         ContinueStory();
     }
 
