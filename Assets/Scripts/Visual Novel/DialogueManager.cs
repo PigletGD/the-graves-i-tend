@@ -31,7 +31,6 @@ public class DialogueManager : MonoBehaviour
     //private int delayIndex;
     private float dialogueTransitionDelayValue = 2f;
     private float textSpeedMultiplier = 1f;
-    private FontStyle fontStyle;
 
     private InputAction pauseAction;
 
@@ -44,9 +43,9 @@ public class DialogueManager : MonoBehaviour
     private const string AUDIO_TAG = "audio";
     private const string DELAY_TAG = "delay";
     private const string DIALOGUE_TRANSITION_TAG = "dialogue_transition";
+    private const string FONT_STYLE_TAG = "font_style";     // bold, normal, italicized
     private const string TEXT_SPEED_TAG = "text_speed";
-    private const string FONT_STYLE = "font_style";     // bold, normal, italicized
-    private const string TEXT_SPEED_MULTIPLIER = "text_speed_multiplier";       // needed for any excess voice length
+    private const string TEXT_SPEED_MULTIPLIER_TAG = "text_speed_multiplier";       // needed for any excess voice length
     #endregion
 
 
@@ -100,6 +99,7 @@ public class DialogueManager : MonoBehaviour
         timeElapsed = 0;
         dialogueIndex = 0;
         textSpeedMultiplier = 1f;
+        dialogueText.fontStyle = FontStyles.Normal;
         //delayIndex = 0;
 
         if (currentStory.canContinue)
@@ -182,11 +182,26 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case TEXT_SPEED_TAG:
                     break;
-                case TEXT_SPEED_MULTIPLIER:
+                case TEXT_SPEED_MULTIPLIER_TAG:
                     if (!float.TryParse(tagValue, out textSpeedMultiplier))
                         textSpeedMultiplier = 1f;
                     break;
-                
+                case FONT_STYLE_TAG:
+                    switch (tagValue)
+                    {
+                        case "bold":
+                            dialogueText.fontStyle = FontStyles.Bold;
+                            break;
+                        case "normal":
+                            dialogueText.fontStyle = FontStyles.Normal;
+                            break;
+                        case "italic":
+                            dialogueText.fontStyle = FontStyles.Italic;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
                 default:
                     Debug.LogWarning("Tag is not a registered Tag key");
                     break;
