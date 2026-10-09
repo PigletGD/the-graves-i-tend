@@ -45,8 +45,11 @@ public class Shop : MonoBehaviour
     }
     public void DecreasePurchaseQuantity()
     {
-        purchaseQuantity--;
-        UpdatePurchaseQuantityText();
+        if (purchaseQuantity > 1)
+        {
+            purchaseQuantity--;
+            UpdatePurchaseQuantityText();
+        }
     }
 
     #endregion
