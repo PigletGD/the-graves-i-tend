@@ -131,12 +131,12 @@ GameObject:
   - component: {fileID: 35611380}
   - component: {fileID: 35611379}
   m_Layer: 5
-  m_Name: Reference
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &35611378
 RectTransform:
   m_ObjectHideFlags: 0
@@ -169,14 +169,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7238741087559994917, guid: eebe8814be051bd408a1b762b09915e8, type: 3}
+  m_Sprite: {fileID: 4248395318355589664, guid: 696afade118ddbb4ba374ede87b8a109, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

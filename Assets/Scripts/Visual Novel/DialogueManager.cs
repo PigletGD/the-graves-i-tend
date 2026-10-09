@@ -31,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     //private int delayIndex;
     private float dialogueTransitionDelayValue = 2f;
     private float textSpeedMultiplier = 1f;
+    private FontStyle fontStyle;
 
     private InputAction pauseAction;
 
@@ -44,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     private const string DELAY_TAG = "delay";
     private const string DIALOGUE_TRANSITION_TAG = "dialogue_transition";
     private const string TEXT_SPEED_TAG = "text_speed";
+    private const string FONT_STYLE = "font_style";     // bold, normal, italicized
     private const string TEXT_SPEED_MULTIPLIER = "text_speed_multiplier";       // needed for any excess voice length
     #endregion
 
@@ -184,6 +186,7 @@ public class DialogueManager : MonoBehaviour
                     if (!float.TryParse(tagValue, out textSpeedMultiplier))
                         textSpeedMultiplier = 1f;
                     break;
+                
                 default:
                     Debug.LogWarning("Tag is not a registered Tag key");
                     break;

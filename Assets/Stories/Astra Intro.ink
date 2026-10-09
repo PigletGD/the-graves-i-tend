@@ -8,7 +8,7 @@ I sigh, watching as the leaves sink to the ground. There they are again. The tho
 
 My sight drifts to the mad collection of notes, written in my own hand. Barely readable. That's me~.#audio:Astra Intro Paragraph 5 Thought #dialogue_transition:1.5
 
-But can you blame me? I don't even know how many hundreds of years I've found myself in this little sanctuary. How many hundred more it was when the lunatics sang my name with devotion? Perhaps even a thousand when I was still up there, dancing with nebulas and chasing comets? #audio:Astra Intro Paragraph 6 Thought
+But can you blame me? I don't even know how many hundreds of years I've found myself in this little sanctuary. How many hundred more it was when the lunatics sang my name with devotion? Perhaps even a thousand when I was still up there, dancing with nebulas and chasing comets? #audio:Astra Intro Paragraph 6 Thought #text_speed_multiplier:0.9 #dialogue_transition:2.5
 
 I really shouldn't hesitate. #audio:Astra Intro Paragraph 7 Thought #dialogue_transition:1
 
@@ -16,7 +16,7 @@ Though the cauldron needs a couple more ingredients. Carefully chosen minerals, 
 
 "Flower bloom at dusk, souls rest unto thee. A kaleidoscope on a river, stream of colours into the imaginary. A thing of the heavens given freely, kissed by the siblings of the night… And the spice of air, channeled in the heart of the singing mountain. Pfffhhh… Ridiculous~." #audio:Astra Intro Paragraph 9 Speaking #dialogue_transition:3 #text_speed_multiplier:0.9
 
-I cannot help but laugh. How could a bunch of fables and bedtime rhymes create the strongest elixir in existence? But still… These special ingredients, paired with my know-how, and countless other components… It's not impossible. I flick through my notes, the calculations, the letters from distant places…#audio:Astra Intro Paragraph 10 Thought #dialogue_transition:3 #text_speed_multiplier:0.87
+I cannot help but laugh. How could a bunch of fables and bedtime rhymes create the strongest elixir in existence? But still… These special ingredients, paired with my know-how, and countless other components… It's not impossible. I flick through my notes, the calculations, the letters from distant places…#audio:Astra Intro Paragraph 10 Thought #text_speed_multiplier:0.87
 
 "Fine... Fine. I will do it. I will brew the wishmaker's potion… Even if it means I'll have to go a terribly long way."#audio:Astra Intro Paragraph 11 Speaking
 
