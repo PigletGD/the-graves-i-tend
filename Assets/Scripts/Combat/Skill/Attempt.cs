@@ -19,18 +19,46 @@ public class Attempt
 
     protected virtual void ExecuteAttempt(TargetSelectionArgs args, ITarget[] targets)
     {
-        foreach (ITarget target in targets)
+        /*foreach (ITarget target in targets)
         {
             foreach (Effect effect in effects)
             {
                 effect.Apply(target);
+            }
+        }*/
+        
+        // TODO: This was a temp fix for all effects applying to the defined target at the skill level. Remove once the adjustments get in.
+        foreach (Effect effect in effects)
+        {
+            if (effect is ICanOverrideTarget overrideTargetEffect && overrideTargetEffect.ShouldOverrideTarget())
+            {
+                var newTargets = ResolveTargets(args, overrideTargetEffect.GetOverridableTargetSelection());
+                if (newTargets != null && newTargets.Length > 0)
+                {
+                    foreach (ITarget target in newTargets)
+                    {
+                        effect.Apply(target);
+                    }
+                }
+            }
+            else
+            {
+                foreach (ITarget target in targets)
+                {
+                    effect.Apply(target);
+                }
             }
         }
     }
 
     private ITarget[] ResolveTargets(TargetSelectionArgs args)
     {
-        return targetingMode switch
+        return ResolveTargets(args, targetingMode);
+    }
+
+    public ITarget[] ResolveTargets(TargetSelectionArgs args, TargetSelectionMode mode)
+    {
+        return mode switch
         {
             TargetSelectionMode.None => Array.Empty<ITarget>(),
             TargetSelectionMode.SingleEnemy => GetInitialTarget(args, false),
@@ -38,7 +66,7 @@ public class Attempt
             TargetSelectionMode.SingleAlly => GetInitialTarget(args, true),
             TargetSelectionMode.AllAllies => GetCombatants(args, true),
             TargetSelectionMode.Self => new[] { args.Invoker },
-            _ => throw new ArgumentOutOfRangeException(nameof(targetingMode), targetingMode, "Unsupported attempt targeting mode."),
+            _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, "Unsupported attempt targeting mode."),
         };
     }
 

@@ -36,3 +36,5 @@ MonoBehaviour:
       type: {class: Effect_ManaRecover, ns: , asm: Assembly-CSharp}
       data:
         mana: 1
+        shouldOverrideTarget: 1
+        mode: 5
