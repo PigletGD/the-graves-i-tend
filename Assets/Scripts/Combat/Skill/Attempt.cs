@@ -1,74 +1,73 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
 public class Attempt
 {
-    public static event Action<ITarget, ITarget> OnAttemptMissed;
+    public static Action<TargetSelectionArgs, ISkillCondition> OnAttemptFailed;
 
-    [SerializeField] private ProbabilityCondition<float> accuracy = new(1);
-    [SerializeReference, SerializeReferenceDropdown] private CombatCondition[] combatConditions;
-    [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] invokerConditions;
-    [SerializeReference, SerializeReferenceDropdown] private CombatantCondition[] targetConditions;
-    [SerializeReference, SerializeReferenceDropdown] public List<Effect> invokerEffects;
-    [SerializeReference, SerializeReferenceDropdown] public List<Effect> targetEffects;
+    [SerializeField] private TargetSelectionMode targetingMode = TargetSelectionMode.SingleEnemy;
+    [SerializeReference, SerializeReferenceDropdown] public Effect[] effects;
 
-    public void Execute(Combat combat, ITarget invoker, ITarget target)
+    public void Execute(TargetSelectionArgs args)
     {
-        foreach (CombatCondition combatCondition in combatConditions)
+        ITarget[] targets = ResolveTargets(args);
+        ExecuteAttempt(args, targets);
+    }
+
+    protected virtual void ExecuteAttempt(TargetSelectionArgs args, ITarget[] targets)
+    {
+        foreach (ITarget target in targets)
         {
-            if (!combatCondition.Check(combat))
+            foreach (Effect effect in effects)
             {
-                Debug.Log($"Attempt failed due to {combatCondition.GetType().Name}!");
-                return;
+                effect.Apply(target);
             }
         }
+    }
 
-        if (invoker is Combatant invokerCombatant)
+    private ITarget[] ResolveTargets(TargetSelectionArgs args)
+    {
+        return targetingMode switch
         {
-            foreach (CombatantCondition invokerCondition in invokerConditions)
-            {
-                if (!invokerCondition.Check(invokerCombatant))
-                {
-                    Debug.Log($"Attempt failed due to {invokerCondition.GetType().Name}!");
-                    return;
-                }
-            }
+            TargetSelectionMode.None => Array.Empty<ITarget>(),
+            TargetSelectionMode.SingleEnemy => GetInitialTarget(args, false),
+            TargetSelectionMode.AllEnemies => GetCombatants(args, false),
+            TargetSelectionMode.SingleAlly => GetInitialTarget(args, true),
+            TargetSelectionMode.AllAllies => GetCombatants(args, true),
+            TargetSelectionMode.Self => new[] { args.Invoker },
+            _ => throw new ArgumentOutOfRangeException(nameof(targetingMode), targetingMode, "Unsupported attempt targeting mode."),
+        };
+    }
+
+    private ITarget[] GetInitialTarget(TargetSelectionArgs args, bool isAlly)
+    {
+        if (args.Invoker is not Combatant invoker)
+            return null;
+
+        ITarget target = args.Targets
+            .FirstOrDefault(candidate => candidate is Combatant combatant && combatant.IsPlayerControlled == (invoker.IsPlayerControlled == isAlly));
+            
+        if (target == null)
+        {
+            Debug.LogWarning($"No selected target matches the attempt's ally setting (ally: {isAlly}).");
+            return null;
         }
 
-        // Check if we actually hit the Attempt first before checking if the Effect works on the Target.
-        if (!accuracy.Check(0))
-        {
-            List<string> effectNames = new();
+        return new[] { target };
+    }
 
-            foreach (Effect effect in targetEffects)
-                effectNames.Add(effect.GetType().Name);
+    private ITarget[] GetCombatants(TargetSelectionArgs args, bool isAlly)
+    {
+        if (args.Invoker is not Combatant invoker)
+            return null;
 
-            foreach (Effect effect in invokerEffects)
-                effectNames.Add(effect.GetType().Name);
+        IEnumerable<Combatant> combatants = invoker.IsPlayerControlled == isAlly
+            ? args.Combat.PlayerCombatants
+            : args.Combat.EnemyCombatants;
 
-            Debug.Log($"Attempt missed! Effects: {string.Join(", ", effectNames)}.");
-            OnAttemptMissed?.Invoke(invoker, target);
-            return;
-        }
-
-        if (target is Combatant targetCombatant)
-        {
-            foreach (CombatantCondition targetCondition in targetConditions)
-            {
-                if (!targetCondition.Check(targetCombatant))
-                {
-                    Debug.Log($"Attempt failed due to {targetCondition.GetType().Name}!");
-                    return;
-                }
-            }
-        }
-
-        foreach (Effect effect in invokerEffects)
-            effect.Apply(invoker);
-
-        foreach (Effect effect in targetEffects)
-            effect.Apply(target);
+        return combatants.Cast<ITarget>().ToArray();
     }
 }

@@ -9,10 +9,12 @@ public class CharacterData : ScriptableObject
     [SerializeField] private Skill basicAttack;
     [SerializeField] private Skill skipTurn;
     [SerializeField] private Skill[] skills;
+    [SerializeField] private Skill[] items; // TODO: Update this so that we use the Item class.
 
     [Header("Base Stats")]
     [SerializeField] private float maxHP = 100f;
-    [SerializeField] private float maxMP = 20f;
+    [SerializeField] private float maxMP = 9f;
+    [SerializeField] private float baseAtk = 10f;
     [SerializeField] private float speed = 100f;
 
     public string CharacterName => characterName;
@@ -21,6 +23,7 @@ public class CharacterData : ScriptableObject
     public Skill BasicAttack => basicAttack;
     public Skill SkipTurn => skipTurn;
     public Skill[] Skills => skills;
+    public Skill[] Items => items;
 
     public float MaxHP => maxHP;
     public float MaxMP => maxMP;

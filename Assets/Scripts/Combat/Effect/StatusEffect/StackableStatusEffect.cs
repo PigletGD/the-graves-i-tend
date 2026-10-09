@@ -3,7 +3,6 @@
 /// </summary>
 public abstract class StackableStatusEffect : StatusEffect, IStackable
 {
-    protected StatusEffectType statusEffectType;
     protected int currentStacks;
     protected int maxStacks;
 
@@ -22,5 +21,10 @@ public abstract class StackableStatusEffect : StatusEffect, IStackable
         currentStacks -= amount;
         if (currentStacks < 0)
             currentStacks = 0;
+    }
+
+    public virtual void OnReapplied(StatusEffect reappliedEffect, int stacks)
+    {
+        AddStacks(stacks);
     }
 }

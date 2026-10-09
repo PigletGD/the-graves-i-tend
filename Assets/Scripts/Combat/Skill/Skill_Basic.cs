@@ -1,4 +1,13 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class SkillResourceCost
+{
+    public CombatantResourceType resourceType;
+    public float amount;
+}
 
 /// <summary>
 /// Basic Skill that has costs for the invoker and attempts to targets (that aren't the same relationship).
@@ -6,38 +15,61 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Basic Skill", menuName = "Skills/Basic Skill")]
 public class Skill_Basic : Skill
 {
-    [SerializeField] private SkillCost[] skillCosts;
-    [SerializeField] private TargetedAttempts[] targetedAttempts;
+    [SerializeReference, SerializeReferenceDropdown] private ISkillCondition[] conditions;
+    [SerializeField] private SkillResourceCost[] resourceCosts;
 
     public override bool CanExecute(TargetSelectionArgs args)
     {
-        foreach (SkillCost skillCost in skillCosts)
+        if (args.Invoker is not Combatant combatant)
+            return false;
+
+        return CanPayResourceCosts(combatant, GetTotalResourceCosts());
+    }
+
+    public override bool Execute(TargetSelectionArgs args)
+    {
+        if (args.Invoker is not Combatant combatant)
+            return false;
+
+        foreach (ISkillCondition condition in conditions)
         {
-            if (!skillCost.Check(args.Invoker))
-            {
-                Debug.Log($"{GetType().Name} cannot be executed due to {skillCost.ResourceType}!");
+            if (!condition.Check(args))
                 return false;
-            }
+        }
+
+        Dictionary<CombatantResourceType, float> totalResources = GetTotalResourceCosts();
+        if (!CanPayResourceCosts(combatant, totalResources))
+            return false;
+
+        foreach (KeyValuePair<CombatantResourceType, float> resource in totalResources)
+            combatant.UpdateResource(resource.Key, -resource.Value);
+
+        foreach (Attempt attempt in attempts)
+            attempt.Execute(args);
+
+        return true;
+    }
+
+    private bool CanPayResourceCosts(Combatant combatant, Dictionary<CombatantResourceType, float> resourceCosts)
+    {
+        foreach (KeyValuePair<CombatantResourceType, float> resourceCost in resourceCosts)
+        {
+            if (combatant.GetResourceAmount(resourceCost.Key) < resourceCost.Value)
+                return false;
         }
 
         return true;
     }
 
-    public override void Execute(TargetSelectionArgs args)
+    private Dictionary<CombatantResourceType, float> GetTotalResourceCosts()
     {
-        foreach (SkillCost skillCost in skillCosts)
-            skillCost.Apply(args.Invoker);
-
-        foreach (TargetedAttempts targetedAttempt in targetedAttempts)
+        Dictionary<CombatantResourceType, float> totalCosts = new();
+        foreach (SkillResourceCost resourceCost in resourceCosts)
         {
-            foreach (ITarget target in args.Targets)
-            {
-                if (target.GetTargetRelationshipTo(args.Invoker) != targetedAttempt.targetRelationship)
-                    continue;
-
-                foreach (Attempt attempt in targetedAttempt.attempts)
-                    attempt.Execute(args.Combat, args.Invoker, target);
-            }
+            totalCosts.TryGetValue(resourceCost.resourceType, out float total);
+            totalCosts[resourceCost.resourceType] = total + resourceCost.amount;
         }
+
+        return totalCosts;
     }
 }

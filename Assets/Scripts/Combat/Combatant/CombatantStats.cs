@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -27,36 +28,45 @@ public class CombatantStats
     /// </summary>
     public float ActionValue => 10000f / currentSpeed;
 
-    public void Initialize(CharacterData characterData)
+    public void Initialize(CharacterData characterData, float startingMP)
     {
         maxHP = characterData.MaxHP;
         maxMP = characterData.MaxMP;
         maxSpeed = characterData.Speed;
 
         currentHP = maxHP;
-        currentMP = 9; // Reminder to move this literal out.
+        currentMP = startingMP; // Reminder to move this literal out.
         currentSpeed = maxSpeed;
 
         currentElation = 0;
     }
 
-    public void UpdateHP(float amount)
+    public float GetResourceAmount(CombatantResourceType resourceType)
     {
-        currentHP = Mathf.Clamp(currentHP + amount, 0, maxHP);
+        return resourceType switch
+        {
+            CombatantResourceType.Health => CurrentHP,
+            CombatantResourceType.Mana => CurrentMP,
+            CombatantResourceType.Elation => CurrentElation,
+            _ => throw new ArgumentOutOfRangeException(nameof(resourceType), resourceType, null)
+        };
     }
 
-    public void UpdateMP(float amount)
+    public void UpdateResource(CombatantResourceType resourceType, float amount)
     {
-        currentMP = Mathf.Clamp(currentMP + amount, 0, maxMP);
-    }
-
-    public void UpdateElation(float amount)
-    {
-        currentElation = Mathf.Clamp(currentElation + amount, MinElation, MaxElation);
-    }
-
-    public void UpdateSpeed(float amount)
-    {
-        currentSpeed = Mathf.Clamp(currentSpeed + amount, 1, maxSpeed);
+        switch (resourceType)
+        {
+            case CombatantResourceType.Health:
+                currentHP = Mathf.Clamp(currentHP + amount, 0, maxHP);
+                break;
+            case CombatantResourceType.Mana:
+                currentMP = Mathf.Clamp(currentMP + amount, 0, maxMP);
+                break;
+            case CombatantResourceType.Elation:
+                currentElation = Mathf.Clamp(currentElation + amount, MinElation, MaxElation);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(resourceType), resourceType, null);
+        }
     }
 }

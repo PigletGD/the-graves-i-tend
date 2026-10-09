@@ -128,72 +128,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jaq_Sprite_0
-      rect:
-        serializedVersion: 2
-        x: 2459
-        y: 3424
-        width: 31
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24abd9c843abf3be0800000000000000
-      internalID: -1495271816403502526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jaq_Sprite_1
-      rect:
-        serializedVersion: 2
-        x: 2487
-        y: 3477
-        width: 19
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4339b657c17c7ee30800000000000000
-      internalID: 4532810475014689588
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jaq_Sprite_2
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 423
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b5e5f500098200f20800000000000000
-      internalID: 3386751518729264731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Jaq_Sprite_3
       rect:
         serializedVersion: 2
@@ -201,8 +135,8 @@ TextureImporter:
         y: 51
         width: 3194
         height: 3367
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -215,55 +149,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Jaq_Sprite_4
-      rect:
-        serializedVersion: 2
-        x: 326
-        y: 368
-        width: 20
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3b49b2a5c34ef6a0800000000000000
-      internalID: -6413614303211336901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jaq_Sprite_5
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 388
-        width: 21
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 60cae5d94df200df0800000000000000
-      internalID: -216120191893984250
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d38148abb61c6634ebb09a3642eaadd4
     internalID: 0
     vertices: []
     indices: 
@@ -279,6 +169,7 @@ TextureImporter:
       Jaq_Sprite_3: -772588321502333488
       Jaq_Sprite_4: -6413614303211336901
       Jaq_Sprite_5: -216120191893984250
+      Jaq_Sprite_6: 1385084643
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

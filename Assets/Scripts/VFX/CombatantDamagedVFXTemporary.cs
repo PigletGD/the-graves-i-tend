@@ -28,12 +28,12 @@ public class CombatantDamagedVFXTemporary : MonoBehaviour
 
     private void OnEnable()
     {
-        Combatant.OnHPChanged += FlickerOnDamage;
+        Combatant.OnHealthChanged += FlickerOnDamage;
     }
 
     private void OnDisable()
     {
-        Combatant.OnHPChanged -= FlickerOnDamage;
+        Combatant.OnHealthChanged -= FlickerOnDamage;
 
         if (flickerCoroutine != null)
         {

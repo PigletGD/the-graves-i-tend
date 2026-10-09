@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6896fc30a4c2514f9a916e84a6f2961, type: 3}
+  m_Name: Serrated Bolt
+  m_EditorClassIdentifier: Assembly-CSharp::Skill_Basic
+  description: Sling three sharp bolts at a single enemy. Deal low damage with each
+    bolt and apply 1 Sunder.
+  visualTargetingMode: 1
+  attempts:
+  - rid: 2942834247786037594
+  - rid: 2942834270077976648
+  - rid: 2942834173696278597
+  conditions: []
+  resourceCosts:
+  - resourceType: 1
+    amount: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: 2942834173696278597
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834247786037592
+        - rid: 2942834247786037593
+    - rid: 2942834247786037592
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 2
+    - rid: 2942834247786037593
+      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
+        stacksOnApply: 1
+    - rid: 2942834247786037594
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834247786037595
+        - rid: 2942834247786037596
+    - rid: 2942834247786037595
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 2
+    - rid: 2942834247786037596
+      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
+        stacksOnApply: 1
+    - rid: 2942834270077976648
+      type: {class: Attempt, ns: , asm: Assembly-CSharp}
+      data:
+        targetingMode: 1
+        effects:
+        - rid: 2942834270077976651
+        - rid: 2942834270077976650
+    - rid: 2942834270077976650
+      type: {class: Effect_ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        statusEffectSO: {fileID: 11400000, guid: 37a964511061aa048aa4542fbeb96a8d, type: 2}
+        stacksOnApply: 1
+    - rid: 2942834270077976651
+      type: {class: Effect_Damage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 2

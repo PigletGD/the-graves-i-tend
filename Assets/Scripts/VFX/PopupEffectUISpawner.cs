@@ -21,16 +21,22 @@ public class PopupEffectUISpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        Combatant.OnHPChanged += OnHPChanged;
+        Combatant.OnHealthChanged += OnHPChanged;
+        Combatant.OnStatusAdded += OnStatusAdded;
         Combatant.OnSkillUsed += OnSkillUsed;
-        Attempt.OnAttemptMissed += OnAttemptMissed;
+        Combatant.OnSkillFailed += OnSkillFailed;
+        Combatant.OnTurnSkipped += OnTurnSkipped;
+        //Attempt.OnAttemptFailed += OnAttemptFailed;
     }
     
     private void OnDisable()
     {
-        Combatant.OnHPChanged -= OnHPChanged;
+        Combatant.OnHealthChanged -= OnHPChanged;
+        Combatant.OnStatusAdded -= OnStatusAdded;
         Combatant.OnSkillUsed -= OnSkillUsed;
-        Attempt.OnAttemptMissed -= OnAttemptMissed;
+        Combatant.OnSkillFailed -= OnSkillFailed;
+        Combatant.OnTurnSkipped -= OnTurnSkipped;
+        //Attempt.OnAttemptFailed -= OnAttemptFailed;
     }
 
     private void ShowPopup(ITarget target, string message)
@@ -87,15 +93,36 @@ public class PopupEffectUISpawner : MonoBehaviour
         ShowPopup(combatant, damageAmount.ToString());
     }
 
-    private void OnAttemptMissed(ITarget _, ITarget target)
+    private void OnStatusAdded(Combatant combatant, StatusEffectType statusEffectType)
     {
-        if (target is Combatant combatant)
-            ShowPopup(combatant, "Missed!");
+        ShowPopup(combatant, statusEffectType.ToString());
     }
-    
+
+    private void OnAttemptFailed(TargetSelectionArgs args, ISkillCondition _)
+    {
+        if (args.Targets == null)
+            return;
+
+        foreach (ITarget target in args.Targets)
+        {
+            if (target is Combatant combatant)
+                ShowPopup(combatant, "Failed!");
+        }
+    }
+
     private void OnSkillUsed(Combatant combatant, Skill skill)
     {
         if (skill.name == "Skip Turn")
             ShowPopup(combatant, "Skip Turn");
+    }
+
+    private void OnSkillFailed(Combatant combatant, Skill skill)
+    {
+        ShowPopup(combatant, "Cannot Cast");
+    }
+
+    private void OnTurnSkipped(Combatant combatant, StatusEffectType reason)
+    {
+        ShowPopup(combatant, reason == StatusEffectType.None ? "" : reason.ToString());
     }
 }

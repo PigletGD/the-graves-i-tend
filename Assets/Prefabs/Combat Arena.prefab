@@ -1,0 +1,240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &778223938259656062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138489294351563160}
+  m_Layer: 0
+  m_Name: Left Side Positions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &138489294351563160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778223938259656062}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1554757131817150540}
+  m_Father: {fileID: 5884913352928844784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2077690731703764333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5884913352928844784}
+  - component: {fileID: 8692319390351313018}
+  m_Layer: 0
+  m_Name: Combat Arena
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5884913352928844784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077690731703764333}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 138489294351563160}
+  - {fileID: 5282266867329471262}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8692319390351313018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077690731703764333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f308237769df97d499318104ed1e808e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatArena
+  leftSidePositions:
+  - {fileID: 6463219095405231443}
+  rightSidePositions:
+  - {fileID: 5482521408832918204}
+  allyTileData:
+    baseTile: {fileID: -1274445775993155331, guid: c0de155259b920a45a850f864f9f81ee, type: 3}
+    baseOutlineTile: {fileID: -4768653096021127115, guid: 6b3d739e8f299f34195462216eea7036, type: 3}
+    currentTurnSprite: {fileID: -1187843640329442069, guid: f07b609b34cd39d4d9d9f3d2c3dd317e, type: 3}
+    targetedSprite: {fileID: 5606680089603763112, guid: df54096b878fe104c84cca5e1160f76c, type: 3}
+  enemyTileData:
+    baseTile: {fileID: 2006413731135493715, guid: 16142ad86f4fc3a4b9cdc6e31c14788a, type: 3}
+    baseOutlineTile: {fileID: -7778896424610023130, guid: 25065952a35a1294ba42d253ca48d0dd, type: 3}
+    currentTurnSprite: {fileID: 3264998785116148363, guid: f8b06286dd8c46541beff5ef22a57f61, type: 3}
+    targetedSprite: {fileID: 7562969298674925436, guid: 70b3b76d6bd99724d9af571cc35e79c6, type: 3}
+--- !u!1 &3117631122916954505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5282266867329471262}
+  m_Layer: 0
+  m_Name: Right Side Positions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5282266867329471262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3117631122916954505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 15684489349220259}
+  m_Father: {fileID: 5884913352928844784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &346677430292136084
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5282266867329471262}
+    m_Modifications:
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519535307146835928, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_Name
+      value: Combat Arena Row
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+--- !u!4 &15684489349220259 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+  m_PrefabInstance: {fileID: 346677430292136084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5482521408832918204 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5249632995513504296, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+  m_PrefabInstance: {fileID: 346677430292136084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a881bdaaec46f4bb60da74a3550c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatArenaRow
+--- !u!1001 &1255245231841275771
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 138489294351563160}
+    m_Modifications:
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519535307146835928, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+      propertyPath: m_Name
+      value: Combat Arena Row
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+--- !u!4 &1554757131817150540 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 358068867896018743, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+  m_PrefabInstance: {fileID: 1255245231841275771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6463219095405231443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5249632995513504296, guid: 9346a2cef6c669347b4b13fd4b81581f, type: 3}
+  m_PrefabInstance: {fileID: 1255245231841275771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a881bdaaec46f4bb60da74a3550c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatArenaRow
