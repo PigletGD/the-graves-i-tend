@@ -21,13 +21,17 @@ public class DialogueManager : MonoBehaviour
     private bool isPaused;      // used for delays to time audio and text
     private bool isDialoguePlaying;     // controls whether panel is being displayed
     private bool isDelayed;     // bool for pausing the text printing
-    private int dialogueIndex;          // controls which part of the dialogue string it is currently at
-    private int delayIndex;
-    private int textIndex;      // used for how many fixed updates have passed, the lower the value
-    private int textSpeed = 12;      // text index increments
-    private float dialogueTransitionDelayValue = 2f;
 
-    private const int TEXT_PRINT_VALUE = 60; // the value that needs to be achieved for text index to print the next character;
+    private int dialogueIndex;          // controls which part of the dialogue string it is currently at
+    private float timeElapsed;      
+    private float timePerCharacter;
+    //private int delayIndex;
+    private float dialogueTransitionDelayValue = 2f;
+    private float textSpeedMultiplier = 1f;
+
+
+    private const float DEFAULT_TEXT_SPEED = 0.1f;
+    private const float TEXT_SPEED_BIAS = 1.2f; // Just a base bias since ideally text should be a bit faster than voice
 
     #region Tags
     private const string SPEAKER_TAG = "speaker";
@@ -35,6 +39,7 @@ public class DialogueManager : MonoBehaviour
     private const string DELAY_TAG = "delay";
     private const string DIALOGUE_TRANSITION_TAG = "dialogue_transition";
     private const string TEXT_SPEED_TAG = "text_speed";
+    private const string TEXT_SPEED_MULTIPLIER = "text_speed_multiplier";       // needed for any excess voice length
     #endregion
 
     private void Start()
@@ -52,7 +57,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         UpdateDialogueText();
     }
@@ -68,9 +73,10 @@ public class DialogueManager : MonoBehaviour
         isDialoguePlaying = true;
         isPaused = false;
         isDelayed = false;
-        textIndex = 0;
+        timeElapsed = 0;
         dialogueIndex = 0;
-        delayIndex = 0;
+        textSpeedMultiplier = 1f;
+        //delayIndex = 0;
 
         if (currentStory.canContinue)
         {
@@ -78,6 +84,11 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = "";
             dialoguePanel.SetActive(true);
             HandleTags(currentStory.currentTags);
+            
+            if(audioSource.clip != null)
+                timePerCharacter = audioSource.clip.length / (currentDialogue.Length * TEXT_SPEED_BIAS * textSpeedMultiplier);    
+            else
+                timePerCharacter = DEFAULT_TEXT_SPEED;
         }
             
         else
@@ -116,9 +127,14 @@ public class DialogueManager : MonoBehaviour
                 case DELAY_TAG:
                     break;
                 case DIALOGUE_TRANSITION_TAG:
+                    if (!float.TryParse(tagValue, out dialogueTransitionDelayValue))
+                        dialogueTransitionDelayValue = 2f;
                     break;
                 case TEXT_SPEED_TAG:
-                    int.TryParse(tagValue, out textSpeed);
+                    break;
+                case TEXT_SPEED_MULTIPLIER:
+                    if (!float.TryParse(tagValue, out textSpeedMultiplier))
+                        textSpeedMultiplier = 1f;
                     break;
                 default:
                     Debug.LogWarning("Tag is not a registered Tag key");
@@ -132,14 +148,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (isDialoguePlaying && !isPaused && !isDelayed)
         {
-            textIndex+= textSpeed;
+            timeElapsed += Time.deltaTime;
 
             // Controls the speed at which text is printed out
-            if (textIndex >= TEXT_PRINT_VALUE)
+            if (timeElapsed >= timePerCharacter)
             {
                 dialogueText.text += currentDialogue[dialogueIndex];
                 dialogueIndex++;
-                textIndex = 0;
+                timeElapsed -= timePerCharacter;
             }
 
             if (dialogueText.text == currentDialogue)
