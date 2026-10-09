@@ -22,6 +22,7 @@ public class CombatResultsPanel : MonoBehaviour
     public void OnExitButton()
     {
         // TEMPORARY
+        OverworldHandler.TargetContext = OverworldHandler.OverworldContext.Forest;
         SceneManager.LoadScene("WorldInteractionScene");
     }
 }
