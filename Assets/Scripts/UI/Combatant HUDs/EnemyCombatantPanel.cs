@@ -5,8 +5,9 @@ public class EnemyCombatantPanel : CombatantPanel
     private RectTransform rectTranform;
     private RectTransform parentRectTransform;
     private Canvas canvas;
-    private bool positionPending;
-
+    //private bool positionPending;
+    private int positionPendingFrames;
+    
     public override void Initialize(Combatant combatant)
     {
         base.Initialize(combatant);
@@ -15,16 +16,24 @@ public class EnemyCombatantPanel : CombatantPanel
         rectTranform = (RectTransform)transform;
         parentRectTransform = (RectTransform)transform.parent;
         canvas = GetComponentInParent<Canvas>();
-        positionPending = true;
+        //positionPending = true;
+        
+        // TODO: Fix this once we figure out the UI enemy HP bar centering issue. That issue is most likely caused by the bounds not getting initalized yet on scene awake, so the bounds are still defined as (0, 0, 0)
+        positionPendingFrames = 5;
     }
 
     // UI does not update properly even though we're positioning Combatants before Initialize() gets called.
     private void LateUpdate()
     {
-        if (!positionPending)
+        /*if (!positionPending)
             return;
 
-        positionPending = false;
+        positionPending = false;*/
+
+        if (positionPendingFrames <= 0)
+            return;
+        
+        positionPendingFrames--;
         UpdateScreenPosition();
     }
 
