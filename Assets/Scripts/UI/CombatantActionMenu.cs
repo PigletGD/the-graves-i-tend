@@ -18,7 +18,8 @@ public class CombatantActionMenu : MonoBehaviour
     private RectTransform rectTransform;
     private RectTransform parentRectTransform;
     private Canvas canvas;
-    private bool positionPending;
+    //private bool positionPending;
+    private int positionPendingFrames;
 
     private void Awake()
     {
@@ -35,17 +36,24 @@ public class CombatantActionMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        positionPending = true;
+        //positionPending = true;
+        // TODO: Fix this once we figure out the UI enemy HP bar centering issue. That issue is most likely caused by the bounds not getting initalized yet on scene awake, so the bounds are still defined as (0, 0, 0)
+        positionPendingFrames = 5;
         HideSubmenus();
     }
 
     // UI does not update properly; similar to EnemyCombatantPanel.
     private void LateUpdate()
     {
-        if (!positionPending)
+        /*if (!positionPending)
             return;
 
-        positionPending = false;
+        positionPending = false;*/
+        
+        if (positionPendingFrames <= 0)
+            return;
+        
+        positionPendingFrames--;
         PositionAtCombatant();
     }
 
