@@ -4,16 +4,19 @@ using Ink.Runtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerText;
-
+    [SerializeField] private GameObject pauseText;
 
     [SerializeField] private StorySO storySO;   // story to be played
-    private AudioSource audioSource;
+    private AudioSource voiceOverSource;
 
     private Story currentStory;
     private string currentDialogue;
@@ -29,6 +32,8 @@ public class DialogueManager : MonoBehaviour
     private float dialogueTransitionDelayValue = 2f;
     private float textSpeedMultiplier = 1f;
 
+    private InputAction pauseAction;
+
 
     private const float DEFAULT_TEXT_SPEED = 0.1f;
     private const float TEXT_SPEED_BIAS = 1.2f; // Just a base bias since ideally text should be a bit faster than voice
@@ -42,13 +47,20 @@ public class DialogueManager : MonoBehaviour
     private const string TEXT_SPEED_MULTIPLIER = "text_speed_multiplier";       // needed for any excess voice length
     #endregion
 
+
+
+    private void Awake()
+    {
+        pauseAction = InputSystem.actions.FindAction("VN Pausing");
+    }
+
     private void Start()
     {
         isDialoguePlaying = false;
         isPaused = false;
         isDelayed = false;
 
-        audioSource = this.GetComponent<AudioSource>();
+        voiceOverSource = this.GetComponent<AudioSource>();
 
         if (storySO != null)
         {
@@ -59,7 +71,17 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+        HandleInput();
         UpdateDialogueText();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.FindActionMap("UI").Enable();
+    }
+    private void OnDisable()
+    {
+        inputActions.FindActionMap("UI").Disable();
     }
 
     public void StartStory(TextAsset inkJson)
@@ -85,8 +107,8 @@ public class DialogueManager : MonoBehaviour
             dialoguePanel.SetActive(true);
             HandleTags(currentStory.currentTags);
             
-            if(audioSource.clip != null)
-                timePerCharacter = audioSource.clip.length / (currentDialogue.Length * TEXT_SPEED_BIAS * textSpeedMultiplier);    
+            if(voiceOverSource.clip != null)
+                timePerCharacter = voiceOverSource.clip.length / (currentDialogue.Length * TEXT_SPEED_BIAS * textSpeedMultiplier);    
             else
                 timePerCharacter = DEFAULT_TEXT_SPEED;
         }
@@ -101,6 +123,32 @@ public class DialogueManager : MonoBehaviour
         isDialoguePlaying = false;
         currentDialogue = "";
         dialoguePanel.gameObject.SetActive(false);
+    }
+
+    private void PauseStory()
+    {
+        pauseText.gameObject.SetActive(true);
+        isPaused = true;
+        if (voiceOverSource.clip != null)
+            voiceOverSource.Pause();
+    }
+    private void UnpauseStory()
+    {
+        pauseText.gameObject.SetActive(false);
+        isPaused = false;
+        if (voiceOverSource.clip != null)
+            voiceOverSource.UnPause();
+    }
+
+    private void HandleInput()
+    {
+        if (pauseAction.WasPressedThisFrame())
+        {
+            if (isPaused)
+                UnpauseStory();
+            else
+                PauseStory();
+        }
     }
 
     private void HandleTags(List<string> currentTags)
@@ -121,8 +169,8 @@ public class DialogueManager : MonoBehaviour
                     speakerText.text = tagValue;
                     break;
                 case AUDIO_TAG:
-                    audioSource.clip = storySO.GetAudioClipByName(tagValue);
-                    audioSource.Play();
+                    voiceOverSource.clip = storySO.GetAudioClipByName(tagValue);
+                    voiceOverSource.Play();
                     break;
                 case DELAY_TAG:
                     break;
@@ -181,9 +229,9 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator DelayAudio(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (audioSource.clip != null)
+        if (voiceOverSource.clip != null)
         {
-            audioSource.Play();
+            voiceOverSource.Play();
         }
     }
 }
