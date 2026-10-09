@@ -13,6 +13,7 @@ public class StorySO : ScriptableObject
 
     public void FillDictionary()
     {
+        voiceOvers = new Dictionary<string, AudioClip>();
         foreach (AudioClip clip in voiceArray)
         {
             voiceOvers.Add(clip.name, clip);

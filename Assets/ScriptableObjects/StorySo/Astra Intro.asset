@@ -14,14 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StorySO
   <inkJsonFile>k__BackingField: {fileID: 4900000, guid: 0a3cda76a25438248bc349651eabeffe, type: 3}
   voiceArray:
-  - {fileID: 8300000, guid: e6230b9b45e225c42be935a0914c1715, type: 3}
-  - {fileID: 8300000, guid: b8cc5015b9c90d941939f7dd2283ba44, type: 3}
-  - {fileID: 8300000, guid: 72932de5ab40fee4ca05364c3599890c, type: 3}
-  - {fileID: 8300000, guid: 60ed6ab8eba1fe949b3e2811eeb3ea6d, type: 3}
-  - {fileID: 8300000, guid: 1778060cb1e1f5448b0bdc87837f5f88, type: 3}
-  - {fileID: 8300000, guid: 646f79227d9a9d04a8b9dde1563378eb, type: 3}
-  - {fileID: 8300000, guid: 34e1c6c25be169f4b82f212e299a1bc3, type: 3}
-  - {fileID: 8300000, guid: a5994fe42dfc75548876dd240c3981a3, type: 3}
-  - {fileID: 8300000, guid: d51eb734bf6ce0848832f86a0e0d46dd, type: 3}
-  - {fileID: 8300000, guid: 78e0504fb4c994b4ab391b27f3e95958, type: 3}
-  - {fileID: 8300000, guid: 2a1b176e8ab0f9f409f876af3984dba7, type: 3}
+  - {fileID: 8300000, guid: b46410e610f98484da94150b004ddf68, type: 3}
+  - {fileID: 8300000, guid: 791d7cccfb07a5648b60334a17353691, type: 3}
+  - {fileID: 8300000, guid: c2305ebd10902e242a44a6aaf8c11a6e, type: 3}
+  - {fileID: 8300000, guid: f043af4aa18c6354ab3140e13b962644, type: 3}
+  - {fileID: 8300000, guid: 1f43eed97841c2c4b8105bc5708630a5, type: 3}
+  - {fileID: 8300000, guid: a0e6650005d88c942a24a12c51833764, type: 3}
+  - {fileID: 8300000, guid: 50283bc8f6dbae646b76f38362324909, type: 3}
+  - {fileID: 8300000, guid: d968a7ff24f2a86488ff1eff778c8904, type: 3}
+  - {fileID: 8300000, guid: 9d37831b469933047a08d83d7f14da6b, type: 3}
+  - {fileID: 8300000, guid: 6b434286b5983e141b42e5f1e34255c9, type: 3}
+  - {fileID: 8300000, guid: 2a639d0f1eb7212478db9d262547a34c, type: 3}
+  - {fileID: 8300000, guid: 099574c0cb9c15140bfd4a132c04def0, type: 3}
+  - {fileID: 8300000, guid: 4d2bbfecfd91a0944b4aeee73e91cef6, type: 3}
+  - {fileID: 8300000, guid: d683d6c7976dde64c93ecf4d4f721cc2, type: 3}
+  - {fileID: 8300000, guid: 3f629200bca29104b8630344d381b69e, type: 3}
