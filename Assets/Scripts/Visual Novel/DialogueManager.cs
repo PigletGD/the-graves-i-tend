@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -125,6 +125,8 @@ public class DialogueManager : MonoBehaviour
         isDialoguePlaying = false;
         currentDialogue = "";
         dialoguePanel.gameObject.SetActive(false);
+        OverworldHandler.TargetContext = OverworldHandler.OverworldContext.Town;
+        SceneManager.LoadScene("WorldInteractionScene");
     }
 
     private void PauseStory()
