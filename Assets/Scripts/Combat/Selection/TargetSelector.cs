@@ -8,10 +8,14 @@ public class TargetSelector : MonoBehaviour
     public event Action<ITarget[]> OnTargetsSelected;
     public event Action<ITarget> OnHoveredTargetChanged;
 
+    [SerializeField] private CombatArena combatArena;
+
     private bool isTargetingEnabled;
     private ITarget currentHoveredTarget;
     private List<ITarget> targetableTargets = new();
     private bool isTargetingAll;
+    private bool isTargetingRow;
+    private bool isTargetingColumn;
     private HashSet<ITarget> visualizedTargets = new();
  
     // TODO: Temporary creation of input actions. We'll eventually need a centralized player controls reference to pass around.
@@ -50,6 +54,8 @@ public class TargetSelector : MonoBehaviour
         OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
 
         isTargetingAll = visualTargetingMode == TargetSelectionMode.AllAllies || visualTargetingMode == TargetSelectionMode.AllEnemies;
+        isTargetingRow = visualTargetingMode == TargetSelectionMode.RowAllies || visualTargetingMode == TargetSelectionMode.RowEnemies;
+        isTargetingColumn = visualTargetingMode == TargetSelectionMode.ColumnAllies || visualTargetingMode == TargetSelectionMode.ColumnEnemies;
         if (isEnabled)
         {
             foreach (ITarget target in targets)
@@ -87,13 +93,40 @@ public class TargetSelector : MonoBehaviour
         ITarget newHoveredTarget = TryGetHoveredTarget(out ITarget hoveredTarget) ? hoveredTarget : null;
         if (currentHoveredTarget == newHoveredTarget)
             return;
-
-        if (currentHoveredTarget != null)
-            HideTargetVisualizer(currentHoveredTarget);
+        
+        /*if (currentHoveredTarget != null)
+            HideTargetVisualizer(currentHoveredTarget);*/
+        
+        if (targetableTargets != null && targetableTargets.Count > 0)
+            foreach (var target in targetableTargets)
+                HideTargetVisualizer(target);
+        
+        targetableTargets.Clear();
 
         currentHoveredTarget = newHoveredTarget;
         if (currentHoveredTarget != null)
-            ShowTargetVisualizer(currentHoveredTarget);
+        {
+            if (isTargetingRow)
+                targetableTargets = combatArena.GetTargetsInRow(currentHoveredTarget as Combatant, true);
+            else if (isTargetingColumn)
+                targetableTargets = combatArena.GetTargetsInColumn(currentHoveredTarget as Combatant, true);
+            else
+                targetableTargets = new List<ITarget>{currentHoveredTarget};
+            
+            if (targetableTargets != null && targetableTargets.Count > 0)
+            {
+                var combatants = new List<Combatant>();
+                foreach (var target in targetableTargets)
+                {
+                    ShowTargetVisualizer(target);
+                    if (target is Combatant combatant)
+                        combatants.Add(combatant);
+                }
+                
+                if (combatants.Count > 0)
+                    combatArena.SetHoveredCombatants(combatants);
+            }
+        }
 
         OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
     }

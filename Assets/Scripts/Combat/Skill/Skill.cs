@@ -7,7 +7,11 @@ public enum TargetSelectionMode
     AllEnemies,
     SingleAlly,
     AllAllies,
-    Self
+    Self,
+    RowEnemies,
+    ColumnEnemies,
+    RowAllies,
+    ColumnAllies,
 }
 
 public abstract class Skill : ScriptableObject

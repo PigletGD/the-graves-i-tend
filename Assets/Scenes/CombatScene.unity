@@ -629,6 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb548a4715ca3c4e8d1c6eeab69e1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetSelector
+  combatArena: {fileID: 1038021787}
 --- !u!4 &1037809506
 Transform:
   m_ObjectHideFlags: 0

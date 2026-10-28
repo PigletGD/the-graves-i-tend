@@ -29,7 +29,8 @@ public class Combat : MonoBehaviour
         Combatant[] combatants = FindObjectsByType<Combatant>(FindObjectsSortMode.None);
         PlayerCombatants = combatants.Where(combatant => combatant.IsPlayerControlled).ToList();
 
-        int enemyCount = UnityEngine.Random.Range(1, 4);
+        //int enemyCount = UnityEngine.Random.Range(1, 4);
+        int enemyCount = UnityEngine.Random.Range(4, 7); // TODO: Testing for enemies in multiple rows. Remove when unneeded.
         EnemyCombatants = new List<Combatant>(enemyCount);
         for (int i = 0; i < enemyCount; i++)
             EnemyCombatants.Add(enemyDatabase.GetRandomEnemy());
@@ -93,10 +94,14 @@ public class Combat : MonoBehaviour
         {
             case TargetSelectionMode.SingleEnemy:
             case TargetSelectionMode.AllEnemies:
+            case TargetSelectionMode.RowEnemies:
+            case TargetSelectionMode.ColumnEnemies:
                 StartTargetSelection(selectedSkill.VisualTargetingMode, EnemyCombatants.Where(x => !x.IsDead).Cast<ITarget>().ToArray());
                 break;
             case TargetSelectionMode.SingleAlly:
             case TargetSelectionMode.AllAllies:
+            case TargetSelectionMode.RowAllies:
+            case TargetSelectionMode.ColumnAllies:
                 StartTargetSelection(selectedSkill.VisualTargetingMode, PlayerCombatants.Where(x => !x.IsDead).Cast<ITarget>().ToArray());
                 break;
             case TargetSelectionMode.None:

@@ -30,6 +30,8 @@ public class Combatant : MonoBehaviour, ITarget
     public BoxCollider2D BoxCollider => boxCollider;
 
     public CombatantStatusEffects StatusEffects => statusEffectsController;
+    
+    public int TileIndex { get; set; }
 
     private void Awake()
     {

@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class CombatArena : MonoBehaviour
 {
+    // TODO: Remove once we have a proper way of setting up starting position data for enemies
+    public struct CombatantSetupInfo
+    {
+        public int CombatantIndex;
+        public int TileIndex;
+    }
+    
     [SerializeField] private CombatArenaRow[] leftSidePositions;
     [SerializeField] private CombatArenaRow[] rightSidePositions;
     [SerializeField] private CombatArenaTileData allyTileData;
@@ -16,13 +23,44 @@ public class CombatArena : MonoBehaviour
         currentCombatant = null;
         hoveredCombatants.Clear();
 
-        PositionCombatants(leftSideCombatants, leftSidePositions, false);
-        PositionCombatants(rightSideCombatants, rightSidePositions, true);
+        PositionCombatants(leftSideCombatants, leftSidePositions, false, false);
+        PositionCombatants(rightSideCombatants, rightSidePositions, true, true);
     }
 
-    private void PositionCombatants(Combatant[] combatants, CombatArenaRow[] rows, bool isRightSide)
+    private void PositionCombatants(Combatant[] combatants, CombatArenaRow[] rows, bool isRightSide, bool randomizePositions)
     {
         int combatantIndex = 0;
+        
+        // TODO: Have a way to assign troops to different tiles in the 2x3 tile setup. Randomizing positions for enemies for now
+        int tileIndex = 0;
+        CombatantSetupInfo[] infos = new CombatantSetupInfo[combatants.Length];
+        if (randomizePositions)
+        {
+            var tileIndexes = new List<int>();
+            foreach (CombatArenaRow row in rows)
+            {
+                foreach (CombatArenaTile tile in row.CombatantTiles)
+                {
+                    tileIndexes.Add(tileIndex);
+                    tileIndex++;
+                }
+            }
+
+            tileIndex = 0;
+
+            for (int i = 0; i < infos.Length; i++)
+            {
+                var indexToCheck = Random.Range(0, tileIndexes.Count);
+                var newTileIndex = tileIndexes[indexToCheck];
+                tileIndexes.RemoveAt(indexToCheck);
+
+                infos[i] = new CombatantSetupInfo()
+                {
+                    CombatantIndex = i,
+                    TileIndex = newTileIndex,
+                };
+            }
+        }
 
         foreach (CombatArenaRow row in rows)
         {
@@ -34,17 +72,46 @@ public class CombatArena : MonoBehaviour
                 tile.SetBaseTileOutline(tileData.BaseOutlineTile);
                 tile.SetModifierTile(null);
 
-                if (combatantIndex >= combatants.Length)
-                    continue;
+                if (!randomizePositions)
+                {
+                    if (combatantIndex >= combatants.Length)
+                        continue;
 
-                Combatant combatant = combatants[combatantIndex++];
-                tile.SetTile(combatant, tileData);
-                combatant.transform.SetParent(tile.CombatantPosition, false);
-                combatant.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                    Combatant combatant = combatants[combatantIndex++];
+                    tile.SetTile(combatant, tileData);
+                    combatant.transform.SetParent(tile.CombatantPosition, false);
+                    combatant.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-                if (isRightSide)
-                    combatant.transform.localScale = new(-combatant.transform.localScale.x, combatant.transform.localScale.y, combatant.transform.localScale.z);
+                    if (isRightSide)
+                        combatant.transform.localScale = new(-combatant.transform.localScale.x, combatant.transform.localScale.y, combatant.transform.localScale.z);
+                }
+                else if (infos.Length > 0)
+                {
+                    Combatant combatant = null;
+                    foreach (var info in infos)
+                    {
+                        if (info.TileIndex != tileIndex)
+                            continue;
 
+                        combatant = combatants[info.CombatantIndex];
+                    }
+
+                    if (combatant == null)
+                    {
+                        tileIndex++;
+                        continue;
+                    }
+                    
+                    tile.SetTile(combatant, tileData);
+                    combatant.transform.SetParent(tile.CombatantPosition, false);
+                    combatant.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                    combatant.TileIndex = tileIndex;
+
+                    if (isRightSide)
+                        combatant.transform.localScale = new(-combatant.transform.localScale.x, combatant.transform.localScale.y, combatant.transform.localScale.z);
+                    
+                    tileIndex++;
+                }
             }
         }
     }
@@ -96,5 +163,72 @@ public class CombatArena : MonoBehaviour
                 tile.SetModifierTile(modifierSprite);
             }
         }
+    }
+    
+    public List<ITarget> GetTargetsInRow(Combatant combatant, bool rightSideCombatant)
+    {
+        if (combatant == null)
+            return null;
+        
+        var targets = new List<ITarget>();
+        var rows = rightSideCombatant ? rightSidePositions : leftSidePositions;
+
+        int tileIndexToCheck = combatant.TileIndex;
+        foreach (var row in rows)
+        {
+            if (row.CombatantTiles.Length >= tileIndexToCheck)
+            {
+                tileIndexToCheck -= row.CombatantTiles.Length;
+                continue;
+            }
+
+            foreach (var tiles in row.CombatantTiles)
+            {
+                if (tiles.Combatant == null)
+                    continue;
+
+                /*if (combatant.Equals(tiles.Combatant))
+                    continue;*/
+                
+                targets.Add(tiles.Combatant);
+            }
+        }
+        
+        return targets;
+    }
+    
+    public List<ITarget> GetTargetsInColumn(Combatant combatant, bool rightSideCombatant)
+    {
+        if (combatant == null)
+            return null;
+        
+        var targets = new List<ITarget>();
+        var rows = rightSideCombatant ? rightSidePositions : leftSidePositions;
+
+        int column = combatant.TileIndex;
+        foreach (var row in rows)
+        {
+            if (row.CombatantTiles.Length >= column)
+                break;
+            
+            column -= row.CombatantTiles.Length;
+        }
+        
+        foreach (var row in rows)
+        {
+            if (row.CombatantTiles.Length >= column)
+                continue;
+
+            var combatantToCheck = row.CombatantTiles[column].Combatant;
+            if (combatantToCheck == null)
+                continue;
+            
+            /*if (combatant.Equals(combatantToCheck))
+                continue;*/
+            
+            targets.Add(combatantToCheck);
+        }
+        
+        return targets;
     }
 }
