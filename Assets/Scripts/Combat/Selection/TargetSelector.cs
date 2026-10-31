@@ -128,7 +128,7 @@ public class TargetSelector : MonoBehaviour
             }
         }
 
-        OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
+        //OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
     }
 
     private void ShowTargetVisualizer(ITarget target)

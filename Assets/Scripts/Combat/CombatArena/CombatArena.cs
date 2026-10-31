@@ -176,7 +176,7 @@ public class CombatArena : MonoBehaviour
         int tileIndexToCheck = combatant.TileIndex;
         foreach (var row in rows)
         {
-            if (row.CombatantTiles.Length >= tileIndexToCheck)
+            if (row.CombatantTiles.Length < tileIndexToCheck)
             {
                 tileIndexToCheck -= row.CombatantTiles.Length;
                 continue;
@@ -192,6 +192,8 @@ public class CombatArena : MonoBehaviour
                 
                 targets.Add(tiles.Combatant);
             }
+
+            break;
         }
         
         return targets;
@@ -208,7 +210,7 @@ public class CombatArena : MonoBehaviour
         int column = combatant.TileIndex;
         foreach (var row in rows)
         {
-            if (row.CombatantTiles.Length >= column)
+            if (row.CombatantTiles.Length > column)
                 break;
             
             column -= row.CombatantTiles.Length;
@@ -216,9 +218,9 @@ public class CombatArena : MonoBehaviour
         
         foreach (var row in rows)
         {
-            if (row.CombatantTiles.Length >= column)
+            if (row.CombatantTiles.Length <= column)
                 continue;
-
+            
             var combatantToCheck = row.CombatantTiles[column].Combatant;
             if (combatantToCheck == null)
                 continue;
