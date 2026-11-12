@@ -7,6 +7,7 @@ public class TargetSelector : MonoBehaviour
 {
     public event Action<ITarget[]> OnTargetsSelected;
     public event Action<ITarget> OnHoveredTargetChanged;
+    public event Action<ITarget[]> OnAffectedTargetChanged;
 
     [SerializeField] private CombatArena combatArena;
 
@@ -73,7 +74,7 @@ public class TargetSelector : MonoBehaviour
         if (!isTargetingEnabled)
             return;
 
-        if (TryGetHoveredTarget(out ITarget target))
+        if (TryGetHoveredTarget(out ITarget target) && targetableTargets.Contains(target))
         {
             if (isTargetingAll)
             {
@@ -87,6 +88,9 @@ public class TargetSelector : MonoBehaviour
 
     public void OnPoint(InputAction.CallbackContext _)
     {
+        if (combatArena == null)
+            return;
+        
         if (!isTargetingEnabled || isTargetingAll)
             return;
 
@@ -104,6 +108,7 @@ public class TargetSelector : MonoBehaviour
         targetableTargets.Clear();
 
         currentHoveredTarget = newHoveredTarget;
+        var combatants = new List<Combatant>();
         if (currentHoveredTarget != null)
         {
             if (isTargetingRow)
@@ -115,18 +120,16 @@ public class TargetSelector : MonoBehaviour
             
             if (targetableTargets != null && targetableTargets.Count > 0)
             {
-                var combatants = new List<Combatant>();
                 foreach (var target in targetableTargets)
                 {
                     ShowTargetVisualizer(target);
                     if (target is Combatant combatant)
                         combatants.Add(combatant);
                 }
-                
-                if (combatants.Count > 0)
-                    combatArena.SetHoveredCombatants(combatants);
             }
         }
+        
+        combatArena.SetHoveredCombatants(combatants);
 
         //OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
     }
@@ -156,7 +159,8 @@ public class TargetSelector : MonoBehaviour
         if (!hit || hit.collider == null || !hit.collider.TryGetComponent(out target))
             return false;
 
-        return targetableTargets.Contains(target);
+        //return targetableTargets.Contains(target);
+        return true;
     }
 
     private void ClearTargetVisualizers()
