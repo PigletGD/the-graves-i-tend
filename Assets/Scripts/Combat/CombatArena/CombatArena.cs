@@ -190,7 +190,7 @@ public class CombatArena : MonoBehaviour
         int tileIndexToCheck = combatant.TileIndex;
         foreach (var row in rows)
         {
-            if (row.CombatantTiles.Length < tileIndexToCheck)
+            if (row.CombatantTiles.Length <= tileIndexToCheck)
             {
                 tileIndexToCheck -= row.CombatantTiles.Length;
                 continue;
