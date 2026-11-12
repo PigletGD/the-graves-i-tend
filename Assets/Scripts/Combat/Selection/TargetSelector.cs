@@ -14,6 +14,7 @@ public class TargetSelector : MonoBehaviour
     private bool isTargetingEnabled;
     private ITarget currentHoveredTarget;
     private List<ITarget> targetableTargets = new();
+    private bool isTargetingAllies;
     private bool isTargetingAll;
     private bool isTargetingRow;
     private bool isTargetingColumn;
@@ -55,6 +56,11 @@ public class TargetSelector : MonoBehaviour
         currentHoveredTarget = null;
         OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
 
+        isTargetingAllies = visualTargetingMode == TargetSelectionMode.AllAllies
+                            || visualTargetingMode == TargetSelectionMode.RowAllies
+                            || visualTargetingMode == TargetSelectionMode.ColumnAllies
+                            || visualTargetingMode == TargetSelectionMode.TShapeAllies;
+        
         isTargetingAll = visualTargetingMode == TargetSelectionMode.AllAllies || visualTargetingMode == TargetSelectionMode.AllEnemies;
         isTargetingRow = visualTargetingMode == TargetSelectionMode.RowAllies || visualTargetingMode == TargetSelectionMode.RowEnemies;
         isTargetingColumn = visualTargetingMode == TargetSelectionMode.ColumnAllies || visualTargetingMode == TargetSelectionMode.ColumnEnemies;
@@ -108,17 +114,20 @@ public class TargetSelector : MonoBehaviour
                 HideTargetVisualizer(target);
         
         targetableTargets.Clear();
-
         currentHoveredTarget = newHoveredTarget;
+        var hoveredCombatant = currentHoveredTarget as Combatant;
+        if (hoveredCombatant != null && isTargetingAllies != hoveredCombatant.IsPlayerControlled)
+            hoveredCombatant = null;
+        
         var combatants = new List<Combatant>();
         if (currentHoveredTarget != null)
         {
             if (isTargetingRow)
-                targetableTargets = combatArena.GetTargetsInRow(currentHoveredTarget as Combatant, true);
+                targetableTargets = combatArena.GetTargetsInRow(hoveredCombatant, true);
             else if (isTargetingColumn)
-                targetableTargets = combatArena.GetTargetsInColumn(currentHoveredTarget as Combatant, true);
+                targetableTargets = combatArena.GetTargetsInColumn(hoveredCombatant, true);
             else if (isTargetingTShape)
-                targetableTargets = combatArena.GetTargetsInTShape(currentHoveredTarget as Combatant, true);
+                targetableTargets = combatArena.GetTargetsInTShape(hoveredCombatant, true);
             else
                 targetableTargets = new List<ITarget>{currentHoveredTarget};
             
@@ -133,7 +142,7 @@ public class TargetSelector : MonoBehaviour
             }
         }
         
-        combatArena.SetHoveredCombatants(combatants, currentHoveredTarget as Combatant);
+        combatArena.SetHoveredCombatants(combatants, hoveredCombatant);
 
         //OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
     }

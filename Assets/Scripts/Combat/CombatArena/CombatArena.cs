@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CombatArena : MonoBehaviour
@@ -135,7 +136,6 @@ public class CombatArena : MonoBehaviour
     public void SetHoveredCombatants(IEnumerable<Combatant> combatants, Combatant primaryTarget)
     {
         hoveredCombatants.Clear();
-        primaryCombatant = primaryTarget;
         foreach (Combatant combatant in combatants)
         {
             if (combatant != null)
@@ -182,7 +182,7 @@ public class CombatArena : MonoBehaviour
     public List<ITarget> GetTargetsInRow(Combatant combatant, bool rightSideCombatant)
     {
         if (combatant == null)
-            return null;
+            return new List<ITarget>();
         
         var targets = new List<ITarget>();
         var rows = rightSideCombatant ? rightSidePositions : leftSidePositions;
@@ -216,7 +216,7 @@ public class CombatArena : MonoBehaviour
     public List<ITarget> GetTargetsInColumn(Combatant combatant, bool rightSideCombatant)
     {
         if (combatant == null)
-            return null;
+            return new List<ITarget>();
         
         var targets = new List<ITarget>();
         var rows = rightSideCombatant ? rightSidePositions : leftSidePositions;
@@ -251,7 +251,7 @@ public class CombatArena : MonoBehaviour
     public List<ITarget> GetTargetsInTShape(Combatant combatant, bool rightSideCombatant)
     {
         if (combatant == null)
-            return null;
+            return new List<ITarget>();
         
         var targets = new List<ITarget>();
         var rows = rightSideCombatant ? rightSidePositions : leftSidePositions;
