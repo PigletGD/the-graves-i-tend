@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 79eb1c1c9881c8a4eb6f5915e914beba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6810687271716426026
+    second: Terrain Modifier - Starcharged Deluge Back_0
+  - first:
+      213: -3527180298034208450
+    second: Terrain Modifier - Starcharged Deluge Back_1
+  - first:
+      213: 6489545381695176258
+    second: Terrain Modifier - Starcharged Deluge Back_2
+  - first:
+      213: -1262341476952089629
+    second: Terrain Modifier - Starcharged Deluge Back_3
+  - first:
+      213: 3049557943912518075
+    second: Terrain Modifier - Starcharged Deluge Back_4
+  - first:
+      213: 3696298338347170659
+    second: Terrain Modifier - Starcharged Deluge Back_5
+  - first:
+      213: 4932226872603253366
+    second: Terrain Modifier - Starcharged Deluge Back_6
+  - first:
+      213: 9019214385122727952
+    second: Terrain Modifier - Starcharged Deluge Back_7
+  - first:
+      213: 7432409383958350266
+    second: Terrain Modifier - Starcharged Deluge Back_8
+  - first:
+      213: 3952501800207843760
+    second: Terrain Modifier - Starcharged Deluge Back_9
+  - first:
+      213: -6179012664980804941
+    second: Terrain Modifier - Starcharged Deluge Back_10
+  - first:
+      213: -1928667645323993747
+    second: Terrain Modifier - Starcharged Deluge Back_11
+  - first:
+      213: -1737548230625724992
+    second: Terrain Modifier - Starcharged Deluge Back_12
+  - first:
+      213: -4505317292721882179
+    second: Terrain Modifier - Starcharged Deluge Back_13
+  - first:
+      213: 9096365286425291144
+    second: Terrain Modifier - Starcharged Deluge Back_14
+  - first:
+      213: -7805623540553386614
+    second: Terrain Modifier - Starcharged Deluge Back_15
+  - first:
+      213: 1272643659981761314
+    second: Terrain Modifier - Starcharged Deluge Back_16
+  - first:
+      213: 153875135878968075
+    second: Terrain Modifier - Starcharged Deluge Back_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 399
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de611dc2049b71a0800000000000000
+      internalID: -6810687271716426026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 334
+        width: 16
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e312aece430fc0fc0800000000000000
+      internalID: -3527180298034208450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_2
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 391
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24eb7bd342f7f0a50800000000000000
+      internalID: 6489545381695176258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_3
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 332
+        width: 19
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eb57096d134b7ee0800000000000000
+      internalID: -1262341476952089629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_4
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 343
+        width: 12
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb150e0fac4325a20800000000000000
+      internalID: 3049557943912518075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_5
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 336
+        width: 16
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36bbc0141c3eb4330800000000000000
+      internalID: 3696298338347170659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_6
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 303
+        width: 12
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a1725653ac27440800000000000000
+      internalID: 4932226872603253366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_7
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 335
+        width: 16
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018555a82bfaa2d70800000000000000
+      internalID: 9019214385122727952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_8
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 334
+        width: 12
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab90e14c4f8352760800000000000000
+      internalID: 7432409383958350266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_9
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 374
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b10b7f227b1ad630800000000000000
+      internalID: 3952501800207843760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_10
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 320
+        width: 25
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3baed2118bcbf3aa0800000000000000
+      internalID: -6179012664980804941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_11
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 262
+        width: 20
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6d9caebefefb35e0800000000000000
+      internalID: -1928667645323993747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_12
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 338
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c5f175171df2e7e0800000000000000
+      internalID: -1737548230625724992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_13
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 325
+        width: 11
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbb33eedac5e971c0800000000000000
+      internalID: -4505317292721882179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_14
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 331
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 889e29c8808cc3e70800000000000000
+      internalID: 9096365286425291144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_15
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 287
+        width: 23
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8573eeeebadca390800000000000000
+      internalID: -7805623540553386614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_16
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 342
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22badde7aa659a110800000000000000
+      internalID: 1272643659981761314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain Modifier - Starcharged Deluge Back_17
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 271
+        width: 11
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03b4ddee9ca22200800000000000000
+      internalID: 153875135878968075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Terrain Modifier - Starcharged Deluge Back_0: -6810687271716426026
+      Terrain Modifier - Starcharged Deluge Back_1: -3527180298034208450
+      Terrain Modifier - Starcharged Deluge Back_10: -6179012664980804941
+      Terrain Modifier - Starcharged Deluge Back_11: -1928667645323993747
+      Terrain Modifier - Starcharged Deluge Back_12: -1737548230625724992
+      Terrain Modifier - Starcharged Deluge Back_13: -4505317292721882179
+      Terrain Modifier - Starcharged Deluge Back_14: 9096365286425291144
+      Terrain Modifier - Starcharged Deluge Back_15: -7805623540553386614
+      Terrain Modifier - Starcharged Deluge Back_16: 1272643659981761314
+      Terrain Modifier - Starcharged Deluge Back_17: 153875135878968075
+      Terrain Modifier - Starcharged Deluge Back_2: 6489545381695176258
+      Terrain Modifier - Starcharged Deluge Back_3: -1262341476952089629
+      Terrain Modifier - Starcharged Deluge Back_4: 3049557943912518075
+      Terrain Modifier - Starcharged Deluge Back_5: 3696298338347170659
+      Terrain Modifier - Starcharged Deluge Back_6: 4932226872603253366
+      Terrain Modifier - Starcharged Deluge Back_7: 9019214385122727952
+      Terrain Modifier - Starcharged Deluge Back_8: 7432409383958350266
+      Terrain Modifier - Starcharged Deluge Back_9: 3952501800207843760
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
