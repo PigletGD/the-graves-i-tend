@@ -12,6 +12,8 @@ public enum TargetSelectionMode
     ColumnEnemies,
     RowAllies,
     ColumnAllies,
+    TShapeAllies,
+    TShapeEnemies,
 }
 
 public abstract class Skill : ScriptableObject

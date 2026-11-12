@@ -17,6 +17,7 @@ public class TargetSelector : MonoBehaviour
     private bool isTargetingAll;
     private bool isTargetingRow;
     private bool isTargetingColumn;
+    private bool isTargetingTShape;
     private HashSet<ITarget> visualizedTargets = new();
  
     // TODO: Temporary creation of input actions. We'll eventually need a centralized player controls reference to pass around.
@@ -57,6 +58,7 @@ public class TargetSelector : MonoBehaviour
         isTargetingAll = visualTargetingMode == TargetSelectionMode.AllAllies || visualTargetingMode == TargetSelectionMode.AllEnemies;
         isTargetingRow = visualTargetingMode == TargetSelectionMode.RowAllies || visualTargetingMode == TargetSelectionMode.RowEnemies;
         isTargetingColumn = visualTargetingMode == TargetSelectionMode.ColumnAllies || visualTargetingMode == TargetSelectionMode.ColumnEnemies;
+        isTargetingTShape = visualTargetingMode == TargetSelectionMode.TShapeAllies || visualTargetingMode == TargetSelectionMode.TShapeEnemies;
         if (isEnabled)
         {
             foreach (ITarget target in targets)
@@ -115,6 +117,8 @@ public class TargetSelector : MonoBehaviour
                 targetableTargets = combatArena.GetTargetsInRow(currentHoveredTarget as Combatant, true);
             else if (isTargetingColumn)
                 targetableTargets = combatArena.GetTargetsInColumn(currentHoveredTarget as Combatant, true);
+            else if (isTargetingTShape)
+                targetableTargets = combatArena.GetTargetsInTShape(currentHoveredTarget as Combatant, true);
             else
                 targetableTargets = new List<ITarget>{currentHoveredTarget};
             

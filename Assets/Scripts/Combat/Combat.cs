@@ -96,12 +96,14 @@ public class Combat : MonoBehaviour
             case TargetSelectionMode.AllEnemies:
             case TargetSelectionMode.RowEnemies:
             case TargetSelectionMode.ColumnEnemies:
+            case TargetSelectionMode.TShapeEnemies:
                 StartTargetSelection(selectedSkill.VisualTargetingMode, EnemyCombatants.Where(x => !x.IsDead).Cast<ITarget>().ToArray());
                 break;
             case TargetSelectionMode.SingleAlly:
             case TargetSelectionMode.AllAllies:
             case TargetSelectionMode.RowAllies:
             case TargetSelectionMode.ColumnAllies:
+            case TargetSelectionMode.TShapeAllies:
                 StartTargetSelection(selectedSkill.VisualTargetingMode, PlayerCombatants.Where(x => !x.IsDead).Cast<ITarget>().ToArray());
                 break;
             case TargetSelectionMode.None:
@@ -149,6 +151,7 @@ public class Combat : MonoBehaviour
         // If we have skill we 50/50 it to cast for now.
         if (skills.Length > 0 && UnityEngine.Random.Range(0, 2) == 0)
         {
+            // TODO: Need to support non-all target AoEs skills
             int skillIndex = UnityEngine.Random.Range(0, skills.Length);
             Skill skill = skills[skillIndex];
             ITarget[] targets = skill.VisualTargetingMode switch

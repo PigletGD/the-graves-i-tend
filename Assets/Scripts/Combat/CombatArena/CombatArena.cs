@@ -247,4 +247,54 @@ public class CombatArena : MonoBehaviour
         
         return targets;
     }
+    
+    public List<ITarget> GetTargetsInTShape(Combatant combatant, bool rightSideCombatant)
+    {
+        if (combatant == null)
+            return null;
+        
+        var targets = new List<ITarget>();
+        var rows = rightSideCombatant ? rightSidePositions : leftSidePositions;
+
+        int column = combatant.TileIndex;
+        int rowIndex = 0;
+        for (rowIndex = 0; rowIndex < rows.Length; rowIndex++)
+        {
+            var row = rows[rowIndex];
+            if (row.CombatantTiles.Length > column)
+                break;
+            
+            column -= row.CombatantTiles.Length;
+        }
+        
+        targets.Add(combatant);
+        if (rowIndex - 1 >= 0 && column < rows[rowIndex - 1].CombatantTiles.Length)
+        {
+            if (TryGetCombatant(rows[rowIndex - 1], column, out var neighbor))
+                targets.Add(neighbor);
+        }
+        if (column - 1 >= 0)
+        {
+            if (TryGetCombatant(rows[rowIndex], column - 1, out var neighbor))
+                targets.Add(neighbor);
+        }
+        if (column + 1 < rows[rowIndex].CombatantTiles.Length)
+        {
+            if (TryGetCombatant(rows[rowIndex], column + 1, out var neighbor))
+                targets.Add(neighbor);
+        }
+        if (rowIndex + 1 < rows.Length && column < rows[rowIndex].CombatantTiles.Length)
+        {
+            if (TryGetCombatant(rows[rowIndex + 1], column, out var neighbor))
+                targets.Add(neighbor);
+        }
+        
+        return targets;
+    }
+
+    private bool TryGetCombatant(CombatArenaRow row, int column, out Combatant combatant)
+    {
+        combatant = row.CombatantTiles[column].Combatant;
+        return combatant != null;
+    }
 }
