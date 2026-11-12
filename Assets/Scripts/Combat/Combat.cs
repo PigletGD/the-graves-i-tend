@@ -119,7 +119,7 @@ public class Combat : MonoBehaviour
         targeting.SetTargetingSelectorEnabled(true, visualTargetingMode, targets);
 
         if (visualTargetingMode is TargetSelectionMode.AllEnemies or TargetSelectionMode.AllAllies)
-            arena.SetHoveredCombatants(targets.OfType<Combatant>());
+            arena.SetHoveredCombatants(targets.OfType<Combatant>(), null);
     }
 
     private void StopTargetSelection()

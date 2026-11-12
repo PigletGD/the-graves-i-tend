@@ -44,9 +44,11 @@ public class CombatArenaTileData
     [SerializeField] private Sprite baseOutlineTile;
     [SerializeField] private Sprite currentTurnSprite;
     [SerializeField] private Sprite targetedSprite;
+    [SerializeField] private Sprite targetedNonPrimarySprite;
 
     public Sprite BaseTile => baseTile;
     public Sprite BaseOutlineTile => baseOutlineTile;
     public Sprite CurrentTurnSprite => currentTurnSprite;
     public Sprite TargetedSprite => targetedSprite;
+    public Sprite TargetedNonPrimarySprite => targetedNonPrimarySprite;
 }

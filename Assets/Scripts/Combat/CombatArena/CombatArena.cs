@@ -16,6 +16,7 @@ public class CombatArena : MonoBehaviour
     [SerializeField] private CombatArenaTileData enemyTileData;
 
     private Combatant currentCombatant;
+    private Combatant primaryCombatant;
     private HashSet<Combatant> hoveredCombatants = new();
 
     public void PositionCombatants(Combatant[] leftSideCombatants, Combatant[] rightSideCombatants)
@@ -125,14 +126,16 @@ public class CombatArena : MonoBehaviour
     public void SetHoveredCombatant(Combatant combatant)
     {
         hoveredCombatants.Clear();
+        primaryCombatant = combatant;
         if (combatant != null)
             hoveredCombatants.Add(combatant);
         RefreshCombatantTiles();
     }
 
-    public void SetHoveredCombatants(IEnumerable<Combatant> combatants)
+    public void SetHoveredCombatants(IEnumerable<Combatant> combatants, Combatant primaryTarget)
     {
         hoveredCombatants.Clear();
+        primaryCombatant = primaryTarget;
         foreach (Combatant combatant in combatants)
         {
             if (combatant != null)
@@ -157,10 +160,21 @@ public class CombatArena : MonoBehaviour
                 if (combatant == null)
                     continue;
 
-                Sprite modifierSprite = hoveredCombatants.Contains(combatant) ? tile.TileData.TargetedSprite
-                    : combatant == currentCombatant ? tile.TileData.CurrentTurnSprite : null;
+                Sprite modifierSprite = null;
+                
+                if (combatant.Equals(primaryCombatant))
+                    modifierSprite = tile.TileData.TargetedSprite;
+                else if (hoveredCombatants.Contains(combatant))
+                    modifierSprite = tile.TileData.TargetedNonPrimarySprite;
+                else if (combatant == currentCombatant)
+                    modifierSprite = tile.TileData.CurrentTurnSprite;
 
                 tile.SetModifierTile(modifierSprite);
+                
+                if (modifierSprite != null)
+                    tile.SetBaseTileOutline(null);
+                else
+                    tile.SetBaseTileOutline(tile.TileData.BaseOutlineTile);
             }
         }
     }

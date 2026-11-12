@@ -1126,6 +1126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat Arena
       objectReference: {fileID: 0}
+    - target: {fileID: 5546536216528734814, guid: 6590c60a92e38ef48ab253ca3277eb7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5884913352928844784, guid: 6590c60a92e38ef48ab253ca3277eb7c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

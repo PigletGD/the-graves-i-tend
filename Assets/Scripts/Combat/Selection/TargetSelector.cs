@@ -129,7 +129,7 @@ public class TargetSelector : MonoBehaviour
             }
         }
         
-        combatArena.SetHoveredCombatants(combatants);
+        combatArena.SetHoveredCombatants(combatants, currentHoveredTarget as Combatant);
 
         //OnHoveredTargetChanged?.Invoke(currentHoveredTarget);
     }
